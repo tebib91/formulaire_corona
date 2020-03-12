@@ -9,11 +9,13 @@ import { HomeComponent } from './home/home.component';
 
 import { DemoMaterialModule } from './material-module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {SymptomsFormComponent} from './form/symptoms-form/symptoms-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SymptomsFormComponent
   ],
   imports: [
     BrowserModule,
