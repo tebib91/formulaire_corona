@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { nationality } from '../data';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +8,7 @@ import { nationality } from '../data';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
   phoneNumber = "^((\\+91-?)|0)?[0-9]{10}$";
   nationality: { num_code: string; alpha_2_code: string; alpha_3_code: string; en_short_name: string; nationality: string; }[];
 
@@ -59,5 +60,4 @@ export class HomeComponent implements OnInit {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
   }
-
 }
