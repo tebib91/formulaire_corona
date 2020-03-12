@@ -19,16 +19,16 @@ export class HomeComponent implements OnInit {
     phone: ['', Validators.required],
     supportPhone: ['', Validators.required],
 
-    address: this.fb.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: ['']
-    }),
+    // address: this.fb.group({
+    //   street: [''],
+    //   city: [''],
+    //   state: [''],
+    //   zip: ['']
+    // }),
 
-    aliases: this.fb.array([
-      this.fb.control('')
-    ])
+    // aliases: this.fb.array([
+    //   this.fb.control('')
+    // ])
 
   });
 
