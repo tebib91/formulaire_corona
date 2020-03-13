@@ -1,4 +1,29 @@
 agm-map {
   height: 300px;
 }
+button {
+	border: none;
+	outline: none;
+}
 
+.circle {
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	background-color: #555;
+	opacity: 0.5;
+	display: flex;
+	transition: 0.2s;
+
+	img {
+		margin: auto;
+		width: 30px;
+		height: 30px;
+		transition: 0.5s;
+	}
+
+	&:hover, &:focus {
+    cursor: pointer;
+    transform:     rotate(315deg);
+	}
+}

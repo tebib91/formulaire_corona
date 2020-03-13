@@ -47,16 +47,15 @@ export class HomeComponent implements OnInit {
     location: this.fb.array([
       this.newLocation()
     ]),
-
+    travelEtat: ['', Validators.required],
     travel: this.fb.array([
       this.newTravel()
     ]),
 
-    connection: this.fb.group({
-      etat: ['', Validators.required],
-      caseId: ['']
-    }),
-
+    caseEtat: ['', Validators.required],
+    caseId: this.fb.array([
+      this.newCase(),
+    ]),
     symptoms: this.fb.group({
       etat: ['', Validators.required],
       date: [''],
@@ -72,7 +71,11 @@ export class HomeComponent implements OnInit {
       date: [''],
     }),
   });
-
+  newCase(): FormGroup {
+    return this.fb.group({
+      id: ['']
+    })
+  }
   newInfectedFamily(): FormGroup {
     return this.fb.group({
       name: '',
@@ -82,8 +85,9 @@ export class HomeComponent implements OnInit {
 
   newTravel(): FormGroup {
     return this.fb.group({
-      etat: ['', Validators.required],
-      date: ['']
+      date: [''],
+      from: [''],
+      to: ['']
     });
   }
 
@@ -94,7 +98,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
+  get caseId() {
+    return this.profileForm.get('caseId') as FormArray;
+  }
   get infectedFamily() {
     return this.profileForm.get('infectedFamily') as FormArray;
   }
@@ -107,6 +113,9 @@ export class HomeComponent implements OnInit {
     return this.profileForm.get('location') as FormArray;
   }
 
+  addCase() {
+    this.caseId.push(this.newCase());
+  }
   addTravel() {
     this.travel.push(this.newTravel());
   }
