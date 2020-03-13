@@ -3,23 +3,20 @@
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
     <div class="row">
-      <div class="col-7" style="    display: inline-grid;">
+      <div class="col-md-7" style="    display: inline-grid;">
         <mat-form-field appearance="outline">
           <mat-label>Full Name</mat-label>
           <input matInput placeholder="Full Name" formControlName="fullName">
         </mat-form-field>
 
-        <!-- <mat-form-field>
-          <mat-label>Custom calendar header</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="dateBirth">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
-        </mat-form-field> -->
-
+        <mat-form-field appearance="outline">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput type="date" placeholder="Date of Birth" formControlName="dateBirth">
+        </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Gender</mat-label>
-          <mat-select formControlName="gender" >
+          <mat-select formControlName="gender">
             <mat-option>--</mat-option>
             <mat-option value="men">
               Men
@@ -32,26 +29,222 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Nationality</mat-label>
-          <mat-select formControlName="nationality" >
+          <mat-select formControlName="nationality">
             <mat-option>--</mat-option>
-            <mat-option *ngFor="let item of nationality" [value]="item.nationality" >
+            <mat-option *ngFor="let item of nationality" [value]="item.nationality">
               {{item.nationality}}
             </mat-option>
           </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" (click)="focusFunction()">
+          <mat-label>Adress</mat-label>
+          <input matInput placeholder="Adress" formControlName="adress" #address_input>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Work Location</mat-label>
+          <input matInput placeholder="Work Location Adress" formControlName="workLocation">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Phone</mat-label>
           <input matInput placeholder="Phone" formControlName="phone">
         </mat-form-field>
+
         <mat-form-field appearance="outline">
           <mat-label>SupportPhone</mat-label>
           <input matInput placeholder="Support Phone" formControlName="supportPhone">
         </mat-form-field>
+
+
+
+        <div formArrayName="infectedFamily">
+          <h3>Infected Family</h3>
+          <button (click)="addAlias()" mat-raised-button>Add Infected Family</button>
+
+          <div *ngFor="let alias of infectedFamily.controls; let i=index" class="d-flex justify-content-start">
+            <div [formGroupName]="i">
+              <mat-form-field appearance="outline">
+                <mat-label>Family member </mat-label>
+                <input matInput placeholder="Family member " formControlName="name">
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Infection posibility</mat-label>
+                <mat-select formControlName="infection">
+                  <mat-option>--</mat-option>
+                  <mat-option value="high">
+                    High
+                  </mat-option>
+                  <mat-option value="low">
+                    Low
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+          </div>
+        </div>
+
+        <div formArrayName="location">
+          <h3>Recent Location</h3>
+
+          <button (click)="addLocation()" mat-raised-button>Add Recent Location </button>
+
+          <div *ngFor="let alias of location.controls; let i=index" class="d-flex justify-content-start">
+            <div [formGroupName]="i">
+              <mat-form-field appearance="outline">
+                <mat-label>Place</mat-label>
+                <input matInput placeholder="Place" formControlName="place">
+              </mat-form-field>
+              <agm-map *ngIf="hiden" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+              </agm-map>
+              <mat-form-field appearance="outline">
+                <mat-label>date</mat-label>
+                <input matInput placeholder="date" type="date" formControlName="date">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div formArrayName="travel">
+          <h3>Have Traveled ?</h3>
+          <button (click)="addTravel()" mat-raised-button>Add Recent Place </button>
+
+          <div *ngFor="let alias of travel.controls; let i=index" class="d-flex justify-content-start">
+            <div [formGroupName]="i">
+              <mat-form-field appearance="outline" class="mr-4">
+                <mat-label>Place</mat-label>
+                <mat-select formControlName="etat">
+                  <mat-option>--</mat-option>
+                  <mat-option value="yes">
+                    Yes
+                  </mat-option>
+                  <mat-option value="no">
+                    No
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>date</mat-label>
+                <input matInput placeholder="date" type="date" formControlName="date">
+              </mat-form-field>
+
+            </div>
+          </div>
+        </div>
+
+        <div formGroupName="connection" class="d-flex justify-content-start">
+          <mat-form-field appearance="outline" class="mr-4">
+            <mat-label>Connection to a cases</mat-label>
+            <mat-select formControlName="etat">
+              <mat-option>--</mat-option>
+              <mat-option value="yes">
+                Yes
+              </mat-option>
+              <mat-option value="no">
+                No
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" *ngIf="profileForm.get('connection').get('etat').value === 'yes'">
+            <mat-label>Case Id</mat-label>
+            <input matInput placeholder="Case ID" formControlName="caseId">
+          </mat-form-field>
+        </div>
+
+      </div>
+      <div class="col-md-5">
+        <div class="d-flex justify-content-start" formGroupName="symptoms">
+          <mat-form-field appearance="outline">
+            <mat-label>Displayed symptoms</mat-label>
+            <mat-select formControlName="etat">
+              <mat-option>--</mat-option>
+              <mat-option value="yes">
+                Yes
+              </mat-option>
+              <mat-option value="no">
+                No
+              </mat-option>
+              <mat-option value="unknown">
+                Unknown
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>date</mat-label>
+            <input type="date" matInput placeholder="date" type="date" formControlName="date">
+          </mat-form-field>
+        </div>
+
+
+
+        <div formGroupName="status" class="d-flex justify-content-start">
+          <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="case">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let item of status" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>date</mat-label>
+            <input type="date" matInput placeholder="date" type="date" formControlName="date">
+          </mat-form-field>
+        </div>
+
+        <div class="d-flex justify-content-start" formGroupName="hospitalized">
+          <mat-form-field appearance="outline">
+            <mat-label>Hospitalized ?</mat-label>
+            <mat-select formControlName="etat">
+              <mat-option>--</mat-option>
+              <mat-option value="yes">
+                Yes
+              </mat-option>
+              <mat-option value="no">
+                No
+              </mat-option>
+
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>date</mat-label>
+            <input type="date" matInput placeholder="date" type="date" formControlName="date">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Hospital</mat-label>
+            <input matInput placeholder="Full Name" formControlName="adress">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <p><small> Did the patient have another
+              diagnosis/etiology for their illness?</small></p>
+          <mat-form-field appearance="outline">
+            <mat-label>Etat</mat-label>
+
+            <mat-select formControlName="diagnosis">
+              <mat-option>--</mat-option>
+              <mat-option value="yes">
+                Yes
+              </mat-option>
+              <mat-option value="no">
+                No
+              </mat-option>
+              <mat-option value="unknown">
+                Unknown
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
     </div>
-
-    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+    <hr>
+    <button class="d-flex mx-auto" type="submit" mat-raised-button [disabled]="!profileForm.valid">Submit</button>
   </form>
 
   <hr>
@@ -66,9 +259,7 @@
     Form Status: {{ profileForm.status }}
   </p>
 
-  <p>
-    <button (click)="updateProfile()">Update Profile</button>
-  </p>
+
 
 
 

@@ -8,7 +8,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { DemoMaterialModule } from './material-module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {HomeModule} from './home/home.module';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {HomeModule} from './home/home.module';
     FormsModule,
     ReactiveFormsModule,
     DemoMaterialModule,
-    HomeModule
+    MatGoogleMapsAutocompleteModule,
+    AgmCoreModule.forRoot()
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

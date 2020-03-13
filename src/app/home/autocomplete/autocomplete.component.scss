@@ -1,0 +1,7 @@
+.map-container {
+  height: 300px;
+}
+::ng-deep.agm-map-container-inner {
+  width: 100% !important;
+  height: 100% !important;
+}
