@@ -130,13 +130,13 @@ export class HomeComponent implements OnInit {
   }
 
 
-  focusFunction(value) {
+  focusFunction() {
     const dialogRef = this.dialog.open(AutocompleteComponent, {
       width: '600px',
       height: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.addressInput.nativeElement.blur();
+      this.addressInput.nativeElement.value = result.name;
       console.log('The dialog was closed', result);
     });
   }
