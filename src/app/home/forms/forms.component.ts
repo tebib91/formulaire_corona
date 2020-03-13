@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MedicalExtension, SymptomForm, Testing, Specimens} from './symptom-form';
 
 @Component({
@@ -25,7 +25,7 @@ export class FormsComponent implements OnInit {
     // symptom form
     const symptom = {};
     this.symptomValues.forEach(input => {
-      symptom[input.value] = new FormControl('');
+      symptom[input.value] = new FormControl('', [Validators.required]);
     });
     this.symptomForm = new FormGroup(symptom);
 
@@ -35,7 +35,7 @@ export class FormsComponent implements OnInit {
       if (input.type === 'group') {
         medical[input.value] = this.specifyGroup();
       } else {
-        medical[input.value] = new FormControl('');
+        medical[input.value] = new FormControl('', [Validators.required]);
       }
     });
     this.medicalForm = this.fb.group(medical);
@@ -44,9 +44,9 @@ export class FormsComponent implements OnInit {
     const testing = {};
     this.testingDiag.forEach(input => {
       if (input.type === 'group') {
-        testing[input.value] = this.fb.group({firstValue: '', secondValue: ''});
+        testing[input.value] = this.fb.group({firstValue: ['', Validators.required], secondValue: ['', Validators.required]});
       } else {
-        testing[input.value] = new FormControl('');
+        testing[input.value] = new FormControl('', [Validators.required]);
       }
     });
     this.testingForm = this.fb.group(testing);
@@ -57,7 +57,7 @@ export class FormsComponent implements OnInit {
       if (input.type === 'object') {
         specimen[input.value] = this.specimensGroup();
       } else {
-        specimen[input.value] = new FormControl('');
+        specimen[input.value] = new FormControl('', [Validators.required]);
       }
     });
     this.specimensForm = this.fb.group(specimen);
@@ -69,16 +69,16 @@ export class FormsComponent implements OnInit {
   }
 
   specifyGroup(): FormGroup {
-    return this.fb.group({radio: '', specify: ''});
+    return this.fb.group({radio: ['', Validators.required], specify: ['', Validators.required]});
   }
   specimensGroup(): FormGroup {
     return this.fb.group({
-      specimenID: '',
-      DateCollected: '',
+      specimenID: ['', Validators.required],
+      DateCollected: ['', Validators.required],
       labTested: false,
-      labResult: '',
+      labResult: ['', Validators.required],
       sentCDC: false,
-      CDCResult: '',
+      CDCResult: ['', Validators.required],
     });
   }
 }

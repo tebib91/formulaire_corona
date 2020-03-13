@@ -14,10 +14,12 @@
               <mat-radio-button [value]=1>No</mat-radio-button>
               <mat-radio-button [value]=2>Unknown</mat-radio-button>
             </mat-radio-group>
+
+<!--            <mat-error *ngIf="!symptomForm.controls[item.value].errors.required"></mat-error>-->
           </div>
           <div *ngSwitchCase="'string'">
             <mat-form-field>
-              <input matInput placeholder="Other" value="" formControlName="{{item.value}}">
+              <input matInput placeholder="Other" formControlName="{{item.value}}">
             </mat-form-field>
           </div>
         </div>
@@ -66,6 +68,7 @@
              *ngIf="item.type === 'group' && medicalForm.get(item.value).get(item.valueRadioBox).value === 0">
           <mat-form-field>
             <input matInput placeholder="Other" formControlName="{{item.valueInput}}">
+            <mat-error></mat-error>
           </mat-form-field>
         </div>
       </td>
@@ -97,6 +100,7 @@
                 <div *ngSwitchCase="'string'">
                   <mat-form-field>
                     <input matInput placeholder="Other" formControlName="firstValue">
+                    <mat-error></mat-error>
                   </mat-form-field>
                 </div>
               </div>
@@ -151,11 +155,13 @@
         <td>
           <mat-form-field>
             <input matInput formControlName="specimenID">
+            <mat-error></mat-error>
           </mat-form-field>
         </td>
         <td>
           <mat-form-field>
             <input matInput formControlName="DateCollected">
+            <mat-error></mat-error>
           </mat-form-field>
         </td>
         <td>
@@ -166,6 +172,7 @@
         <td>
           <mat-form-field>
             <input matInput formControlName="labResult">
+            <mat-error></mat-error>
           </mat-form-field>
         </td>
         <td>
@@ -176,6 +183,7 @@
         <td>
           <mat-form-field>
             <input matInput formControlName="CDCResult">
+            <mat-error></mat-error>
           </mat-form-field>
         </td>
       </tr>
@@ -187,6 +195,7 @@
             </p>
             <mat-form-field>
               <input matInput formControlName="{{item.value}}">
+              <mat-error></mat-error>
             </mat-form-field>
           </td>
           <td></td>
