@@ -37,14 +37,14 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" (click)="focusFunction()">
+        <mat-form-field appearance="outline" (click)="focusFunction('address_input')">
           <mat-label>Adress</mat-label>
-          <input matInput placeholder="Adress" formControlName="adress" #address_input>
+          <input matInput placeholder="Adress" formControlName="adress" id="address_input">
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" (click)="focusFunction('work_location')">
           <mat-label>Work Location</mat-label>
-          <input matInput placeholder="Work Location Adress" formControlName="workLocation">
+          <input matInput placeholder="Work Location Adress" formControlName="workLocation" id="work_location">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -61,7 +61,6 @@
           <div class="col-">
             <div formArrayName="infectedFamily">
               <h3>Infected Family</h3>
-
               <div *ngFor="let alias of infectedFamily.controls; let i=index" class="d-flex justify-content-start">
                 <div [formGroupName]="i">
                   <mat-form-field appearance="outline" class="mr-4">
@@ -102,9 +101,9 @@
               <h3>Recent Location</h3>
               <div *ngFor="let alias of location.controls; let i=index" class="d-flex justify-content-start">
                 <div [formGroupName]="i">
-                  <mat-form-field appearance="outline" class="mr-4">
+                  <mat-form-field appearance="outline" class="mr-4" (click)="focusFunction('recent_location' + i)">
                     <mat-label>Place</mat-label>
-                    <input matInput placeholder="Place" formControlName="place">
+                    <input matInput placeholder="Place" formControlName="place" [id]="'recent_location' + i">
                   </mat-form-field>
 
                   <mat-form-field appearance="outline">

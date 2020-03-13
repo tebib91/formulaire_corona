@@ -12,7 +12,6 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('address_input', {static: false}) addressInput: ElementRef;
   phoneNumber = '^((\\+91-?)|0)?[0-9]{10}$';
   nationality: { num_code: string; alpha_2_code: string; alpha_3_code: string; en_short_name: string; nationality: string; }[];
   status: any = ['Under Investigation', 'Discharged', 'Confirmed', 'Recovered', 'Dead'];
@@ -139,13 +138,13 @@ export class HomeComponent implements OnInit {
   }
 
 
-  focusFunction() {
+  focusFunction(id: string) {
     const dialogRef = this.dialog.open(AutocompleteComponent, {
       width: '600px',
       height: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.addressInput.nativeElement.value = result.name;
+      (<HTMLInputElement>document.getElementById(id)).value = result.name;
       console.log('The dialog was closed', result);
     });
   }
