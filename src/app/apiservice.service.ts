@@ -7,7 +7,7 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiserviceService {
-  baseurl = 'http://covid19.knsd.digital/api/save';
+  baseurl = 'http://covid19.knsd.digital/api/save.php';
 
   constructor(private https: HttpClient) { }
 

@@ -49,13 +49,13 @@
           <div class="col-md-6">
             <mat-form-field appearance="outline" (click)="focusFunction('address_input')">
               <mat-label>Adress</mat-label>
-              <input matInput placeholder="Adress" formControlName="adress" #address_input>
+              <input matInput placeholder="Adress" formControlName="adress" id="address_input">
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field appearance="outline" (click)="focusFunction('work_location')">
               <mat-label>Work Location</mat-label>
-              <input matInput placeholder="Work Location Adress" formControlName="workLocation">
+              <input matInput placeholder="Work Location Adress" formControlName="workLocation" id="work_location">
             </mat-form-field>
           </div>
           <div class="col-md-6">
@@ -300,9 +300,9 @@
             </mat-form-field>
           </div>
           <div class="col-md-4" *ngIf="profileForm.get('hospitalized').get('etat').value === 'yes'">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" (click)="focusFunction('hospital_place')">
               <mat-label>Hospital</mat-label>
-              <input matInput placeholder="Name Hospital" formControlName="adress">
+              <input matInput placeholder="Name Hospital" formControlName="adress" id="hospital_place">
             </mat-form-field>
           </div>
         </div>
@@ -335,15 +335,14 @@
       </div>
     </div>
     <hr>
-    <!--[disabled]="!profileForm.valid"-->
-    <button class="d-flex mx-auto" type="submit" mat-raised-button>Submit</button>
+    <button class="d-flex mx-auto" type="submit" mat-raised-button >Submit</button>
   </form>
 </div>
 
 
 
 
-
+<!--
 <p>
   Form Value: {{ profileForm.value | json }}
 </p>
@@ -351,5 +350,4 @@
 
 <p>
   Form Status: {{ profileForm.status }}
-</p>
-<app-forms></app-forms>
+</p> -->
