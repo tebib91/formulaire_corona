@@ -1,5 +1,17 @@
-<input class="input"
-type="text"
-[(ngModel)]="autocompleteInput"
-#addresstext style="padding: 12px 20px; border: 1px solid #ccc; width: 400px"
->
+<div class="container" fxLayout="column" fxLayoutAlign="center">
+  <div class="map-container">
+    <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+      <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    </agm-map>
+  </div>
+
+  <div class="autocomplete-container" [ngStyle.xs]="{'min-width.%': 100}"
+    [ngStyle.sm]="{'width.%': 70}">
+    <mat-google-maps-autocomplete (onAutocompleteSelected)="onAutocompleteSelected($event)"
+      (onLocationSelected)="onLocationSelected($event)" (onGermanAddressMapped)="onGermanAddressMapped($event)">
+    </mat-google-maps-autocomplete>
+  </div>
+  <div class="controls">
+    <button mat-raised-button color="primary" [disabled]="!addressChosen" (click)="onConfirm()">Confirm</button>
+  </div>
+</div>

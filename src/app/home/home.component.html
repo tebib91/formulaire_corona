@@ -37,10 +37,9 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" (click)="focusFunction()">
           <mat-label>Adress</mat-label>
-          <input matInput placeholder="Adress" formControlName="adress" (focus)="focusFunction(true)"
-            (focusout)="focusFunction(false)">
+          <input matInput placeholder="Adress" formControlName="adress" #address_input>
         </mat-form-field>
 
         <mat-form-field appearance="outline">

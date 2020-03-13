@@ -1,17 +1,18 @@
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { nationality } from '../data';
 import { FormArray, FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { Location, Appearance, GermanAddress } from '@angular-material-extensions/google-maps-autocomplete';
 import PlaceResult = google.maps.places.PlaceResult;
 import { MapsAPILoader } from '@agm/core';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  @ViewChild('address_input', {static: false}) addressInput: ElementRef;
   phoneNumber = '^((\\+91-?)|0)?[0-9]{10}$';
   nationality: { num_code: string; alpha_2_code: string; alpha_3_code: string; en_short_name: string; nationality: string; }[];
   status: any = ['Under Investigation', 'Discharged', 'Confirmed', 'Recovered', 'Dead'];
@@ -22,8 +23,11 @@ export class HomeComponent implements OnInit {
   public selectedAddress: PlaceResult;
   hiden: boolean = false;
 
-  constructor(private fb: FormBuilder, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+  constructor(
+    private fb: FormBuilder,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone,
+    public dialog: MatDialog
   ) { }
 
   profileForm = this.fb.group({
@@ -135,8 +139,15 @@ export class HomeComponent implements OnInit {
   }
 
 
-  focusFunction(value) {
-    this.hiden = value;
+  focusFunction() {
+    const dialogRef = this.dialog.open(AutocompleteComponent, {
+      width: '600px',
+      height: '600px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.addressInput.nativeElement.value = result.name;
+      console.log('The dialog was closed', result);
+    });
   }
   onSubmit() {
     // TODO: Use EventEmitter with form value
