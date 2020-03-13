@@ -30,6 +30,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatGoogleMapsAutocompleteModule,
 
   ],
-  exports: [AutocompleteComponent]
+  exports: [AutocompleteComponent],
+  entryComponents: [AutocompleteComponent]
 })
 export class HomeModule { }

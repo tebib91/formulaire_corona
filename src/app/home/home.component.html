@@ -39,8 +39,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Adress</mat-label>
-          <input matInput placeholder="Adress" formControlName="adress"
-          (focus)="focusFunction(true)" (focusout)="focusFunction(false)">
+          <input matInput placeholder="Adress" formControlName="adress" (click)="focusFunction(true)" #address_input>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -97,7 +96,7 @@
             <div [formGroupName]="i">
               <mat-form-field appearance="outline">
                 <mat-label>Place</mat-label>
-                <input matInput placeholder="Place" formControlName="place" >
+                <input matInput placeholder="Place" formControlName="place">
               </mat-form-field>
               <agm-map *ngIf="hiden" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
                 <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
@@ -128,7 +127,7 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-form-field appearance="outline" >
+              <mat-form-field appearance="outline">
                 <mat-label>date</mat-label>
                 <input matInput placeholder="date" type="date" formControlName="date">
               </mat-form-field>
