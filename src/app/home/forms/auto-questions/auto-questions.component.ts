@@ -50,7 +50,7 @@ export class AutoQuestionsComponent implements OnInit {
     this.testingDiag.forEach(input => {
       if (input.type === 'group') {
         testing[input.value] = this.fb.group({firstValue: ['', Validators.required], secondValue: ['', Validators.required]});
-      } else {
+      } else if  (input.type === 'number') {
         testing[input.value] = new FormControl('', [Validators.required]);
       }
     });
@@ -72,7 +72,7 @@ export class AutoQuestionsComponent implements OnInit {
   symptomChanges() {
     this.symptomForm.valueChanges.subscribe(value => {
       const valid = this.symptomForm.controls[this.symptomValues[this.symptomsIndex].value].valid;
-      if (valid) {
+      if (valid && this.symptomValues[this.symptomsIndex].value !== 'other') {
         setTimeout(() => {
           this.symptomsIndex++;
         }, 200);
@@ -83,7 +83,6 @@ export class AutoQuestionsComponent implements OnInit {
     this.medicalForm.valueChanges.subscribe(value => {
       const valid = this.medicalForm.controls[this.medicalExtension[this.medicalIndex].value].valid;
       const blur = value[this.medicalExtension[this.medicalIndex].value].blur;
-      console.log('blur :', blur);
       if (valid && (blur === undefined || blur === true)) {
         setTimeout(() => {
           this.medicalIndex++;
@@ -92,28 +91,43 @@ export class AutoQuestionsComponent implements OnInit {
     });
   }
 
+  testingChanges() {
+    this.testingForm.valueChanges.subscribe(value => {
+      const valid = this.testingForm.controls[this.testingDiag[this.testingIndex].value].valid;
+      if (valid && this.testingDiag[this.testingIndex].value !== 'other') {
+        setTimeout(() => {
+          this.testingIndex++;
+        }, 200);
+      }
+    });
+  }
+
+  specimenChange() {
+    this.specimensForm.valueChanges.subscribe(value => {
+      const valid = this.specimensForm.controls[this.specimen[this.specimensIndex].value].valid;
+      if (valid && this.specimen[this.specimensIndex].value !== 'other') {
+        setTimeout(() => {
+          this.specimensIndex++;
+        }, 300);
+      }
+    });
+  }
+
   changeIndexes() {
     this.symptomChanges();
     this.medicalChanges();
-    this.specimensForm.valueChanges.subscribe(value => {
-      setTimeout(() => {
-        this.specimensIndex++;
-      }, 200);
-    });
-
-    this.testingForm.valueChanges.subscribe(value => {
-      setTimeout(() => {
-        this.testingIndex++;
-      }, 200);
-    });
-
-
+    this.testingChanges();
+    // this.specimenChange();
   }
   previous(i) {
-    this[i]--;
+    if (this[i] > 0) {
+      this[i]--;
+    }
   }
-  next(i) {
-    this[i]++;
+  next(i, length) {
+    if (this[i] < length - 1) {
+      this[i]++;
+    }
   }
   onClick() {
     console.log('specimensForm :', this.specimensForm);

@@ -22,9 +22,9 @@
     </ng-container>
   </tr>
   <button mat-stroked-button class="mt-2" (click)="previous('symptomsIndex')">Previous</button>
-  <button mat-stroked-button class="mt-2 ml-2" (click)="next('symptomsIndex')">Next</button>
+  <button mat-stroked-button class="mt-2 ml-2" (click)="next('symptomsIndex', symptomValues.length)">Next</button>
 </div>
-
+<hr>
 <div class="mt-5 mb-0 d-flex justify-content-between">
   <p>Pre-existing medical conditions ?</p>
   <mat-radio-group [(ngModel)]="preExisting">
@@ -72,9 +72,9 @@
     </ng-container>
   </tr>
   <button mat-stroked-button class="mt-2" (click)="previous('medicalIndex')">Previous</button>
-  <button mat-stroked-button class="mt-2 ml-2" (click)="next('medicalIndex')">Next</button>
+  <button mat-stroked-button class="mt-2 ml-2" (click)="next('medicalIndex', medicalExtension.length)">Next</button>
 </div>
-
+<hr>
 <!--Respiratory diagnostic-->
 <div>
   <p class="mt-5 mb-0">Respiratory Diagnostic Testing</p>
@@ -103,6 +103,15 @@
         </td>
         <td>
           <div>
+            <div *ngIf="item.type === 'number'">
+              <mat-radio-group [formControlName]="item.value">
+                <mat-radio-button [value]=0>Pos</mat-radio-button>
+                <mat-radio-button [value]=1>Neg</mat-radio-button>
+                <mat-radio-button [value]=2>Pend.</mat-radio-button>
+                <mat-radio-button [value]=3>Not done</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
             <div *ngIf="item.type === 'group'">
               <div formGroupName="{{item.value}}">
                 <mat-radio-group required formControlName="secondValue">
@@ -113,24 +122,17 @@
                 </mat-radio-group>
               </div>
             </div>
-            <div *ngIf="item.type === 'number'">
-              <mat-radio-group [formControlName]="item.value">
-                <mat-radio-button [value]=0>Pos</mat-radio-button>
-                <mat-radio-button [value]=1>Neg</mat-radio-button>
-                <mat-radio-button [value]=2>Pend.</mat-radio-button>
-                <mat-radio-button [value]=3>Not done</mat-radio-button>
-              </mat-radio-group>
-            </div>
+
           </div>
         </td>
       </ng-container>
     </tr>
     <button mat-stroked-button class="mt-2" (click)="previous('testingIndex')">Previous</button>
-    <button mat-stroked-button class="mt-2 ml-2" (click)="next('testingIndex')">Next</button>
+    <button mat-stroked-button class="mt-2 ml-2" (click)="next('testingIndex', testingDiag.length)">Next</button>
   </div>
 </div>
 
-
+<hr>
 <!--Specimens-->
 <div [formGroup]="specimensForm">
   <p class="mb-0 mt-5">Specimens for COVID-19 Testing</p>
@@ -208,9 +210,9 @@
     </ng-container>
   </table>
   <button mat-stroked-button class="mt-2" (click)="previous('specimensIndex')">Previous</button>
-  <button mat-stroked-button class="mt-2 ml-2" (click)="next('specimensIndex')">Next</button>
+  <button mat-stroked-button class="mt-2 ml-2" (click)="next('specimensIndex', specimen.length)">{{'Next'}}</button>
 </div>
 
 <!--Additional State-->
 
-<button mat-stroked-button class="mt-3 float-right" (click)="onClick()">Show object</button>
+<button mat-stroked-button class="mt-3 float-right" (click)="onClick()">Save</button>

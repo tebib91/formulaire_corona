@@ -107,6 +107,15 @@
         </td>
         <td>
           <div>
+            <div *ngIf="item.type === 'number'">
+              <mat-radio-group [formControlName]="item.value">
+                <mat-radio-button [value]=0>Pos</mat-radio-button>
+                <mat-radio-button [value]=1>Neg</mat-radio-button>
+                <mat-radio-button [value]=2>Pend.</mat-radio-button>
+                <mat-radio-button [value]=3>Not done</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
             <div *ngIf="item.type === 'group'" >
               <div formGroupName="{{item.value}}">
                 <mat-radio-group required formControlName="secondValue">
@@ -117,14 +126,7 @@
                 </mat-radio-group>
               </div>
             </div>
-            <div *ngIf="item.type === 'number'">
-              <mat-radio-group [formControlName]="item.value">
-                <mat-radio-button [value]=0>Pos</mat-radio-button>
-                <mat-radio-button [value]=1>Neg</mat-radio-button>
-                <mat-radio-button [value]=2>Pend.</mat-radio-button>
-                <mat-radio-button [value]=3>Not done</mat-radio-button>
-              </mat-radio-group>
-            </div>
+
           </div>
         </td>
       </tr>

@@ -186,9 +186,11 @@ export const Testing = [
     value: 'cPneumoniae',
     type: 'number'
   },
+
+
   {
     label: 'Other, Specify:',
-    value: 'cPneumoniae',
+    value: 'other',
     type: 'group',
     valueType: 'string'
   }
