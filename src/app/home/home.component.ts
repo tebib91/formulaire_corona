@@ -6,13 +6,13 @@ import { Location, Appearance, GermanAddress } from '@angular-material-extension
 import PlaceResult = google.maps.places.PlaceResult;
 import { MapsAPILoader } from '@agm/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ApiserviceService } from '../apiservice.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('address_input', {static: false}) addressInput: ElementRef;
   phoneNumber = '^((\\+91-?)|0)?[0-9]{10}$';
   nationality: { num_code: string; alpha_2_code: string; alpha_3_code: string; en_short_name: string; nationality: string; }[];
   status: any = ['Under Investigation', 'Discharged', 'Confirmed', 'Recovered', 'Dead'];
@@ -25,9 +25,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private apiService: ApiserviceService
   ) { }
 
   profileForm = this.fb.group({
@@ -139,19 +138,23 @@ export class HomeComponent implements OnInit {
   }
 
 
-  focusFunction() {
+  focusFunction(id: string) {
     const dialogRef = this.dialog.open(AutocompleteComponent, {
       width: '600px',
       height: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.addressInput.nativeElement.value = result.name;
+      (<HTMLInputElement>document.getElementById(id)).value = result.name;
       console.log('The dialog was closed', result);
     });
   }
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
+    this.apiService.Send(this.profileForm.value).subscribe(value => {
+      console.log('response', value);
+
+    })
   }
 
 
