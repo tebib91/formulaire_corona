@@ -1,0 +1,15 @@
+.card-chart {
+  border: 1px solid rgba(72, 94, 144, 0.16);
+  border-radius: 0.25rem;
+  margin: 0 8px 16px;
+  padding: 16px;
+}
+.cases-card {
+  height: 500px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+      min-width: 1500px;
+  }
+}
