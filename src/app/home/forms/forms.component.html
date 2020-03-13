@@ -1,1 +1,206 @@
-<p>forms works!</p>
+<div [formGroup]="symptomForm">
+  <table>
+    <tr>
+      <th>During this illness, did the patient experience any of th following symptoms ?</th>
+      <th>Symptom Present ?</th>
+    </tr>
+    <tr *ngFor="let item of symptomValues">
+      <td>{{item.label}}</td>
+      <td>
+        <div [ngSwitch]="item.type">
+          <div *ngSwitchCase="'number'">
+            <mat-radio-group formControlName="{{item.value}}">
+              <mat-radio-button [value]=0>Yes</mat-radio-button>
+              <mat-radio-button [value]=1>No</mat-radio-button>
+              <mat-radio-button [value]=2>Unknown</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div *ngSwitchCase="'string'">
+            <mat-form-field>
+              <input matInput placeholder="Other" value="" formControlName="{{item.value}}">
+            </mat-form-field>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="mt-5 mb-0 d-flex justify-content-between">
+  <p>Pre-existing medical conditions ?</p>
+  <mat-radio-group [(ngModel)]="preExisting">
+    <mat-radio-button [value]=0>Yes</mat-radio-button>
+    <mat-radio-button [value]=1>No</mat-radio-button>
+    <mat-radio-button [value]=2>Unknown</mat-radio-button>
+  </mat-radio-group>
+</div>
+
+<div [formGroup]="medicalForm" *ngIf="preExisting === 0">
+  <table>
+    <tr *ngFor="let item of medicalExtension; let i = index">
+      <td>{{item.label}}</td>
+      <td>
+        <div>
+          <div *ngIf="item.type == 'group'">
+            <div [formGroupName]="item.value">
+              <mat-radio-group [formControlName]="item.valueRadioBox">
+                <mat-radio-button [value]=0>yes</mat-radio-button>
+                <mat-radio-button [value]=1>No</mat-radio-button>
+                <mat-radio-button [value]=2>Unknown</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <div *ngIf="item.type == 'number'">
+            <mat-radio-group [formControlName]="item.value">
+              <mat-radio-button [value]=0>Yes</mat-radio-button>
+              <mat-radio-button [value]=1>No</mat-radio-button>
+              <mat-radio-button [value]=2>Unknown</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+        </div>
+      </td>
+      <td>
+        <div [formGroupName]="item.value"
+             *ngIf="item.type === 'group' && medicalForm.get(item.value).get(item.valueRadioBox).value === 0">
+          <mat-form-field>
+            <input matInput placeholder="Other" formControlName="{{item.valueInput}}">
+          </mat-form-field>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!--Respiratory diagnostic-->
+<div>
+  <p class="mt-5 mb-0">Respiratory Diagnostic Testing</p>
+  <div [formGroup]="testingForm">
+    <table>
+      <tr>
+        <th>Test</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let item of testingDiag">
+        <td>
+          <div class="d-flex align-items-center justify-content-between">
+            <p class="mb-1">{{item.label}}</p>
+            <div [ngSwitch]="item.valueType" class="ml-3">
+              <div [formGroupName]="item.value">
+                <div *ngSwitchCase="'type'">
+                  <mat-radio-group formControlName="firstValue">
+                    <mat-radio-button [value]=0>A</mat-radio-button>
+                    <mat-radio-button [value]=1>B</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngSwitchCase="'string'">
+                  <mat-form-field>
+                    <input matInput placeholder="Other" formControlName="firstValue">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div>
+            <div *ngIf="item.type === 'group'">
+              <div formGroupName="{{item.value}}">
+                <mat-radio-group formControlName="secondValue">
+                  <mat-radio-button [value]=0>Pos</mat-radio-button>
+                  <mat-radio-button [value]=1>Neg</mat-radio-button>
+                  <mat-radio-button [value]=2>Pend.</mat-radio-button>
+                  <mat-radio-button [value]=3>Not done</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div *ngIf="item.type === 'number'">
+              <mat-radio-group [formControlName]="item.value">
+                <mat-radio-button [value]=0>Pos</mat-radio-button>
+                <mat-radio-button [value]=1>Neg</mat-radio-button>
+                <mat-radio-button [value]=2>Pend.</mat-radio-button>
+                <mat-radio-button [value]=3>Not done</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<!--Specimens-->
+<div [formGroup]="specimensForm">
+  <p class="mb-0 mt-5">Specimens for COVID-19 Testing</p>
+  <table>
+    <tr>
+      <th>Specimen Type</th>
+      <th>Specimen ID</th>
+      <th>Date Collected</th>
+      <th>State Lab Tested</th>
+      <th>State Lab Result</th>
+      <th>Sent to CDC</th>
+      <th>CDC Result</th>
+    </tr>
+
+    <ng-container *ngFor="let item of specimen">
+      <tr *ngIf="item.type === 'object'; else notObject" [formGroupName]="item.value">
+        <td>{{item.label}}</td>
+        <td>
+          <mat-form-field>
+            <input matInput formControlName="specimenID">
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <input matInput formControlName="DateCollected">
+          </mat-form-field>
+        </td>
+        <td>
+          <div class="text-center">
+            <mat-checkbox formControlName="labTested"></mat-checkbox>
+          </div>
+        </td>
+        <td>
+          <mat-form-field>
+            <input matInput formControlName="labResult">
+          </mat-form-field>
+        </td>
+        <td>
+          <div class="text-center">
+            <mat-checkbox formControlName="sentCDC"></mat-checkbox>
+          </div>
+        </td>
+        <td>
+          <mat-form-field>
+            <input matInput formControlName="CDCResult">
+          </mat-form-field>
+        </td>
+      </tr>
+      <ng-template #notObject>
+        <tr>
+          <td>
+            <p class="mb-0">
+              {{item.label}}
+            </p>
+            <mat-form-field>
+              <input matInput formControlName="{{item.value}}">
+            </mat-form-field>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </ng-template>
+    </ng-container>
+  </table>
+</div>
+
+<!--Additional State-->
+
+<button mat-stroked-button class="mt-3 float-right" (click)="onClick()">Show object</button>
