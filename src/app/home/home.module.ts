@@ -11,9 +11,10 @@ import { AgmCoreModule } from '@agm/core';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { AutoQuestionsComponent } from './forms/auto-questions/auto-questions.component';
 
 @NgModule({
-  declarations: [HomeComponent, FormsComponent, AutocompleteComponent],
+  declarations: [HomeComponent, FormsComponent, AutocompleteComponent, AutoQuestionsComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

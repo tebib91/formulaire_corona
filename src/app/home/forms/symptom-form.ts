@@ -57,7 +57,7 @@ export const SymptomForm = [
   {
     type: 'number',
     value: 'diarrhea',
-    label: 'Diarrhea ( &#8805; 3 looser/looser than normal stools/24hr period)'
+    label: 'Diarrhea ( ≥ 3 looser/looser than normal stools/24hr period)'
   },
   {
     type: 'string',

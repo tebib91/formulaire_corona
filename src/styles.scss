@@ -85,7 +85,7 @@ svg.material-icons:not(:last-child) {
   border: 1px solid #eee;
   background-color: #fafafa;
   height: 40px;
-  width: 200px;
+  // width: 200px;
   margin: 0 8px 16px;
   padding: 16px;
   display: flex;
@@ -93,7 +93,6 @@ svg.material-icons:not(:last-child) {
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease-in-out;
-  line-height: 24px;
 }
 
 .card-container .card:not(:last-child) {
@@ -289,4 +288,11 @@ svg#clouds {
 }
 .mat-form-field {
   width: 100%;
+}
+
+.mat-form-field-invalid .mat-radio-label-content{
+  color:#f44336;
+}
+.mat-form-field-invalid .mat-radio-outer-circle{
+  border-color:#f44336!important;
 }

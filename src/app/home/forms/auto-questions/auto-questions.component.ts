@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MedicalExtension, SymptomForm, Testing, Specimens} from './symptom-form';
+import {MedicalExtension, Specimens, SymptomForm, Testing} from '../symptom-form';
 
 @Component({
-  selector: 'app-forms',
-  templateUrl: './forms.component.html',
-  styleUrls: ['./forms.component.scss']
+  selector: 'app-auto-questions',
+  templateUrl: './auto-questions.component.html',
+  styleUrls: ['./auto-questions.component.scss']
 })
-export class FormsComponent implements OnInit {
+export class AutoQuestionsComponent implements OnInit {
+
   symptomForm: FormGroup;
   medicalForm: FormGroup;
   testingForm: FormGroup;
@@ -17,11 +18,15 @@ export class FormsComponent implements OnInit {
   testingDiag = Testing;
   preExisting: number;
   specimen = Specimens;
+  symptomsIndex = 0;
+  medicalIndex = 0;
+  testingIndex = 0;
+  specimensIndex = 0;
   show = false;
   constructor(private fb: FormBuilder) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     // symptom form
     const symptom = {};
     this.symptomValues.forEach(input => {
@@ -61,15 +66,61 @@ export class FormsComponent implements OnInit {
       }
     });
     this.specimensForm = this.fb.group(specimen);
+    this.changeIndexes();
   }
 
+  symptomChanges() {
+    this.symptomForm.valueChanges.subscribe(value => {
+      const valid = this.symptomForm.controls[this.symptomValues[this.symptomsIndex].value].valid;
+      if (valid) {
+        setTimeout(() => {
+          this.symptomsIndex++;
+        }, 200);
+      }
+    });
+  }
+  medicalChanges() {
+    this.medicalForm.valueChanges.subscribe(value => {
+      const valid = this.medicalForm.controls[this.medicalExtension[this.medicalIndex].value].valid;
+      const blur = value[this.medicalExtension[this.medicalIndex].value].blur;
+      console.log('blur :', blur);
+      if (valid && (blur === undefined || blur === true)) {
+        setTimeout(() => {
+          this.medicalIndex++;
+        }, 200);
+      }
+    });
+  }
 
+  changeIndexes() {
+    this.symptomChanges();
+    this.medicalChanges();
+    this.specimensForm.valueChanges.subscribe(value => {
+      setTimeout(() => {
+        this.specimensIndex++;
+      }, 200);
+    });
+
+    this.testingForm.valueChanges.subscribe(value => {
+      setTimeout(() => {
+        this.testingIndex++;
+      }, 200);
+    });
+
+
+  }
+  previous(i) {
+    this[i]--;
+  }
+  next(i) {
+    this[i]++;
+  }
   onClick() {
     console.log('specimensForm :', this.specimensForm);
   }
 
   specifyGroup(): FormGroup {
-    return this.fb.group({radio: ['', Validators.required], specify: ['', Validators.required]});
+    return this.fb.group({radio: ['', Validators.required], specify: ['', Validators.required], blur: false});
   }
   specimensGroup(): FormGroup {
     return this.fb.group({
