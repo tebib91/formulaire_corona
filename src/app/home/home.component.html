@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="text-center"><b>CASE ID</b></h3>
+  <h3 class="text-center"><b>ID de cas</b></h3>
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
     <div class="row mx-auto">
@@ -8,33 +8,33 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field appearance="outline">
-              <mat-label>Full Name</mat-label>
-              <input matInput placeholder="Full Name" formControlName="fullName">
+              <mat-label>Nom Complet</mat-label>
+              <input matInput placeholder="Nom Complet" formControlName="fullName">
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field appearance="outline">
-              <mat-label>Date of Birth</mat-label>
-              <input matInput type="date" placeholder="Date of Birth" formControlName="dateBirth">
+              <mat-label>Date de Naissance </mat-label>
+              <input matInput type="date" placeholder="Date de Naissance " formControlName="dateBirth">
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field appearance="outline">
-              <mat-label>Gender</mat-label>
+              <mat-label>Sexe</mat-label>
               <mat-select formControlName="gender">
                 <mat-option>--</mat-option>
                 <mat-option value="men">
-                  Men
+                  Homme
                 </mat-option>
                 <mat-option value="women">
-                  Women
+                  Feme
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field appearance="outline">
-              <mat-label>Nationality</mat-label>
+              <mat-label>Nationalité</mat-label>
               <mat-select formControlName="nationality">
                 <mat-option>--</mat-option>
                 <mat-option *ngFor="let item of nationality" [value]="item.nationality">
@@ -48,26 +48,26 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field appearance="outline" (click)="focusFunction('address_input')">
-              <mat-label>Adress</mat-label>
-              <input matInput placeholder="Adress" formControlName="adress" id="address_input">
+              <mat-label>Adresse</mat-label>
+              <input matInput placeholder="Adresse" formControlName="adress" id="address_input">
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field appearance="outline" (click)="focusFunction('work_location')">
-              <mat-label>Work Location</mat-label>
-              <input matInput placeholder="Work Location Adress" formControlName="workLocation" id="work_location">
+              <mat-label>Lieu de travail</mat-label>
+              <input matInput placeholder="Lieu de travail" formControlName="workLocation" id="work_location">
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field appearance="outline">
-              <mat-label>Phone</mat-label>
-              <input matInput placeholder="Phone" formControlName="phone">
+              <mat-label>Télèphone</mat-label>
+              <input matInput placeholder="Télèphone" formControlName="phone">
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field appearance="outline">
-              <mat-label>SupportPhone</mat-label>
-              <input matInput placeholder="Support Phone" formControlName="supportPhone">
+              <mat-label>Télèphone d'urgance</mat-label>
+              <input matInput placeholder="Télèphone d'urgance" formControlName="supportPhone">
             </mat-form-field>
           </div>
         </div>
@@ -75,28 +75,30 @@
         <div class="row">
           <div class="col-11">
             <div formArrayName="infectedFamily">
-              <h3><b>Infected Family</b></h3>
+              <h3><b>Famille séropositive</b></h3>
 
               <div *ngFor="let alias of infectedFamily.controls; let i=index">
                 <div [formGroupName]="i" class="d-flex justify-content-start">
                   <mat-form-field appearance="outline" class="mr-4">
-                    <mat-label>Family member </mat-label>
-                    <input matInput placeholder="Family member " formControlName="name">
+                    <mat-label>Nom du personne infecté </mat-label>
+                    <input matInput placeholder="Nom du personne infecté" formControlName="name">
                   </mat-form-field>
 
                   <mat-form-field appearance="outline">
-                    <mat-label>Infection posibility</mat-label>
+                    <mat-label>Posibilité d'infection</mat-label>
                     <mat-select formControlName="infection">
                       <mat-option>--</mat-option>
                       <mat-option value="high">
-                        High
+                        Elevée
                       </mat-option>
                       <mat-option value="low">
-                        Low
+                        Faible
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
-
+                  <i class="material-icons ml-2 mt-2" (click)="removeAlias(i)" *ngIf="i > 0">
+                    delete_outline
+                  </i>
                 </div>
               </div>
             </div>
@@ -113,18 +115,21 @@
         <div class="row">
           <div class="col-11">
             <div formArrayName="location">
-              <h3><b>Recent Location</b></h3>
+              <h3><b>Emplacement La plus récent</b></h3>
               <div *ngFor="let alias of location.controls; let i=index">
                 <div [formGroupName]="i" class="d-flex justify-content-start">
-                  <mat-form-field appearance="outline" class="mr-4" (click)="focusFunction('recent_location' + i)">
-                    <mat-label>Place</mat-label>
-                    <input matInput placeholder="Place" formControlName="place" [id]="'recent_location' + i">
+                  <mat-form-field appearance="outline" class="mr-4" (click)="focusFunction('recent_location' + i , i)">
+                    <mat-label>Emplacement</mat-label>
+                    <input matInput placeholder="Emplacement" formControlName="place" [id]="'recent_location' + i">
                   </mat-form-field>
 
                   <mat-form-field appearance="outline">
-                    <mat-label>date</mat-label>
-                    <input matInput placeholder="date" type="date" formControlName="date">
+                    <mat-label>Date</mat-label>
+                    <input matInput placeholder="Date" type="date" formControlName="date">
                   </mat-form-field>
+                  <i class="material-icons ml-2 mt-2" (click)="removeLocation(i)" *ngIf="i > 0">
+                    delete_outline
+                  </i>
                 </div>
               </div>
             </div>
@@ -140,19 +145,19 @@
 
         <div class="row">
           <div class="col-12">
-            <h3><b>Have Traveled ?</b></h3>
+            <h3><b>Voyage Récent</b></h3>
           </div>
           <div class="col-2">
 
             <mat-form-field appearance="outline" class="mr-4">
-              <mat-label>Place</mat-label>
+              <mat-label>Emplacement</mat-label>
               <mat-select formControlName="travelEtat">
                 <mat-option>--</mat-option>
                 <mat-option value="yes">
-                  Yes
+                  Oui
                 </mat-option>
                 <mat-option value="no">
-                  No
+                  Non
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -165,18 +170,21 @@
                 <div [formGroupName]="i" class="d-flex justify-content-start">
 
                   <mat-form-field appearance="outline" class="mr-2">
-                    <mat-label>date</mat-label>
-                    <input matInput placeholder="date" type="date" formControlName="date">
+                    <mat-label>Date</mat-label>
+                    <input matInput placeholder="Date" type="date" formControlName="date">
                   </mat-form-field>
 
                   <mat-form-field appearance="outline" class="mr-2">
-                    <mat-label>From</mat-label>
-                    <input matInput placeholder="From" formControlName="from">
+                    <mat-label>De</mat-label>
+                    <input matInput placeholder="De" formControlName="from">
                   </mat-form-field>
                   <mat-form-field appearance="outline">
-                    <mat-label>To</mat-label>
-                    <input matInput placeholder="To" formControlName="to">
+                    <mat-label>à</mat-label>
+                    <input matInput placeholder="à" formControlName="to">
                   </mat-form-field>
+                  <i class="material-icons ml-2 mt-2" (click)="removeTravel(i)" *ngIf="i > 0">
+                    delete_outline
+                  </i>
                 </div>
               </div>
             </div>
@@ -193,14 +201,14 @@
         <div class="row">
           <div class="col-md-5">
             <mat-form-field appearance="outline" class="mr-4">
-              <mat-label>Connection to a cases</mat-label>
+              <mat-label>Lien avec un cas</mat-label>
               <mat-select formControlName="caseEtat">
                 <mat-option>--</mat-option>
                 <mat-option value="yes">
-                  Yes
+                  Oui
                 </mat-option>
                 <mat-option value="no">
-                  No
+                  Non
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -209,15 +217,17 @@
             <div formArrayName="caseId">
 
               <div *ngFor="let alias of caseId.controls; let i=index">
-                <div [formGroupName]="i" class="d-flex justify-content-start">
+                <div [formGroupName]="i" class="d-flex justify-content-start ">
 
 
 
                   <mat-form-field appearance="outline" class="mr-2">
-                    <mat-label>Case Id</mat-label>
+                    <mat-label>ID de cas</mat-label>
                     <input matInput placeholder="ID" formControlName="id">
                   </mat-form-field>
-
+                  <i class="material-icons ml-2 mt-2" (click)="removeCase(i)" *ngIf="i > 0">
+                    delete_outline
+                  </i>
                 </div>
               </div>
             </div>
@@ -234,25 +244,25 @@
         <div class="row" formGroupName="symptoms">
           <div class="col-md-6">
             <mat-form-field appearance="outline">
-              <mat-label>Displayed symptoms</mat-label>
+              <mat-label>Symptôme</mat-label>
               <mat-select formControlName="etat">
                 <mat-option>--</mat-option>
                 <mat-option value="yes">
-                  Yes
+                  Oui
                 </mat-option>
                 <mat-option value="no">
-                  No
+                  Non
                 </mat-option>
                 <mat-option value="unknown">
-                  Unknown
+                  Inconnu
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field appearance="outline" *ngIf="profileForm.get('symptoms').get('etat').value === 'yes'">
-              <mat-label>date</mat-label>
-              <input type="date" matInput placeholder="date" type="date" formControlName="date">
+              <mat-label>Date</mat-label>
+              <input type="date" matInput placeholder="Date" type="date" formControlName="date">
             </mat-form-field>
           </div>
         </div>
@@ -260,7 +270,7 @@
         <div class="row" formGroupName="status">
           <div class="col-md-6">
             <mat-form-field appearance="outline">
-              <mat-label>Status</mat-label>
+              <mat-label>Statut</mat-label>
               <mat-select formControlName="case">
                 <mat-option>--</mat-option>
                 <mat-option *ngFor="let item of status" [value]="item">
@@ -271,7 +281,7 @@
           </div>
           <div class="col-md-6">
             <mat-form-field appearance="outline">
-              <mat-label>date</mat-label>
+              <mat-label>Date</mat-label>
               <input type="date" matInput placeholder="date" type="date" formControlName="date">
             </mat-form-field>
           </div>
@@ -280,14 +290,14 @@
         <div class="row" formGroupName="hospitalized">
           <div class="col-md-4">
             <mat-form-field appearance="outline">
-              <mat-label>Hospitalized ?</mat-label>
+              <mat-label>Hospitalisé ?</mat-label>
               <mat-select formControlName="etat">
                 <mat-option>--</mat-option>
                 <mat-option value="yes">
-                  Yes
+                  Oui
                 </mat-option>
                 <mat-option value="no">
-                  No
+                  Non
                 </mat-option>
 
               </mat-select>
@@ -295,14 +305,14 @@
           </div>
           <div class="col-md-4" *ngIf="profileForm.get('hospitalized').get('etat').value === 'yes'">
             <mat-form-field appearance="outline">
-              <mat-label>date</mat-label>
+              <mat-label>Date</mat-label>
               <input type="date" matInput placeholder="date" type="date" formControlName="date">
             </mat-form-field>
           </div>
           <div class="col-md-4" *ngIf="profileForm.get('hospitalized').get('etat').value === 'yes'">
             <mat-form-field appearance="outline" (click)="focusFunction('hospital_place')">
-              <mat-label>Hospital</mat-label>
-              <input matInput placeholder="Name Hospital" formControlName="adress" id="hospital_place">
+              <mat-label>Hopital</mat-label>
+              <input matInput placeholder="Hopital" formControlName="adress" id="hospital_place" (click)="focusFunction('hospital_place')">
             </mat-form-field>
           </div>
         </div>
@@ -310,21 +320,20 @@
         <div class="row">
           <div class="col-12">
             <div>
-              <p><small> Did the patient have another
-                  diagnosis/etiology for their illness?</small></p>
+              <p><small> le patient a-t-il reçu un autre diagnostic de sa maladie</small></p>
               <mat-form-field appearance="outline">
                 <mat-label>Etat</mat-label>
 
                 <mat-select formControlName="diagnosis">
                   <mat-option>--</mat-option>
                   <mat-option value="yes">
-                    Yes
+                    Oui
                   </mat-option>
                   <mat-option value="no">
-                    No
+                    Non
                   </mat-option>
                   <mat-option value="unknown">
-                    Unknown
+                    Inconnu
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -335,7 +344,7 @@
       </div>
     </div>
     <hr>
-    <button class="d-flex mx-auto" type="submit" mat-raised-button >Submit</button>
+    <button class="d-flex mx-auto" type="submit" mat-raised-button [disabled]="!profileForm.valid">Envoyer</button>
   </form>
 </div>
 
