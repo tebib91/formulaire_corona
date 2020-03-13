@@ -6,6 +6,7 @@ import { Location, Appearance, GermanAddress } from '@angular-material-extension
 import PlaceResult = google.maps.places.PlaceResult;
 import { MapsAPILoader } from '@agm/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ApiserviceService } from '../apiservice.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -25,9 +26,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private apiService: ApiserviceService
   ) { }
 
   profileForm = this.fb.group({
@@ -152,6 +152,10 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
+    this.apiService.Send(this.profileForm.value).subscribe(value => {
+      console.log('response', value);
+
+    })
   }
 
 
