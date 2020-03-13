@@ -290,3 +290,10 @@ svg#clouds {
 .mat-form-field {
   width: 100%;
 }
+
+.mat-form-field-invalid .mat-radio-label-content{
+  color:#f44336;
+}
+.mat-form-field-invalid .mat-radio-outer-circle{
+  border-color:#f44336!important;
+}
