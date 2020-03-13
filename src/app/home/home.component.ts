@@ -75,21 +75,26 @@ export class HomeComponent implements OnInit {
       infection: '',
     });
   }
+
   newTravel(): FormGroup {
     return this.fb.group({
       etat: ['', Validators.required],
       date: ['']
     });
   }
+
   newLocation(): FormGroup {
     return this.fb.group({
       place: '',
       date: '',
     });
   }
+
+
   get infectedFamily() {
     return this.profileForm.get('infectedFamily') as FormArray;
   }
+
   get travel() {
     return this.profileForm.get('travel') as FormArray;
   }
@@ -97,12 +102,15 @@ export class HomeComponent implements OnInit {
   get location() {
     return this.profileForm.get('location') as FormArray;
   }
+
   addTravel() {
     this.travel.push(this.newTravel());
   }
+
   addAlias() {
     this.infectedFamily.push(this.newInfectedFamily());
   }
+
 
   addLocation() {
     this.location.push(this.newLocation());
@@ -112,39 +120,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.nationality = nationality;
-    this.zoom = 10;
-    this.latitude = 52.520008;
-    this.longitude = 13.404954;
-
-    this.setCurrentPosition();
     this.profileForm.get('location').valueChanges.subscribe(value => {
       console.log('value  on init', value);
     })
   }
 
-  private setCurrentPosition() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 12;
-      });
-    }
-  }
-
-  onAutocompleteSelected(result: PlaceResult) {
-    console.log('onAutocompleteSelected: ', result);
-  }
-
-  onLocationSelected(location: Location) {
-    console.log('onLocationSelected: ', location);
-    this.latitude = location.latitude;
-    this.longitude = location.longitude;
-  }
-
-  onGermanAddressMapped($event: GermanAddress) {
-    console.log('onGermanAddressMapped', $event);
-  }
 
   focusFunction(value) {
     this.hiden = value;
