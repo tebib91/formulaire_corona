@@ -10,6 +10,9 @@ import { DemoMaterialModule } from '../material-module';
 
 @NgModule({
   declarations: [HomeComponent, FormsComponent],
+  exports: [
+    FormsComponent
+  ],
   imports: [
     CommonModule,
     HomeRoutingModule,

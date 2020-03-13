@@ -8,6 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { DemoMaterialModule } from './material-module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {HomeModule} from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    DemoMaterialModule
+    DemoMaterialModule,
+    HomeModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
