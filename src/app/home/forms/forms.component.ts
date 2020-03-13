@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MedicalExtension, SymptomForm, Testing, Specimens} from './symptom-form';
+import {ApiserviceService} from '../../apiservice.service';
 
 @Component({
   selector: 'app-forms',
@@ -18,7 +19,7 @@ export class FormsComponent implements OnInit {
   preExisting: number;
   specimen = Specimens;
   show = false;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private api: ApiserviceService) {
   }
 
   ngOnInit(): void {
@@ -64,10 +65,19 @@ export class FormsComponent implements OnInit {
   }
 
 
-  onClick() {
-    console.log('specimensForm :', this.specimensForm);
+  save() {
+    const data = {
+      symptom: this.symptomForm.value,
+      medical: this.medicalForm.value,
+      testing: this.testingForm.value,
+      specimens: this.specimensForm.value
+    };
+    if (this.symptomForm.valid && this.medicalForm.valid && this.testingForm.valid && this.specimensForm.valid) {
+      this.api.sendDataForm(data).subscribe(res => {
+        console.log(res);
+      });
+    }
   }
-
   specifyGroup(): FormGroup {
     return this.fb.group({radio: ['', Validators.required], specify: ['', Validators.required]});
   }

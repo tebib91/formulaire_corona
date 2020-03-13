@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MedicalExtension, Specimens, SymptomForm, Testing} from '../symptom-form';
+import {ApiserviceService} from '../../../apiservice.service';
 
 @Component({
   selector: 'app-auto-questions',
@@ -23,7 +24,8 @@ export class AutoQuestionsComponent implements OnInit {
   testingIndex = 0;
   specimensIndex = 0;
   show = false;
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder, private api: ApiserviceService) {
   }
 
   ngOnInit() {
@@ -49,8 +51,11 @@ export class AutoQuestionsComponent implements OnInit {
     const testing = {};
     this.testingDiag.forEach(input => {
       if (input.type === 'group') {
-        testing[input.value] = this.fb.group({firstValue: ['', Validators.required], secondValue: ['', Validators.required]});
-      } else if  (input.type === 'number') {
+        testing[input.value] = this.fb.group({
+          firstValue: ['', Validators.required],
+          secondValue: ['', Validators.required]
+        });
+      } else if (input.type === 'number') {
         testing[input.value] = new FormControl('', [Validators.required]);
       }
     });
@@ -79,6 +84,7 @@ export class AutoQuestionsComponent implements OnInit {
       }
     });
   }
+
   medicalChanges() {
     this.medicalForm.valueChanges.subscribe(value => {
       const valid = this.medicalForm.controls[this.medicalExtension[this.medicalIndex].value].valid;
@@ -119,23 +125,37 @@ export class AutoQuestionsComponent implements OnInit {
     this.testingChanges();
     // this.specimenChange();
   }
+
   previous(i) {
     if (this[i] > 0) {
       this[i]--;
     }
   }
+
   next(i, length) {
     if (this[i] < length - 1) {
       this[i]++;
     }
   }
-  onClick() {
-    console.log('specimensForm :', this.specimensForm);
+
+  save() {
+    const data = {
+      symptom: this.symptomForm.value,
+      medical: this.medicalForm.value,
+      testing: this.testingForm.value,
+      specimens: this.specimensForm.value
+    };
+    if (this.symptomForm.valid && this.medicalForm.valid && this.testingForm.valid && this.specimensForm.valid) {
+      this.api.sendDataForm(data).subscribe(res => {
+        console.log(res);
+      });
+    }
   }
 
   specifyGroup(): FormGroup {
     return this.fb.group({radio: ['', Validators.required], specify: ['', Validators.required], blur: false});
   }
+
   specimensGroup(): FormGroup {
     return this.fb.group({
       specimenID: ['', Validators.required],
@@ -143,7 +163,7 @@ export class AutoQuestionsComponent implements OnInit {
       labTested: false,
       labResult: ['', Validators.required],
       sentCDC: false,
-      CDCResult: ['', Validators.required],
+      CDCResult: ['', Validators.required]
     });
   }
 }

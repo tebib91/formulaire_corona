@@ -8,7 +8,7 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class ApiserviceService {
   baseurl = 'http://covid19.knsd.digital/api/save.php';
-  formUrl = 'http://covid19.knsd.digital/api/save.php';
+  formUrl = 'http://covid19.knsd.digital/api/declaration/save';
 
   constructor(private https: HttpClient) { }
 
@@ -17,7 +17,7 @@ export class ApiserviceService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  }
+  };
 
   // POST
   Send(data): Observable<any> {
@@ -25,16 +25,16 @@ export class ApiserviceService {
       .pipe(
         retry(1),
         catchError(this.errorHandl)
-      )
+      );
   }
 
   // POST
   sendDataForm(data): Observable<any> {
-    return this.https.post<any>(this.baseurl, JSON.stringify(data), this.httpOptions)
+    return this.https.post<any>(this.formUrl, JSON.stringify(data), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandl)
-      )
+      );
   }
   // Error handling
   errorHandl(error) {
