@@ -15,7 +15,7 @@ import { ApiserviceService } from '../apiservice.service';
 export class HomeComponent implements OnInit {
   phoneNumber = '^((\\+91-?)|0)?[0-9]{10}$';
   nationality: { num_code: string; alpha_2_code: string; alpha_3_code: string; en_short_name: string; nationality: string; }[];
-  status: any = ['Under Investigation', 'Discharged', 'Confirmed', 'Recovered', 'Dead'];
+  status: any = ['En cours de diagnostic', 'Déchargé', 'Confirmé', 'Rétabli', 'Mort'];
   public appearance = Appearance;
   public zoom: number;
   public latitude: number;
@@ -115,19 +115,31 @@ export class HomeComponent implements OnInit {
   addCase() {
     this.caseId.push(this.newCase());
   }
+  removeCase(i) {
+    this.caseId.removeAt(i);
+  }
   addTravel() {
     this.travel.push(this.newTravel());
   }
-
+  removeTravel(i) {
+    this.travel.removeAt(i);
+  }
   addAlias() {
     this.infectedFamily.push(this.newInfectedFamily());
+  }
+  removeAlias(i) {
+    this.infectedFamily.removeAt(i);
+
   }
 
 
   addLocation() {
     this.location.push(this.newLocation());
   }
+  removeLocation(i) {
+    this.location.removeAt(i);
 
+  }
 
 
   ngOnInit(): void {
@@ -138,13 +150,34 @@ export class HomeComponent implements OnInit {
   }
 
 
-  focusFunction(id: string) {
+  focusFunction(id: string, i?) {
     const dialogRef = this.dialog.open(AutocompleteComponent, {
       width: '600px',
-      height: '600px'
+
     });
     dialogRef.afterClosed().subscribe(result => {
-      (<HTMLInputElement>document.getElementById(id)).value = result.name;
+      if (result && result.name) {
+        (<HTMLInputElement>document.getElementById(id)).value = result.name;
+        switch (id) {
+          case 'address_input':
+            this.profileForm.controls['adress'].patchValue(result.name);
+            break;
+          case 'work_location':
+            this.profileForm.controls['workLocation'].patchValue(result.name);
+            break;
+          case 'work_location':
+            this.profileForm.controls['workLocation'].patchValue(result.name);
+            break;
+          case 'recent_location':
+            this.profileForm.controls['location'][i]['place'].patchValue(result.name);
+            break;
+            case 'hospital_place':
+              this.profileForm.get('hospitalized').get('adress').patchValue(result.name);
+              break;
+          default:
+            break;
+        }
+      }
       console.log('The dialog was closed', result);
     });
   }

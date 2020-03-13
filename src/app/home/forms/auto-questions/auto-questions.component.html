@@ -1,31 +1,28 @@
 <div [formGroup]="symptomForm">
-  <table>
-    <tr>
-      <th>During this illness, did the patient experience any of th following symptoms ?</th>
-      <th>Symptom Present ?</th>
-    </tr>
-    <tr *ngFor="let item of symptomValues">
+  <p>During this illness, did the patient experience any of th following symptoms ?</p>
+  <tr *ngFor="let item of symptomValues; let i = index">
+    <ng-container *ngIf="i == symptomsIndex">
       <td>{{item.label}}</td>
-      <td>
-        <div [ngSwitch]="item.type">
-          <div *ngSwitchCase="'number'" >
-            <mat-radio-group  formControlName="{{item.value}}" >
-              <mat-radio-button [value]=0>Yes</mat-radio-button>
-              <mat-radio-button [value]=1>No</mat-radio-button>
-              <mat-radio-button [value]=2>Unknown</mat-radio-button>
-            </mat-radio-group>
+      <td [ngSwitch]="item.type">
+        <div *ngSwitchCase="'number'">
+          <mat-radio-group formControlName="{{item.value}}">
+            <mat-radio-button [value]=0>Yes</mat-radio-button>
+            <mat-radio-button [value]=1>No</mat-radio-button>
+            <mat-radio-button [value]=2>Unknown</mat-radio-button>
+          </mat-radio-group>
 
-<!--            <mat-error *ngIf="!symptomForm.controls[item.value].errors.required"></mat-error>-->
-          </div>
-          <div *ngSwitchCase="'string'">
-            <mat-form-field>
-              <input matInput placeholder="Other" formControlName="{{item.value}}">
-            </mat-form-field>
-          </div>
+          <!--            <mat-error *ngIf="!symptomForm.controls[item.value].errors.required"></mat-error>-->
+        </div>
+        <div *ngSwitchCase="'string'">
+          <mat-form-field>
+            <input matInput placeholder="Other" formControlName="{{item.value}}">
+          </mat-form-field>
         </div>
       </td>
-    </tr>
-  </table>
+    </ng-container>
+  </tr>
+  <button mat-stroked-button class="mt-2" (click)="previous('symptomsIndex')">Previous</button>
+  <button mat-stroked-button class="mt-2 ml-2" (click)="next('symptomsIndex')">Next</button>
 </div>
 
 <div class="mt-5 mb-0 d-flex justify-content-between">
@@ -38,8 +35,8 @@
 </div>
 
 <div [formGroup]="medicalForm" *ngIf="preExisting === 0">
-  <table>
-    <tr *ngFor="let item of medicalExtension; let i = index">
+  <tr *ngFor="let item of medicalExtension; let i = index">
+    <ng-container *ngIf="medicalIndex == i">
       <td>{{item.label}}</td>
       <td>
         <div>
@@ -67,24 +64,23 @@
         <div [formGroupName]="item.value"
              *ngIf="item.type === 'group' && medicalForm.get(item.value).get(item.valueRadioBox).value === 0">
           <mat-form-field>
-            <input matInput placeholder="Other" formControlName="{{item.valueInput}}">
+            <input matInput placeholder="Other" formControlName="{{item.valueInput}}"
+                   (blur)="medicalForm.get(item.value).get('blur').patchValue(true)">
           </mat-form-field>
         </div>
       </td>
-    </tr>
-  </table>
+    </ng-container>
+  </tr>
+  <button mat-stroked-button class="mt-2" (click)="previous('medicalIndex')">Previous</button>
+  <button mat-stroked-button class="mt-2 ml-2" (click)="next('medicalIndex')">Next</button>
 </div>
 
 <!--Respiratory diagnostic-->
 <div>
   <p class="mt-5 mb-0">Respiratory Diagnostic Testing</p>
   <div [formGroup]="testingForm">
-    <table>
-      <tr>
-        <th>Test</th>
-        <th></th>
-      </tr>
-      <tr *ngFor="let item of testingDiag">
+    <tr *ngFor="let item of testingDiag; let i = index">
+      <ng-container *ngIf="testingIndex == i">
         <td>
           <div class="d-flex align-items-center justify-content-between">
             <p class="mb-1">{{item.label}}</p>
@@ -107,7 +103,7 @@
         </td>
         <td>
           <div>
-            <div *ngIf="item.type === 'group'" >
+            <div *ngIf="item.type === 'group'">
               <div formGroupName="{{item.value}}">
                 <mat-radio-group required formControlName="secondValue">
                   <mat-radio-button [value]=0>Pos</mat-radio-button>
@@ -127,8 +123,10 @@
             </div>
           </div>
         </td>
-      </tr>
-    </table>
+      </ng-container>
+    </tr>
+    <button mat-stroked-button class="mt-2" (click)="previous('testingIndex')">Previous</button>
+    <button mat-stroked-button class="mt-2 ml-2" (click)="next('testingIndex')">Next</button>
   </div>
 </div>
 
@@ -147,46 +145,49 @@
       <th>CDC Result</th>
     </tr>
 
-    <ng-container *ngFor="let item of specimen">
+    <ng-container *ngFor="let item of specimen; let i = index">
       <tr *ngIf="item.type === 'object'; else notObject" [formGroupName]="item.value">
-        <td>{{item.label}}</td>
-        <td>
-          <mat-form-field>
-            <input matInput formControlName="specimenID">
-            <mat-error></mat-error>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field>
-            <input matInput formControlName="DateCollected">
-            <mat-error></mat-error>
-          </mat-form-field>
-        </td>
-        <td>
-          <div class="text-center">
-            <mat-checkbox formControlName="labTested"></mat-checkbox>
-          </div>
-        </td>
-        <td>
-          <mat-form-field>
-            <input matInput formControlName="labResult">
-            <mat-error></mat-error>
-          </mat-form-field>
-        </td>
-        <td>
-          <div class="text-center">
-            <mat-checkbox formControlName="sentCDC"></mat-checkbox>
-          </div>
-        </td>
-        <td>
-          <mat-form-field>
-            <input matInput formControlName="CDCResult">
-            <mat-error></mat-error>
-          </mat-form-field>
-        </td>
+        <ng-container *ngIf="specimensIndex == i">
+          <td>{{item.label}}</td>
+          <td>
+            <mat-form-field>
+              <input matInput formControlName="specimenID">
+              <mat-error></mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput formControlName="DateCollected">
+              <mat-error></mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <div class="text-center">
+              <mat-checkbox formControlName="labTested"></mat-checkbox>
+            </div>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput formControlName="labResult">
+              <mat-error></mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <div class="text-center">
+              <mat-checkbox formControlName="sentCDC"></mat-checkbox>
+            </div>
+          </td>
+          <td>
+            <mat-form-field>
+              <input matInput formControlName="CDCResult">
+              <mat-error></mat-error>
+            </mat-form-field>
+          </td>
+        </ng-container>
       </tr>
       <ng-template #notObject>
         <tr>
+          <ng-container *ngIf="specimensIndex == i">
           <td>
             <p class="mb-0">
               {{item.label}}
@@ -201,10 +202,13 @@
           <td></td>
           <td></td>
           <td></td>
+          </ng-container>
         </tr>
       </ng-template>
     </ng-container>
   </table>
+  <button mat-stroked-button class="mt-2" (click)="previous('specimensIndex')">Previous</button>
+  <button mat-stroked-button class="mt-2 ml-2" (click)="next('specimensIndex')">Next</button>
 </div>
 
 <!--Additional State-->
