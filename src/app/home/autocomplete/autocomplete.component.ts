@@ -24,10 +24,13 @@ export class AutocompleteComponent implements OnInit {
     console.log('data', this.data);
 
     setTimeout(() => {
+    if (this.data) {
       this.latitude = this.data.latitude;
       this.longitude = this.data.longitude;
       this.placesName = this.data.adress;
-      console.log('this.latitude', this.latitude, 'this.longitude', this.longitude, 'this.placesName ', this.placesName);
+            console.log('this.latitude', this.latitude, 'this.longitude', this.longitude, 'this.placesName ', this.placesName);
+
+    }
 
     }, 2000);
 
