@@ -5,7 +5,7 @@
       <td>{{item.label}}</td>
       <td [ngSwitch]="item.type">
         <div *ngSwitchCase="'number'">
-          <mat-radio-group formControlName="{{item.value}}">
+          <mat-radio-group formControlName="{{item.value}}" (click)="next('symptomsIndex', symptomValues.length)">
             <mat-radio-button [value]=0>Yes</mat-radio-button>
             <mat-radio-button [value]=1>No</mat-radio-button>
             <mat-radio-button [value]=2>Unknown</mat-radio-button>
@@ -15,14 +15,13 @@
         </div>
         <div *ngSwitchCase="'string'">
           <mat-form-field>
-            <input matInput placeholder="Other" formControlName="{{item.value}}">
+            <input matInput placeholder="Other" formControlName="{{item.value}}" (blur)="next('symptomsIndex', symptomValues.length)">
           </mat-form-field>
         </div>
       </td>
     </ng-container>
   </tr>
-  <button mat-stroked-button class="mt-2" (click)="previous('symptomsIndex')">Previous</button>
-  <button mat-stroked-button class="mt-2 ml-2" (click)="next('symptomsIndex', symptomValues.length)">Next</button>
+
 </div>
 <hr>
 <div class="mt-5 mb-0 d-flex justify-content-between">
