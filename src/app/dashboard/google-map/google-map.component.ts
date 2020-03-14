@@ -6,8 +6,8 @@ declare var google: any;
   templateUrl: './google-map.component.html',
   styleUrls: ['./google-map.component.scss']
 })
-export class GoogleMapComponent implements OnInit, AfterViewInit {
-  markers = [];
+export class GoogleMapComponent implements OnInit {
+  markers ;
   @Input() dataSource: string;
   // google maps zoom level
   zoom = 6;
@@ -16,21 +16,14 @@ export class GoogleMapComponent implements OnInit, AfterViewInit {
   lng = 9.5375;
   constructor(private apiService: ApiserviceService) { }
   ngOnInit() {
-    // this.apiService.get(this.dataSource).subscribe((data: any) => {
-
-    // })
-
-  }
-  ngAfterViewInit() {
-    const address = 'Ariana';
-    var geocoder = new google.maps.Geocoder();
-
-    geocoder.geocode({
-      'address': address
-    }, function (results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        console.log('results', results);
+    this.apiService.get(this.dataSource).subscribe((data: any) => {
+      console.log('dataaa map', data);
+      const tempMarkers = [];
+      for (let marker of data) {
+        tempMarkers.push({lat: marker.lat, lng: marker.long});
       }
+      this.markers = tempMarkers;
     });
+
   }
 }
