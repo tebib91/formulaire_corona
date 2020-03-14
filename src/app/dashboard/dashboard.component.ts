@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
     // getting numbers
     this.apiService.get(this.numbersEndpoint).subscribe(
       (data: any) => {
-        this.confirmed = data.confirmed;
+        this.confirmed = data.Confirmed;
         this.hospitalized = data.hospitalized;
         this.discharged = data.discharged;
         this.restablished = data.restablished;
