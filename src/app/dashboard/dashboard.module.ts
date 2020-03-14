@@ -9,17 +9,19 @@ import { MapComponent } from './map/map.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { AgmCoreModule } from '@agm/core';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [DashboardComponent, ChartsComponent, MapComponent, GoogleMapComponent],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    ChartsModule,
-    NgxEchartsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC1uIT5V4PnZ61dQVehBYBSsIB5FABY9mw',
-      libraries: ['places']
-    }),
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        ChartsModule,
+        NgxEchartsModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyC1uIT5V4PnZ61dQVehBYBSsIB5FABY9mw',
+            libraries: ['places']
+        }),
+        MatButtonModule
+    ]
 })
 export class DashboardModule { }
