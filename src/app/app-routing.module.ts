@@ -5,16 +5,16 @@ import {AutoQuestionsComponent} from './home/forms/auto-questions/auto-questions
 
 
 const routes: Routes = [
-  {path: '' , redirectTo:'dashboard',pathMatch: 'full'},
-  { path: 'formulaire', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
-  { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: 'formulaire', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
+  {path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)},
   {
-    path: 'firstForm', component: FormsComponent
+    path: 'diagnostic', component: FormsComponent
   },
   {
-    path: 'secondForm', component: AutoQuestionsComponent
+    path: 'declaration', component: AutoQuestionsComponent
   },
-  { path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListModule) },
+  {path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListModule)}
 ];
 
 @NgModule({

@@ -8,13 +8,15 @@ import { ChartsModule } from 'ng2-charts';
 import { MapComponent } from './map/map.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { GoogleMapComponent } from './google-map/google-map.component';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [DashboardComponent, ChartsComponent, MapComponent, GoogleMapComponent],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    ChartsModule,
-    NgxEchartsModule
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        ChartsModule,
+        NgxEchartsModule,
+        MatButtonModule
+    ]
 })
 export class DashboardModule { }
