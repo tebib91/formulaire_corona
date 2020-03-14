@@ -97,7 +97,7 @@ export class ChartsComponent implements OnInit {
       yAxes: [{
         ticks: {
           beginAtZero: true,
-          maxTicksLimit: 6,
+          // maxTicksLimit: 6,
           stepSize: 1
         },
         gridLines: {
