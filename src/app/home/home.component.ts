@@ -8,6 +8,9 @@ import { MapsAPILoader } from '@agm/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiserviceService } from '../apiservice.service';
 import { DialogsucessComponent } from './dialogsucess/dialogsucess.component';
+import { ActivatedRoute, Params, ParamMap } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -29,18 +32,20 @@ export class HomeComponent implements OnInit {
   public latitude: number;
   public longitude: number;
   public selectedAddress: PlaceResult;
-  hiden: boolean = false;
-  IDCase: number;
-
+  hiden = false;
+  case: number;
+  private routeSub: Subscription;
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
-    private apiService: ApiserviceService
+    private apiService: ApiserviceService,
+    private route: ActivatedRoute,
+
   ) { }
 
   profileForm = this.fb.group({
-    fullName: ['', Validators.required],
-    dateBirth: ['', Validators.required],
+    case: [''],
+    age: ['', Validators.required],
     gender: ['', Validators.required],
     nationality: ['', Validators.required],
     // adress: ['', Validators.required],
@@ -93,7 +98,7 @@ export class HomeComponent implements OnInit {
   newCase(): FormGroup {
     return this.fb.group({
       id: ['']
-    })
+    });
   }
   newInfectedFamily(): FormGroup {
     return this.fb.group({
@@ -169,6 +174,21 @@ export class HomeComponent implements OnInit {
     this.profileForm.get('location').valueChanges.subscribe(value => {
       console.log('value  on init', value);
     });
+
+    // this.route.queryParams.subscribe(queryParams => {
+    //   console.log(queryParams);
+
+    //   const id = queryParams['id'];
+    //   console.log('id', id);
+
+    //   this.getData(id);
+
+    // });
+    this.routeSub = this.route.params.subscribe(params => {
+      this.case = +params['id'];
+      console.log(params['id']) //log the value of id
+      this.getData(params['id']);
+    });
     // GET DATA CASE
     // this.getData(2);
   }
@@ -178,14 +198,14 @@ export class HomeComponent implements OnInit {
     let data: any;
     switch (id) {
       case 'address_input':
-        data = this.profileForm.controls['adress'].value;
+        data = this.profileForm.controls.adress.value;
         break;
       case 'work_location':
-        this.profileForm.controls['workLocation'].value;
+        this.profileForm.controls.workLocation.value;
         break;
 
       case 'recent_location':
-        this.profileForm.controls['location'][i]['place'].value;
+        this.profileForm.controls.location[i].place.value;
         break;
       case 'hospital_place':
         this.profileForm.get('hospitalized').get('adress').value;
@@ -201,7 +221,7 @@ export class HomeComponent implements OnInit {
       console.log('resultat', result);
 
       if (result && result.name) {
-        (<HTMLInputElement>document.getElementById(id)).value = result.name;
+        (document.getElementById(id) as HTMLInputElement).value = result.name;
         switch (id) {
           case 'address_input':
             this.profileForm.patchValue({
@@ -223,7 +243,7 @@ export class HomeComponent implements OnInit {
             break;
 
           case 'recent_location':
-            this.profileForm.controls['location'][i].patchValue({
+            this.profileForm.controls.location[i].patchValue({
               place: result.name,
               latitude: result.latitude,
               longitude: result.longitude
@@ -250,6 +270,11 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.profileForm.value);
+    if (this.case) {
+      this.profileForm.patchValue({
+        case: this.case
+      });
+    }
     this.apiService.Send(this.profileForm.value).subscribe(value => {
       console.log('response', value);
       const dialogRef = this.dialog.open(DialogsucessComponent, {
@@ -265,12 +290,11 @@ export class HomeComponent implements OnInit {
   getData(value) {
     this.apiService.getData(value).subscribe(value => {
       console.log('data from get', value);
-      this.IDCase = value.id
-      this.patchValue(value)
+      this.patchValue(value);
     });
   }
   patchValue(value) {
-    this.profileForm.patchValue(value)
+    this.profileForm.patchValue(value);
   }
 
 

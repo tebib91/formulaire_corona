@@ -1,0 +1,30 @@
+<section class="container">
+
+  <!-- Header Bar -->
+  <header>
+
+
+    <div class="status-col">
+      <label> Case Id </label>
+    </div>
+
+    <div class="button-col">
+      <button class="btn" name="Add Task"> Add Task </button>
+    </div>
+
+  </header>
+
+  <!-- List Items -->
+  <div class="items  row">
+    <div class="float-right" *ngFor="let item of data; let i=index">
+      <!-- List Item -->
+      <div class="item " [routerLink]="['/formulaire', item.case]">
+        <div> {{item.case}}</div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>

@@ -27,6 +27,13 @@ export class ApiserviceService {
         catchError(this.errorHandl)
       );
   }
+  getAll(): Observable<any> {
+    return this.https.get<any>(`${this.baseurl}?f=list`, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
   getData(data): Observable<any> {
     return this.https.get<any>(`${this.baseurl}?f=get&id=${data}`, this.httpOptions)
       .pipe(
