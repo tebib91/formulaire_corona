@@ -1,68 +1,68 @@
 export const SymptomForm = [
   {
-    type: 'number',
+    label: 'Fever >10.4F (380)°c',
     value: 'fever',
-    label: 'Fever >10.4F (380)°c'
+    type: 'number'
   },
   {
-    type: 'number',
+    label: 'Subjective fever (felt feverish)',
     value: 'subjectiveFever',
-    label: 'Subjective fever (felt feverish)'
+    type: 'number'
   },
   {
-    type: 'number',
+    label: 'Chills',
     value: 'chills',
-    label: 'Chills'
+    type: 'number'
   },
   {
-    type: 'number',
+    label: 'Muscle aches (myalgia)',
     value: 'muscleAches',
-    label: 'Muscle aches (myalgia)'
+    type: 'number'
   },
   {
-    type: 'number',
+    label: 'Runny nose (rhinorrhea)',
     value: 'runnyNose',
-    label: 'Runny nose (rhinorrhea)'
+    type: 'number'
   },
   {
-    type: 'number',
+    label: 'Sore throat',
     value: 'soreThroat',
-    label: 'Sore throat'
+    type: 'number'
   },
   {
-    type: 'number',
+    label: 'Cough (new onset or worsening of chronic cough)',
     value: 'cough',
-    label: 'Cough (new onset or worsening of chronic cough)'
+    type: 'number'
   },
   {
-    type: 'number',
+    label: 'Shortness of breath (dyspnea)',
     value: 'shortnessBreath',
-    label: 'Shortness of breath (dyspnea)'
+    type: 'number'
   },
   {
-    type: 'number',
+    label: 'Nausea or vomiting',
     value: 'nauseaVomiting',
-    label: 'Nausea or vomiting'
+    type: 'number'
   },
   {
-    type: 'number',
+    label: 'Headache',
     value: 'headache',
-    label: 'Headache'
+    type: 'number'
   },
   {
-    type: 'number',
+    label: 'Abdominal pain',
     value: 'abdominalPain',
-    label: 'Abdominal pain'
+    type: 'number'
   },
   {
-    type: 'number',
+    label: 'Diarrhea ( ≥ 3 looser/looser than normal stools/24hr period)',
     value: 'diarrhea',
-    label: 'Diarrhea ( ≥ 3 looser/looser than normal stools/24hr period)'
+    type: 'number'
   },
   {
-    type: 'string',
+    label: 'Other, specify',
     value: 'other',
-    label: 'Other, specify'
+    type: 'string'
   }
 ];
 
