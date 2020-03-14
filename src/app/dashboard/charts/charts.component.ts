@@ -183,19 +183,17 @@ export class ChartsComponent implements OnInit {
               this.pieData = Object.values(data);
               break;
             case 'govsPie':
-              const labels = [];
+              const templabels = [];
               const dataGovs = [];
               Object.keys(data).map(key => {
                 if (key.includes('Tunisia')) {
                   const formattedKey = key.split(',')[0];
-                  labels.push(formattedKey);
+                  templabels.push(formattedKey);
                   dataGovs.push(data[key]);
                 }
               });
-              console.log('data', dataGovs);
-              console.log('labels', labels);
               this.pieData = dataGovs;
-              this.lineChartLabels = labels;
+              this.lineChartLabels = templabels;
               break;
             default:
               console.log('default shit');
