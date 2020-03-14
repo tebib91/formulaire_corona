@@ -22,7 +22,7 @@ export class ChartsComponent implements OnInit {
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartLegend = true;
   public lineChartOptions = {
-    responsive: true,
+    // responsive: true,
     elements: {
       line: {
         tension: 0.4,
@@ -32,13 +32,41 @@ export class ChartsComponent implements OnInit {
       }
     },
     scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
-      xAxes: [{}],
+      xAxes: [
+        {
+          // stacked: true,
+          // interval: 1,
+          gridLines: {
+            display: false
+          },
+          offset: true,
+          ticks: {
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 4,
+          },
+          type: 'category',
+          unit: 'day',
+          time: {
+            displayFormats: {
+              month: 'MMM',
+              day: 'DD/MM',
+              hour: 'DD/MM'
+            }
+          }
+        }
+      ],
       yAxes: [
         {
-          id: 'y-axis-0',
-          position: 'left',
-        },
+          gridLines: {
+            display: true
+          },
+          type: 'linear',
+          ticks: {
+            autoSkip: true,
+            maxTicksLimit: 5,
+          }
+        }
       ]
     }
   };

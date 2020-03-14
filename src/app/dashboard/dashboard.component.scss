@@ -1,4 +1,4 @@
-.card-chart {
+.card-chart, .map {
   border: 1px solid rgba(72, 94, 144, 0.16);
   border-radius: 0.25rem;
   margin: 0 0 16px;
@@ -29,5 +29,32 @@
 @media (min-width: 1200px) {
   .container {
     min-width: 1500px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+  //CSS
+
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  //CSS
+
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .card-chart {
+    height: 250px;
   }
 }
