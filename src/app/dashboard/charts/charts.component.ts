@@ -189,15 +189,18 @@ export class ChartsComponent implements OnInit {
               this.pieData = Object.values(data);
               break;
             case 'ageGenderRepartition':
-              let genderallLabels = [];
-              Object.keys(data).map((key: any) => {
-                genderallLabels = [...Object.keys(data[key])];
+              let barData = [];
+              const dataWomen = [];
+              const dataMan = [];
+              Object.keys(data).map(key => {
+                console.log('data key', data[key]);
+                dataWomen.push(data[key].women ? data[key].women : 0);
+                dataMan.push(data[key].men ? data[key].men : 0);
               });
-              // remove duplicate labels
-              const gendercleanLabels = genderallLabels.filter((elem, index, self) => {
-                return index === self.indexOf(elem);
-              });
-
+              barData = [{data: dataMan, label: 'Male'}, {data: dataWomen, label: 'Female'}];
+              console.log('bar data', barData)
+              this.lineChartLabels = Object.keys(data);
+              this.lineChartData = barData;
               break;
             case 'casePerDay':
               this.options.scales.xAxes[0].stacked = true;
