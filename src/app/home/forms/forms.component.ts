@@ -22,21 +22,23 @@ export class FormsComponent implements OnInit {
   constructor(private fb: FormBuilder, private api: ApiserviceService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     // symptom form
     const symptom = {};
     this.symptomValues.forEach(input => {
-      symptom[input.value] = new FormControl('', [Validators.required]);
+      symptom[input.value] = input.value === 'other' ? new FormControl('') :
+        new FormControl('', [Validators.required]);
     });
     this.symptomForm = new FormGroup(symptom);
 
-    // symptom form
+    // medical form
     const medical = {};
     this.medicalExtension.forEach(input => {
       if (input.type === 'group') {
         medical[input.value] = this.specifyGroup();
       } else {
-        medical[input.value] = new FormControl('', [Validators.required]);
+        medical[input.value] = input.value === 'other' ? new FormControl('') :
+          new FormControl('', [Validators.required]);
       }
     });
     this.medicalForm = this.fb.group(medical);
@@ -45,9 +47,13 @@ export class FormsComponent implements OnInit {
     const testing = {};
     this.testingDiag.forEach(input => {
       if (input.type === 'group') {
-        testing[input.value] = this.fb.group({firstValue: ['', Validators.required], secondValue: ['', Validators.required]});
-      } else {
-        testing[input.value] = new FormControl('', [Validators.required]);
+        testing[input.value] = this.fb.group({
+          firstValue: ['', Validators.required],
+          secondValue: ['', Validators.required]
+        });
+      } else if (input.type === 'number') {
+        testing[input.value] = input.value === 'other' ? new FormControl('') :
+          new FormControl('', [Validators.required]);
       }
     });
     this.testingForm = this.fb.group(testing);
@@ -58,7 +64,8 @@ export class FormsComponent implements OnInit {
       if (input.type === 'object') {
         specimen[input.value] = this.specimensGroup();
       } else {
-        specimen[input.value] = new FormControl('', [Validators.required]);
+        specimen[input.value] = input.value === 'other' ? new FormControl('') :
+          new FormControl('', [Validators.required]);
       }
     });
     this.specimensForm = this.fb.group(specimen);
