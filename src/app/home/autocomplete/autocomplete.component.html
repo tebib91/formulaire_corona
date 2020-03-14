@@ -7,7 +7,7 @@
 
   <div class="autocomplete-container" [ngStyle.xs]="{'min-width.%': 100}"
     [ngStyle.sm]="{'width.%': 70}">
-    <mat-google-maps-autocomplete (onAutocompleteSelected)="onAutocompleteSelected($event)"
+    <mat-google-maps-autocomplete (onAutocompleteSelected)="onAutocompleteSelected($event)" appearance="outline"
       (onLocationSelected)="onLocationSelected($event)" (onGermanAddressMapped)="onGermanAddressMapped($event)">
     </mat-google-maps-autocomplete>
   </div>
