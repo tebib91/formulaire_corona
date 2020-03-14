@@ -27,7 +27,14 @@ export class ApiserviceService {
         catchError(this.errorHandl)
       );
   }
-
+  // Get
+  getData(data): Observable<any> {
+    return this.https.get<any>(this.baseurl + 'save.php', this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      );
+  }
   // POST
   sendDataForm(data): Observable<any> {
     return this.https.post<any>(this.formUrl, JSON.stringify(data), this.httpOptions)
