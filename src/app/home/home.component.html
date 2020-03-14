@@ -73,7 +73,7 @@
         </div>
 
         <div class="row">
-          <div class="col-11">
+          <div class="col-md-11">
             <div formArrayName="infectedFamily">
               <h3><b>Famille séropositive</b></h3>
 
@@ -103,7 +103,7 @@
               </div>
             </div>
           </div>
-          <div class="col-1 mt-5">
+          <div class="col-md-1 mt-5">
             <button class="circle" (click)="addAlias()">
               <img id="addSign"
                 src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
@@ -113,7 +113,7 @@
         </div>
 
         <div class="row">
-          <div class="col-11">
+          <div class="col-md-11">
             <div formArrayName="location">
               <h3><b>Emplacement La plus récent</b></h3>
               <div *ngFor="let alias of location.controls; let i=index">
@@ -134,7 +134,7 @@
               </div>
             </div>
           </div>
-          <div class="col-1 mt-5">
+          <div class="col-md-1 mt-5">
             <button class="circle" (click)="addLocation()">
               <img id="addSign"
                 src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
@@ -147,7 +147,7 @@
           <div class="col-12">
             <h3><b>Voyage Récent</b></h3>
           </div>
-          <div class="col-2">
+          <div class="col-md-2">
 
             <mat-form-field appearance="outline" class="mr-4">
               <mat-label>Emplacement</mat-label>
@@ -163,7 +163,7 @@
             </mat-form-field>
           </div>
 
-          <div class="col-9" *ngIf="profileForm.get('travelEtat').value === 'yes'">
+          <div class="col-md-9" *ngIf="profileForm.get('travelEtat').value === 'yes'">
             <div formArrayName="travel">
 
               <div *ngFor="let alias of travel.controls; let i=index">
@@ -189,7 +189,7 @@
               </div>
             </div>
           </div>
-          <div class="col-1" *ngIf="profileForm.get('travelEtat').value === 'yes'">
+          <div class="col-md-1" *ngIf="profileForm.get('travelEtat').value === 'yes'">
             <button class="circle" (click)="addTravel()">
               <img id="addSign"
                 src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/2x/btw_ic_speeddial_white_24dp_2x.png"
@@ -318,7 +318,7 @@
         </div>
 
         <div class="row">
-          <div class="col-12">
+          <div class="col-md-12">
             <div>
               <p><small> le patient a-t-il reçu un autre diagnostic de sa maladie</small></p>
               <mat-form-field appearance="outline">
