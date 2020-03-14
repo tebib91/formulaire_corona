@@ -25,6 +25,9 @@ tr td {
   font-weight: 600;
   color: #1b2e4b;
   margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .header-title-charts {
   font-size: 11px;
@@ -59,6 +62,12 @@ tr td {
 }
 .legend-label {
   margin-right: 6px;
+}
+.number-no-chart {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 40px;
 }
 @media (min-width: 1200px) {
   .container,

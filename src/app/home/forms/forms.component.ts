@@ -79,11 +79,10 @@ export class FormsComponent implements OnInit {
       testing: this.testingForm.value,
       specimens: this.specimensForm.value
     };
-    if (this.symptomForm.valid && this.medicalForm.valid && this.testingForm.valid && this.specimensForm.valid) {
-      this.api.sendDataForm(data).subscribe(res => {
-        console.log(res);
-      });
-    }
+    console.log('data :', data);
+    this.api.sendDataForm(data).subscribe(res => {
+      console.log(res);
+    });
   }
   specifyGroup(): FormGroup {
     return this.fb.group({radio: ['', Validators.required], specify: ['', Validators.required]});
