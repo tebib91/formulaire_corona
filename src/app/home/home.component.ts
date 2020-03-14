@@ -7,6 +7,7 @@ import PlaceResult = google.maps.places.PlaceResult;
 import { MapsAPILoader } from '@agm/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiserviceService } from '../apiservice.service';
+import { DialogsucessComponent } from './dialogsucess/dialogsucess.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -251,6 +252,13 @@ export class HomeComponent implements OnInit {
     console.warn(this.profileForm.value);
     this.apiService.Send(this.profileForm.value).subscribe(value => {
       console.log('response', value);
+      const dialogRef = this.dialog.open(DialogsucessComponent, {
+        panelClass: 'confirmed'
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('resultat', result);
+        this.profileForm.reset();
+      });
 
     });
   }
@@ -264,5 +272,6 @@ export class HomeComponent implements OnInit {
   patchValue(value) {
     this.profileForm.patchValue(value)
   }
+
 
 }
