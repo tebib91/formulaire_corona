@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="text-center"><b>ID de cas</b></h3>
+  <h3 class="text-center"><b>{{case  ? 'Id de Cas '+case  : 'Déclarer un nouveau cas'}}</b></h3>
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
     <div class="row mx-auto">
@@ -8,14 +8,19 @@
         <div class="row">
           <div class="col-md-6">
             <mat-form-field appearance="outline">
-              <mat-label>Nom Complet</mat-label>
-              <input matInput placeholder="Nom Complet" formControlName="fullName">
+              <mat-label>Nationalité</mat-label>
+              <mat-select formControlName="nationality">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let item of nationality" [value]="item.nationality">
+                  {{item.nationality}}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <mat-form-field appearance="outline">
-              <mat-label>Date de Naissance </mat-label>
-              <input matInput type="date" placeholder="Date de Naissance " formControlName="dateBirth">
+              <mat-label>Age </mat-label>
+              <input matInput type="number" placeholder="Date de Naissance " formControlName="age">
             </mat-form-field>
           </div>
           <div class="col-md-6">
@@ -32,27 +37,17 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col-md-6">
-            <mat-form-field appearance="outline">
-              <mat-label>Nationalité</mat-label>
-              <mat-select formControlName="nationality">
-                <mat-option>--</mat-option>
-                <mat-option *ngFor="let item of nationality" [value]="item.nationality">
-                  {{item.nationality}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-6" formGroupName="adress">
             <mat-form-field appearance="outline" (click)="focusFunction('address_input')">
               <mat-label>Adresse</mat-label>
               <input matInput placeholder="Adresse" formControlName="adress" id="address_input">
             </mat-form-field>
           </div>
-          <div class="col-md-6">
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-6" formGroupName="workLocation">
             <mat-form-field appearance="outline" (click)="focusFunction('work_location')">
               <mat-label>Lieu de travail</mat-label>
               <input matInput placeholder="Lieu de travail" formControlName="workLocation" id="work_location">
@@ -75,12 +70,12 @@
         <div class="row">
           <div class="col-md-11">
             <div formArrayName="infectedFamily">
-              <h3><b>Famille séropositive</b></h3>
+              <h3><b>Membre Famille</b></h3>
 
               <div *ngFor="let alias of infectedFamily.controls; let i=index">
                 <div [formGroupName]="i" class="d-m-flex justify-content-start">
                   <mat-form-field appearance="outline" class="mr-4">
-                    <mat-label>Nom du personne infecté </mat-label>
+                    <mat-label>Nom de la personne infectée</mat-label>
                     <input matInput placeholder="Nom du personne infecté" formControlName="name">
                   </mat-form-field>
 
@@ -117,12 +112,12 @@
         <div class="row mt-md-0 mt-4">
           <div class="col-md-11">
             <div formArrayName="location">
-              <h3><b>Emplacement La plus récent</b></h3>
+              <h3><b>Deplacements</b></h3>
               <div *ngFor="let alias of location.controls; let i=index">
                 <div [formGroupName]="i" class="d-m-flex justify-content-start">
                   <mat-form-field appearance="outline" class="mr-4" (click)="focusFunction('recent_location' + i , i)">
-                    <mat-label>Emplacement</mat-label>
-                    <input matInput placeholder="Emplacement" formControlName="place" [id]="'recent_location' + i">
+                    <mat-label>Lieu</mat-label>
+                    <input matInput placeholder="Lieu" formControlName="place" [id]="'recent_location' + i">
                   </mat-form-field>
 
                   <div class="d-flex">
@@ -279,8 +274,8 @@
               <mat-label>Statut</mat-label>
               <mat-select formControlName="case">
                 <mat-option>--</mat-option>
-                <mat-option *ngFor="let item of status" [value]="item">
-                  {{item}}
+                <mat-option *ngFor="let item of status" [value]="item.value">
+                  {{item.name}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -350,7 +345,7 @@
       </div>
     </div>
     <hr>
-    <button class="d-m-flex mx-auto" type="submit" mat-raised-button [disabled]="!profileForm.valid">Envoyer</button>
+    <button class="d-flex mx-auto mb-5" type="submit" mat-raised-button [disabled]="!profileForm.valid">{{case ? 'update': 'Envoyer'}}</button>
   </form>
 </div>
 
@@ -366,3 +361,5 @@
 <p>
   Form Status: {{ profileForm.status }}
 </p> -->
+<!-- send with case ID  ( post   formulaire normal)(update);
+ -->

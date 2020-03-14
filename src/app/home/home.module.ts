@@ -12,9 +12,10 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { AutoQuestionsComponent } from './forms/auto-questions/auto-questions.component';
+import { DialogsucessComponent } from './dialogsucess/dialogsucess.component';
 
 @NgModule({
-  declarations: [HomeComponent, FormsComponent, AutocompleteComponent, AutoQuestionsComponent],
+  declarations: [HomeComponent, FormsComponent, AutocompleteComponent, AutoQuestionsComponent, DialogsucessComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -31,7 +32,7 @@ import { AutoQuestionsComponent } from './forms/auto-questions/auto-questions.co
     MatGoogleMapsAutocompleteModule,
 
   ],
-  exports: [AutocompleteComponent],
-  entryComponents: [AutocompleteComponent]
+  exports: [AutocompleteComponent, DialogsucessComponent],
+  entryComponents: [AutocompleteComponent, DialogsucessComponent]
 })
 export class HomeModule { }
