@@ -18,11 +18,15 @@ export class DashboardComponent implements OnInit {
   sourceEndpoint = '?f=api&endpoint=sources';
   exportersEndpoint = '?f=api&endpoint=exporters';
   stackedEndpoint = '?f=api&endpoint=stacked';
+  casesEndpoint = '?f=api&endpoint=cases';
   // numbers
   confirmed: number;
   hospitalized: number;
   discharged: number;
   restablished: number;
+  // table charts
+  cases: any[];
+  averageAge: number;
   constructor(private apiService: ApiserviceService, private router: Router) { }
 
   ngOnInit(): void {
@@ -33,6 +37,12 @@ export class DashboardComponent implements OnInit {
         this.hospitalized = data.hospitalized;
         this.discharged = data.discharged;
         this.restablished = data.restablished;
+      });
+    // getting table data
+    this.apiService.get(this.casesEndpoint).subscribe(
+      (data: any) => {
+        this.cases = data.cases;
+        this.averageAge = data.average;
       });
   }
   goTo(route) {

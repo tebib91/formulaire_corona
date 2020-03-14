@@ -191,7 +191,7 @@ export class ChartsComponent implements OnInit {
             case 'ageGenderRepartition':
               let genderallLabels = [];
               Object.keys(data).map((key: any) => {
-                allLabels = [...Object.keys(data[key])];
+                genderallLabels = [...Object.keys(data[key])];
               });
               // remove duplicate labels
               const gendercleanLabels = genderallLabels.filter((elem, index, self) => {

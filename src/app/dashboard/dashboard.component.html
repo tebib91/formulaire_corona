@@ -196,72 +196,21 @@
                 <th>Syptomatique à</th>
               </tr>
             </thead>
-            <tr>
+            <tr *ngFor="let case of cases">
               <td class="table-light">
-                16
+                {{case.case}}
               </td>
               <td class="table-light">
-                13 Mars 2020
+                {{case.confirmed_date}}
               </td>
               <td class="table-light">
-                13 Mars 2020
+                {{case.age}}
               </td>
               <td class="table-light">
-                13 Mars 2020
+                {{case.gender}}
               </td>
               <td class="table-light">
-                13 Mars 2020
-              </td>
-            </tr>
-            <tr>
-              <td class="table-light">
-                16
-              </td>
-              <td class="table-light">
-                13 Mars 2020
-              </td>
-              <td class="table-light">
-                13 Mars 2020
-              </td>
-              <td class="table-light">
-                13 Mars 2020
-              </td>
-              <td class="table-light">
-                13 Mars 2020
-              </td>
-            </tr>
-            <tr>
-              <td class="table-light">
-                16
-              </td>
-              <td class="table-light">
-                13 Mars 2020
-              </td>
-              <td class="table-light">
-                13 Mars 2020
-              </td>
-              <td class="table-light">
-                13 Mars 2020
-              </td>
-              <td class="table-light">
-                13 Mars 2020
-              </td>
-            </tr>
-            <tr>
-              <td class="table-light">
-                16
-              </td>
-              <td class="table-light">
-                13 Mars 2020
-              </td>
-              <td class="table-light">
-                13 Mars 2020
-              </td>
-              <td class="table-light">
-                13 Mars 2020
-              </td>
-              <td class="table-light">
-                13 Mars 2020
+                {{case.symptomatic_at}}
               </td>
             </tr>
           </table>
