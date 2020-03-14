@@ -9,10 +9,12 @@ import { Label, Color } from 'ng2-charts';
   styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent implements OnInit {
+  loading = true;
   @Input() chartType: string;
-  @Input() data: any;
+  pieData: any;
   @Input() dataSource: string;
   @Input() legend: boolean;
+  @Input() chartLabel: string;
   options: any;
   public lineChartData: any = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Cas confirmés' },
@@ -148,6 +150,22 @@ export class ChartsComponent implements OnInit {
   constructor(private apiService: ApiserviceService) { }
 
   ngOnInit() {
+    // getting data for the chart
+    if (this.dataSource) {
+      this.apiService.get(this.dataSource).subscribe(
+        (data: any) => {
+          console.log('data', data);
+          switch (this.chartLabel) {
+            case 'genderPie':
+              console.log('gender pie');
+              this.pieData = [data.men, data.women];
+              break;
+            default:
+              console.log('default shit');
+              break;
+          }
+        });
+    }
     switch (this.chartType) {
       case 'line':
         this.options = this.lineChartOptions;
@@ -162,7 +180,7 @@ export class ChartsComponent implements OnInit {
         this.options = this.pieChartOptions;
         this.colors = this.pieChartColors;
         this.lineChartLabels = ['Masculin', 'Féminin'];
-        this.data = [300, 500];
+        this.pieData = [300, 500];
         break;
       default:
         console.log('no options for this');
@@ -177,12 +195,6 @@ export class ChartsComponent implements OnInit {
         }
       };
     }
-    // getting data for the chart
-    // this.apiService.get(this.dataSource).subscribe(
-    //   (data) => {
-    //     // format data here
-    //   }
-    // )
   }
 
 }
