@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MedicalExtension, Specimens, SymptomForm, Testing} from '../symptom-form';
 import {ApiserviceService} from '../../../apiservice.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-auto-questions',
@@ -24,25 +25,29 @@ export class AutoQuestionsComponent implements OnInit {
   testingIndex = 0;
   specimensIndex = 0;
   show = false;
+  toDisplay = 1;
+  done = false;
 
-  constructor(private fb: FormBuilder, private api: ApiserviceService) {
+  constructor(private fb: FormBuilder, private api: ApiserviceService, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
     // symptom form
     const symptom = {};
     this.symptomValues.forEach(input => {
-      symptom[input.value] = new FormControl('', [Validators.required]);
+      symptom[input.value] = input.value === 'other' ? new FormControl('') :
+        new FormControl('', [Validators.required]);
     });
     this.symptomForm = new FormGroup(symptom);
 
-    // symptom form
+    // medical form
     const medical = {};
     this.medicalExtension.forEach(input => {
       if (input.type === 'group') {
         medical[input.value] = this.specifyGroup();
       } else {
-        medical[input.value] = new FormControl('', [Validators.required]);
+        medical[input.value] = input.value === 'other' ? new FormControl('') :
+          new FormControl('', [Validators.required]);
       }
     });
     this.medicalForm = this.fb.group(medical);
@@ -56,7 +61,8 @@ export class AutoQuestionsComponent implements OnInit {
           secondValue: ['', Validators.required]
         });
       } else if (input.type === 'number') {
-        testing[input.value] = new FormControl('', [Validators.required]);
+        testing[input.value] = input.value === 'other' ? new FormControl('') :
+          new FormControl('', [Validators.required]);
       }
     });
     this.testingForm = this.fb.group(testing);
@@ -67,76 +73,77 @@ export class AutoQuestionsComponent implements OnInit {
       if (input.type === 'object') {
         specimen[input.value] = this.specimensGroup();
       } else {
-        specimen[input.value] = new FormControl('', [Validators.required]);
+        specimen[input.value] = input.value === 'other' ? new FormControl('') :
+          new FormControl('', [Validators.required]);
       }
     });
     this.specimensForm = this.fb.group(specimen);
-    this.changeIndexes();
   }
 
-  symptomChanges() {
-    this.symptomForm.valueChanges.subscribe(value => {
-      const valid = this.symptomForm.controls[this.symptomValues[this.symptomsIndex].value].valid;
-      if (valid && this.symptomValues[this.symptomsIndex].value !== 'other') {
-        setTimeout(() => {
-          this.symptomsIndex++;
-        }, 200);
+
+  openSnackBar() {
+    this.snackBar.open('veuillez remplir tous les champs', 'Close', {duration: 5000});
+  }
+
+  next() {
+    let index;
+    let length;
+    let hasError = false;
+    if (this.toDisplay === 1) {
+      index = 'symptomsIndex';
+      length = this.symptomValues.length;
+      hasError = this.symptomForm.controls[this.symptomValues[this[index]].value].valid;
+    } else if (this.toDisplay === 2) {
+      index = 'medicalIndex';
+      hasError = this.medicalForm.controls[this.medicalExtension[this[index]].value].valid;
+      // console.log('object :', this.medicalForm.controls[this.medicalExtension[this[index]].value].valid);
+      // console.log('valid :', this.medicalForm.get[this.medicalExtension[this[index]].value].valid);
+      // console.log('validator :', this.medicalForm.controls[this.medicalExtension[this[index]].value]);
+      length = this.medicalExtension.length;
+    } else if (this.toDisplay === 3) {
+      index = 'testingIndex';
+      length = this.testingDiag.length;
+      hasError = this.testingForm.controls[this.testingForm[this[index]].value].valid;
+    }
+
+    if (!hasError) {
+      this.openSnackBar();
+    }
+    setTimeout(() => {
+      console.log(index + ':', this[index], 'To Display :', this.toDisplay);
+      console.log('hasError :', hasError);
+      if ((this[index] < length - 1) && hasError === true) {
+        this[index]++;
+      } else {
+        if (this.toDisplay !== 3 && hasError === true) {
+          this.toDisplay++;
+        }
       }
-    });
-  }
-
-  medicalChanges() {
-    this.medicalForm.valueChanges.subscribe(value => {
-      const valid = this.medicalForm.controls[this.medicalExtension[this.medicalIndex].value].valid;
-      const blur = value[this.medicalExtension[this.medicalIndex].value].blur;
-      if (valid && (blur === undefined || blur === true)) {
-        setTimeout(() => {
-          this.medicalIndex++;
-        }, 200);
+      if (this.toDisplay && this.testingIndex === length - 1) {
+        this.done = true;
       }
-    });
+    }, 200);
   }
 
-  testingChanges() {
-    this.testingForm.valueChanges.subscribe(value => {
-      const valid = this.testingForm.controls[this.testingDiag[this.testingIndex].value].valid;
-      if (valid && this.testingDiag[this.testingIndex].value !== 'other') {
-        setTimeout(() => {
-          this.testingIndex++;
-        }, 200);
+  previous() {
+    let index = 'symptomsIndex';
+    if (this.toDisplay === 1) {
+      index = 'symptomsIndex';
+    } else if (this.toDisplay === 2) {
+      index = 'medicalIndex';
+    } else if (this.toDisplay === 3) {
+      index = 'testingIndex';
+    }
+    console.log(index + ':', this[index], 'To Display :', this.toDisplay);
+    if (this[index] > 0) {
+      this[index]--;
+    } else {
+      if (this.toDisplay !== 1) {
+        this.toDisplay--;
       }
-    });
-  }
-
-  specimenChange() {
-    this.specimensForm.valueChanges.subscribe(value => {
-      const valid = this.specimensForm.controls[this.specimen[this.specimensIndex].value].valid;
-      if (valid && this.specimen[this.specimensIndex].value !== 'other') {
-        setTimeout(() => {
-          this.specimensIndex++;
-        }, 300);
-      }
-    });
-  }
-
-  changeIndexes() {
-    this.symptomChanges();
-    this.medicalChanges();
-    this.testingChanges();
-    // this.specimenChange();
-  }
-
-  previous(i) {
-    if (this[i] > 0) {
-      this[i]--;
     }
   }
 
-  next(i, length) {
-    if (this[i] < length - 1) {
-      this[i]++;
-    }
-  }
 
   save() {
     const data = {
@@ -153,7 +160,7 @@ export class AutoQuestionsComponent implements OnInit {
   }
 
   specifyGroup(): FormGroup {
-    return this.fb.group({radio: ['', Validators.required], specify: ['', Validators.required], blur: false});
+    return this.fb.group({radio: ['', Validators.required], specify: ['', Validators.required]});
   }
 
   specimensGroup(): FormGroup {

@@ -1,66 +1,66 @@
 export const SymptomForm = [
   {
-    label: 'Fever >10.4F (380)°c',
+    label: 'Fièvre / حمى (>38°C)',
     value: 'fever',
     type: 'number'
   },
   {
-    label: 'Subjective fever (felt feverish)',
+    label: 'Fièvre subjective / حمى ذاتية',
     value: 'subjectiveFever',
     type: 'number'
   },
   {
-    label: 'Chills',
+    label: 'Frissons / قشعريرة',
     value: 'chills',
     type: 'number'
   },
   {
-    label: 'Muscle aches (myalgia)',
+    label: 'Douleur musculaire / آلام على مستوى العضلات',
     value: 'muscleAches',
     type: 'number'
   },
   {
-    label: 'Runny nose (rhinorrhea)',
+    label: 'écoulement nasale / سيلان الأنف',
     value: 'runnyNose',
     type: 'number'
   },
   {
-    label: 'Sore throat',
+    label: 'Maux de gorge / إلتهاب في الحلق',
     value: 'soreThroat',
     type: 'number'
   },
   {
-    label: 'Cough (new onset or worsening of chronic cough)',
+    label: 'Toux / سعال',
     value: 'cough',
     type: 'number'
   },
   {
-    label: 'Shortness of breath (dyspnea)',
+    label: 'Essoufflement / ضيق في التنفس',
     value: 'shortnessBreath',
     type: 'number'
   },
   {
-    label: 'Nausea or vomiting',
+    label: 'Nausées ou vomissements / غثيان أو تقيء',
     value: 'nauseaVomiting',
     type: 'number'
   },
   {
-    label: 'Headache',
+    label: 'Maux de tête / صداع ',
     value: 'headache',
     type: 'number'
   },
   {
-    label: 'Abdominal pain',
+    label: 'Douleur abdominale / وجع على مستوى البطن',
     value: 'abdominalPain',
     type: 'number'
   },
   {
-    label: 'Diarrhea ( ≥ 3 looser/looser than normal stools/24hr period)',
+    label: 'Diarrhée / إسهال',
     value: 'diarrhea',
     type: 'number'
   },
   {
-    label: 'Other, specify',
+    label: 'Autres symptômes, précisez / أعراض أخرى ، حدد',
     value: 'other',
     type: 'string'
   }
@@ -68,66 +68,66 @@ export const SymptomForm = [
 
 export const MedicalExtension = [
   {
-    label: 'Chronic Lung Disease (asthma/emphysema/COPD)',
+    label: 'Maladie pulmonaire chronique / مرض رئوي مزمن',
     value: 'chronicLungDisease',
     type: 'number'
   },
   {
-    label: 'Diabetes Mellitus',
+    label: 'Diabète / داء السكري',
     value: 'diabeteMellitus',
     type: 'number'
   },
   {
-    label: 'Cardiavascular disease',
+    label: 'Maladie cardiovasculaire / أمراض القلب والأوعية الدموية',
     value: 'cardiavascularDisease',
     type: 'number'
   },
   {
-    label: 'Cardiavascular Renal disease',
+    label: 'Maladie rénale cardiovasculaire / أمراض الكلى والأوعية الدموية',
     value: 'cardiavascularRenalDisease',
     type: 'number'
   },
   {
-    label: 'Cardiavascular Liver disease',
+    label: 'Maladie hépatique cardiovasculaire / أمراض الكبد القلبية الوعائية',
     value: 'cardiavascularLiverDisease',
     type: 'number'
   },
   {
-    label: 'Immunocompromised Condition',
+    label: 'immunodépression / حالة نقص المناعة',
     value: 'immunocompromised',
     type: 'number'
   },
   {
-    label: 'Neurologic/neurodevelopmental/intellectual disability',
+    label: 'Déficience neurologique ou intellectuelle / ضعف عصبي / فكري ',
     value: 'neurologic',
     valueRadioBox: 'radio',
     valueInput: 'specify',
     type: 'group'
   },
   {
-    label: 'Other chronic diseases',
+    label: 'Autre maladie chronique / مرض مزمن آخر',
     value: 'otherChronicDiseases',
     valueRadioBox: 'radio',
     valueInput: 'specify',
     type: 'group'
   },
   {
-    label: 'If female, currently pregnant',
+    label: 'Autre maladie chronique / إذا كانت الأنثى حامل حاليا',
     value: 'pregnant',
     type: 'number'
   },
   {
-    label: 'If female, currently pregnant',
+    label: 'Si femelle, actuellement enceinte / إذا كانت الأنثى حامل حاليا',
     value: 'pregnant',
     type: 'number'
   },
   {
-    label: 'Current smoker',
+    label: 'Fumeur actuel / مدخن حالي',
     value: 'currentSmoker',
     type: 'number'
   },
   {
-    label: 'Former smoker',
+    label: 'Ancien fumeur / مدخن سابق',
     value: 'formerSmoker',
     type: 'number'
   }
@@ -135,13 +135,13 @@ export const MedicalExtension = [
 
 export const Testing = [
   {
-    label: 'Influenza rapid Ag',
+    label: 'Grippe rapid Ag',
     value: 'influenzaRapid',
     valueType: 'type',
     type: 'group'
   },
   {
-    label: 'Influenza PCR',
+    label: 'Grippe PCR',
     value: 'influenzaPCR',
     valueType: 'type',
     type: 'group'
@@ -152,17 +152,17 @@ export const Testing = [
     type: 'number'
   },
   {
-    label: 'H. metapneumovirus',
+    label: 'H.métapneumovirus',
     value: 'metapneumovirus',
     type: 'number'
   },
   {
-    label: 'Parainfluenza (1-4)',
+    label: 'Para-influenza',
     value: 'paraInfluenza',
     type: 'number'
   },
   {
-    label: 'Adenovirus',
+    label: 'Adénovirus',
     value: 'adenovirus',
     type: 'number'
   },
@@ -177,19 +177,19 @@ export const Testing = [
     type: 'number'
   },
   {
-    label: 'M. pneumoniae',
+    label: 'Mycoplasma pneumoniae',
     value: 'mPneumoniae',
     type: 'number'
   },
   {
-    label: 'C. pneumoniae',
+    label: 'Chlamydophila pneumoniae',
     value: 'cPneumoniae',
     type: 'number'
   },
 
 
   {
-    label: 'Other, Specify:',
+    label: 'autres tests, précisez:',
     value: 'other',
     type: 'group',
     valueType: 'string'
@@ -198,22 +198,22 @@ export const Testing = [
 
 export const Specimens = [
   {
-    label: 'NP Swab',
+    label: 'Échantillon nasale / عينة من الأنف',
     value: 'NPSwab',
     type: 'object'
   },
   {
-    label: 'OP Swab',
+    label: 'Échantillon oral / عينة من الفم',
     value: 'OPSwab',
     type: 'object'
   },
   {
-    label: 'Sputum',
+    label: 'salive / لعاب',
     value: 'Sputum',
     type: 'object'
   },
   {
-    label: 'Other, Specify:',
+    label: 'autres, précisez / أخرى ، حدد:',
     value: 'other',
     type: 'string'
   },
