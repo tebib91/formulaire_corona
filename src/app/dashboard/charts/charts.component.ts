@@ -2,7 +2,7 @@ import { ApiserviceService } from './../../apiservice.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
-
+declare const Chart;
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.component.html',
@@ -140,13 +140,21 @@ export class ChartsComponent implements OnInit {
   ];
   public pieChartColors = [
     {
-      backgroundColor: ['#6342D2', '#59D5FD', '#FB6B80'],
+      backgroundColor: ['#6342D2', '#59D5FD', '#FB6B80', '#FF9578', '#3BA756', '#6563FF', '#FCBE2C'],
     },
   ];
   public barChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Masculin' },
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Féminin' }
   ];
+  // legends margin bottom
+  public pieChartPlugins = [{
+    beforeInit: (chart, options) => {
+      chart.legend.afterFit = function () {
+        this.height += 20; // must use `function` and not => because of `this`
+      };
+    }
+  }];
   constructor(private apiService: ApiserviceService) { }
 
   ngOnInit() {
@@ -159,6 +167,35 @@ export class ChartsComponent implements OnInit {
             case 'genderPie':
               console.log('gender pie');
               this.pieData = [data.men, data.women];
+              break;
+            case 'sourcePie':
+              this.lineChartLabels = ['Importé', 'Local'];
+              this.pieData = [data.imported, data.local];
+              break;
+            case 'countriesPie':
+              break;
+            case 'ageGenderRepartition':
+              break;
+            case 'casePerDay':
+              break;
+            case 'nationalityPie':
+              this.lineChartLabels = Object.keys(data);
+              this.pieData = Object.values(data);
+              break;
+            case 'govsPie':
+              const labels = [];
+              const dataGovs = [];
+              Object.keys(data).map(key => {
+                if (key.includes('Tunisia')) {
+                  const formattedKey = key.split(',')[0];
+                  labels.push(formattedKey);
+                  dataGovs.push(data[key]);
+                }
+              });
+              console.log('data', dataGovs);
+              console.log('labels', labels);
+              this.pieData = dataGovs;
+              this.lineChartLabels = labels;
               break;
             default:
               console.log('default shit');
@@ -191,8 +228,36 @@ export class ChartsComponent implements OnInit {
         display: true,
         position: 'bottom',
         labels: {
-          usePointStyle: true
-        }
+          usePointStyle: true,
+          generateLabels: function (chart) {
+            const data = chart.data;
+            if (data.labels.length && data.datasets.length) {
+              return data.labels.map(function (label, i) {
+                const meta = chart.getDatasetMeta(0);
+                const ds = data.datasets[0];
+                const arc = meta.data[i];
+                const custom = arc && arc.custom || {};
+                const getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
+                const arcOpts = chart.options.elements.arc;
+                const fill =
+                custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
+                const stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
+                const bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
+                const value = chart.config.data.datasets[arc._datasetIndex].data[arc._index];
+                return {
+                  text: label + ' : ' + value,
+                  fillStyle: fill,
+                  strokeStyle: stroke,
+                  lineWidth: bw,
+                  hidden: isNaN(ds.data[i]) || meta.data[i].hidden,
+                  index: i
+                };
+              });
+            } else {
+              return [];
+            }
+          }
+        },
       };
     }
   }

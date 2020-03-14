@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
 // import { } from '@types/googlemaps';
 @Component({
   selector: 'app-google-map',
@@ -8,7 +8,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 export class GoogleMapComponent implements OnInit, AfterViewInit {
   @ViewChild('gmap', {static: false}) gmapElement: any;
   map: google.maps.Map;
-
+  @Input() dataSource: string;
   ngOnInit() {
 
   }
