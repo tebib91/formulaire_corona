@@ -22,6 +22,9 @@ export class ChartsComponent implements OnInit {
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartLegend = true;
   public lineChartOptions = {
+    legend: {
+      display: false
+    },
     responsive: true,
     maintainAspectRatio: false,
     elements: {

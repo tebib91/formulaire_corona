@@ -11,27 +11,33 @@
   <div class="">
     <!---CARDS-->
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-2 offset-md-1">
         <div class="card no-chart ml-0">
           <span class="header-title">Cas confirmés</span>
           <span>16</span>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <div class="card no-chart">
-          <span class="header-title">Cas actuellement à l'hôpital</span>
+          <span class="header-title">Cas hospitalisé</span>
           <span>16</span>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <div class="card no-chart">
           <span class="header-title">Cas en soins intensifs</span>
           <span>5</span>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <div class="card no-chart mr-0">
           <span class="header-title">Déchargé</span>
+          <span>0</span>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card no-chart mr-0">
+          <span class="header-title">rétabli</span>
           <span>0</span>
         </div>
       </div>
@@ -39,7 +45,23 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card-chart cases-card">
-          <span class="header-title-charts">Nombre des cas par jour:</span>
+          <div class="chart-header">
+            <span class="header-title-charts">Nombre des cas par jour:</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Cas confirmés</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Débraillé</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #FB6B80;"></span>
+                <span class="legend-label">Symptômes signalés</span>
+              </div>
+            </div>
+          </div>
           <div style="height: 90%;">
             <app-charts [chartType]="'line'"></app-charts>
           </div>
@@ -47,7 +69,9 @@
       </div>
       <div class="col-md-4">
         <div class="card-chart cases-card">
-          <span class="header-title-charts">Genre:</span>
+          <div class="chart-header">
+            <span class="header-title-charts">Genre:</span>
+          </div>
           <app-charts [chartType]="'pie'"></app-charts>
         </div>
       </div>
@@ -55,19 +79,25 @@
     <div class="row">
       <div class="col-md-3">
         <div class="card-chart cases-card">
-          <span class="header-title-charts">Nationalité:</span>
+          <div class="chart-header">
+            <span class="header-title-charts">Nationalité:</span>
+          </div>
           <app-charts [chartType]="'pie'"></app-charts>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card-chart cases-card">
-          <span class="header-title-charts">Répartition par âge et par sexe</span>
+          <div class="chart-header">
+            <span class="header-title-charts">Répartition par âge et par sexe</span>
+          </div>
           <app-charts [chartType]="'bar'"></app-charts>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card-chart cases-card">
-          <span class="header-title-charts">Source:</span>
+          <div class="chart-header">
+            <span class="header-title-charts">Source:</span>
+          </div>
           <app-charts [chartType]="'pie'"></app-charts>
         </div>
       </div>
@@ -75,14 +105,36 @@
     <div class="row">
       <div class="col-md-4">
         <div class="cases-card map">
-          <span class="header-title-charts">Clusters:</span>
+          <div class="chart-header">
+            <span class="header-title-charts">Clusters:</span>
+          </div>
           <app-google-map></app-google-map>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-4">
+        <div class="card-chart cases-card">
+          <div class="chart-header">
+            <span class="header-title-charts">Source:</span>
+          </div>
+          <app-charts [chartType]="'pie'"></app-charts>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-chart cases-card">
+          <div class="chart-header">
+            <span class="header-title-charts">Source:</span>
+          </div>
+          <app-charts [chartType]="'pie'"></app-charts>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
         <div class="card-chart cases-card table-chart">
-          <span class="header-title-charts">Cas:</span><br>
-          <small class="text-muted">Cas déclarés en Tunisie</small>
+          <div class="chart-header">
+            <span class="header-title-charts">Cas:</span><br>
+            <small class="text-muted">Cas déclarés en Tunisie</small>
+          </div>
           <table class="table">
             <thead>
               <tr class="table-light">
@@ -165,7 +217,6 @@
           <!-- On rows -->
         </div>
       </div>
-
     </div>
   </div>
 </div>
