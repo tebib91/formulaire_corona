@@ -1,8 +1,16 @@
-.card-chart, .map {
+.card-chart,
+.map {
   border: 1px solid rgba(72, 94, 144, 0.16);
   border-radius: 0.25rem;
   margin: 0 0 16px;
   padding: 16px;
+  position: relative;
+}
+.table {
+  margin-top: 16px;
+}
+tr td {
+  height: 60px;
 }
 .cases-card {
   height: 500px;
@@ -26,10 +34,43 @@
   color: #1b2e4b;
   margin-bottom: 8px;
 }
+.table {
+  overflow-y: scroll;
+}
+.chart-header {
+  height: 10%;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+.legends {
+  display: flex;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.rounded-circle {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+.legend-label {
+  margin-right: 6px;
+}
+@media (min-width: 1200px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 1610px !important;
+  }
+}
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-
   //CSS
-
 }
 
 /*
@@ -38,9 +79,7 @@
 */
 
 @media (min-width: 481px) and (max-width: 767px) {
-
   //CSS
-
 }
 
 /*
@@ -50,6 +89,12 @@
 
 @media (min-width: 320px) and (max-width: 480px) {
   .card-chart {
-    height: 250px;
+    height: 300px;
+  }
+  .table-chart {
+    height: 500px;
+  }
+  .chart-header {
+    height: 15%;
   }
 }

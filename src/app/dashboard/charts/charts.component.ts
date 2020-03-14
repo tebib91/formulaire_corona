@@ -9,9 +9,12 @@ import { Label, Color } from 'ng2-charts';
   styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent implements OnInit {
+  loading = true;
   @Input() chartType: string;
-  @Input() data: any;
+  pieData: any;
   @Input() dataSource: string;
+  @Input() legend: boolean;
+  @Input() chartLabel: string;
   options: any;
   public lineChartData: any = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Cas confirmés' },
@@ -22,7 +25,11 @@ export class ChartsComponent implements OnInit {
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartLegend = true;
   public lineChartOptions = {
-    // responsive: true,
+    legend: {
+      display: false
+    },
+    responsive: true,
+    maintainAspectRatio: false,
     elements: {
       line: {
         tension: 0.4,
@@ -30,6 +37,11 @@ export class ChartsComponent implements OnInit {
         spanGaps: true,
         bezierCurve: true
       }
+    },
+    tooltips: {
+      intersect: false,
+      mode: 'x',
+      axis: 'x'
     },
     scales: {
       xAxes: [
@@ -71,6 +83,9 @@ export class ChartsComponent implements OnInit {
     }
   };
   public barChartOptions = {
+    legend: {
+      display: false
+    },
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
@@ -79,52 +94,53 @@ export class ChartsComponent implements OnInit {
         anchor: 'end',
         align: 'end',
       }
-    }
+    },
+    maintainAspectRatio: false,
   };
   public pieChartOptions = {
     responsive: true,
     legend: {
-      position: 'top',
+      display: false
     },
-    plugins: {
-      datalabels: {
-        // formatter: (value, ctx) => {
-        //   // const label = ctx.chart.data.labels[ctx.dataIndex];
-        //   return label;
-        // },
-      },
-    }
+    elements: {
+      line: {
+        tension: 0,
+        fill: false, // disables bezier curves
+        spanGaps: true
+      }
+    },
+    maintainAspectRatio: false,
   };
   colors: any;
   public lineColors: Color[] = [
-    { // grey
+    {
       backgroundColor: '#6342D2',
-      borderColor: '#8c6bfa',
-      pointBackgroundColor: '#8c6bfa',
+      borderColor: '#6342D2',
+      pointBackgroundColor: '#6342D2',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
-    { // dark grey
+    {
       backgroundColor: '#59D5FD',
-      borderColor: '#89defa',
-      pointBackgroundColor: '#89defa',
+      borderColor: '#59D5FD',
+      pointBackgroundColor: '#59D5FD',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: '#59D5FD'
     },
-    { // red
+    {
       backgroundColor: '#FB6B80',
-      borderColor: '#fca4b1',
-      pointBackgroundColor: '#fca4b1',
+      borderColor: '#FB6B80',
+      pointBackgroundColor: '#FB6B80',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: '#fca4b1'
+      pointHoverBorderColor: '#FB6B80'
     }
   ];
   public pieChartColors = [
     {
-      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
+      backgroundColor: ['#6342D2', '#59D5FD', '#FB6B80'],
     },
   ];
   public barChartData: ChartDataSets[] = [
@@ -134,6 +150,22 @@ export class ChartsComponent implements OnInit {
   constructor(private apiService: ApiserviceService) { }
 
   ngOnInit() {
+    // getting data for the chart
+    if (this.dataSource) {
+      this.apiService.get(this.dataSource).subscribe(
+        (data: any) => {
+          console.log('data', data);
+          switch (this.chartLabel) {
+            case 'genderPie':
+              console.log('gender pie');
+              this.pieData = [data.men, data.women];
+              break;
+            default:
+              console.log('default shit');
+              break;
+          }
+        });
+    }
     switch (this.chartType) {
       case 'line':
         this.options = this.lineChartOptions;
@@ -148,18 +180,21 @@ export class ChartsComponent implements OnInit {
         this.options = this.pieChartOptions;
         this.colors = this.pieChartColors;
         this.lineChartLabels = ['Masculin', 'Féminin'];
-        this.data = [300, 500];
+        this.pieData = [300, 500];
         break;
       default:
         console.log('no options for this');
         break;
     }
-    // getting data for the chart
-    // this.apiService.get(this.dataSource).subscribe(
-    //   (data) => {
-    //     // format data here
-    //   }
-    // )
+    if (this.legend) {
+      this.options.legend = {
+        display: true,
+        position: 'bottom',
+        labels: {
+          usePointStyle: true
+        }
+      };
+    }
   }
 
 }
