@@ -88,11 +88,23 @@ export class ChartsComponent implements OnInit {
     },
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
-    scales: { xAxes: [{}], yAxes: [{
-      ticks: {
-        beginAtZero: true,
-      }
-    }] },
+    scales: {
+      xAxes: [{
+        gridLines: {
+          display: false
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          // maxTicksLimit: 6,
+          stepSize: 1
+        },
+        gridLines: {
+          display: true
+        }
+      }]
+    },
     plugins: {
       datalabels: {
         anchor: 'end',
@@ -197,7 +209,7 @@ export class ChartsComponent implements OnInit {
                 dataWomen.push(data[key].women ? data[key].women : 0);
                 dataMan.push(data[key].men ? data[key].men : 0);
               });
-              barData = [{data: dataMan, label: 'Male'}, {data: dataWomen, label: 'Female'}];
+              barData = [{ data: dataMan, label: 'Male' }, { data: dataWomen, label: 'Female' }];
               console.log('bar data', barData)
               this.lineChartLabels = Object.keys(data);
               this.lineChartData = barData;
@@ -218,16 +230,16 @@ export class ChartsComponent implements OnInit {
               this.lineChartLabels = sortedLabels;
               const dataStacked = [];
               if (data.Confirmed) {
-                dataStacked.push({data: Object.values(data.Confirmed), label: 'Cas Confirmés'});
+                dataStacked.push({ data: Object.values(data.Confirmed), label: 'Cas Confirmés' });
               }
               if (data.Discharged) {
-                dataStacked.push({data: Object.values(data.Discharged), label: 'Cas Déchargés'})
+                dataStacked.push({ data: Object.values(data.Discharged), label: 'Cas Déchargés' })
               }
               if (data.Recovred) {
-                dataStacked.push({data: Object.values(data.Recovred), label: 'Cas récovrés'})
+                dataStacked.push({ data: Object.values(data.Recovred), label: 'Cas récovrés' })
               }
               if (data.Dead) {
-                dataStacked.push({data: Object.values(data.Confirmed), label: 'Cas mortes'})
+                dataStacked.push({ data: Object.values(data.Confirmed), label: 'Cas mortes' })
               }
               console.log('dataa stacked', dataStacked);
               console.log('labels', sortedLabels);
@@ -294,7 +306,7 @@ export class ChartsComponent implements OnInit {
                 const getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
                 const arcOpts = chart.options.elements.arc;
                 const fill =
-                custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
+                  custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
                 const stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
                 const bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
                 const value = chart.config.data.datasets[arc._datasetIndex].data[arc._index];
