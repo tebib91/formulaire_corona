@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   exportersEndpoint = '?f=api&endpoint=exporters';
   stackedEndpoint = '?f=api&endpoint=stacked';
   casesEndpoint = '?f=api&endpoint=cases';
+  govsEndpoint = '?f=api&endpoint=governates';
   // numbers
   confirmed: number;
   hospitalized: number;
