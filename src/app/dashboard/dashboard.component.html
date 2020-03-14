@@ -63,7 +63,7 @@
             </div>
           </div>
           <div style="height: 90%;">
-            <app-charts [chartType]="'line'"></app-charts>
+            <app-charts [chartType]="'bar'"></app-charts>
           </div>
         </div>
       </div>
@@ -71,6 +71,16 @@
         <div class="card-chart cases-card">
           <div class="chart-header">
             <span class="header-title-charts">Genre:</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Masculin</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Fémenin</span>
+              </div>
+            </div>
           </div>
           <app-charts [chartType]="'pie'"></app-charts>
         </div>
@@ -82,13 +92,23 @@
           <div class="chart-header">
             <span class="header-title-charts">Nationalité:</span>
           </div>
-          <app-charts [chartType]="'pie'"></app-charts>
+          <app-charts [legend]="true" [chartType]="'pie'"></app-charts>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card-chart cases-card">
           <div class="chart-header">
             <span class="header-title-charts">Répartition par âge et par sexe</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Masculin</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Fémenin</span>
+              </div>
+            </div>
           </div>
           <app-charts [chartType]="'bar'"></app-charts>
         </div>
@@ -97,6 +117,16 @@
         <div class="card-chart cases-card">
           <div class="chart-header">
             <span class="header-title-charts">Source:</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Masculin</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Fémenin</span>
+              </div>
+            </div>
           </div>
           <app-charts [chartType]="'pie'"></app-charts>
         </div>
@@ -115,6 +145,16 @@
         <div class="card-chart cases-card">
           <div class="chart-header">
             <span class="header-title-charts">Source:</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Masculin</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Fémenin</span>
+              </div>
+            </div>
           </div>
           <app-charts [chartType]="'pie'"></app-charts>
         </div>
@@ -123,6 +163,16 @@
         <div class="card-chart cases-card">
           <div class="chart-header">
             <span class="header-title-charts">Source:</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Masculin</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Fémenin</span>
+              </div>
+            </div>
           </div>
           <app-charts [chartType]="'pie'"></app-charts>
         </div>

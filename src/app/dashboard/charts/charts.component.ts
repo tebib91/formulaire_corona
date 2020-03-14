@@ -12,6 +12,7 @@ export class ChartsComponent implements OnInit {
   @Input() chartType: string;
   @Input() data: any;
   @Input() dataSource: string;
+  @Input() legend: boolean;
   options: any;
   public lineChartData: any = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Cas confirmés' },
@@ -80,6 +81,9 @@ export class ChartsComponent implements OnInit {
     }
   };
   public barChartOptions = {
+    legend: {
+      display: false
+    },
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
@@ -94,7 +98,7 @@ export class ChartsComponent implements OnInit {
   public pieChartOptions = {
     responsive: true,
     legend: {
-      position: 'top',
+      display: false
     },
     elements: {
       line: {
@@ -163,6 +167,15 @@ export class ChartsComponent implements OnInit {
       default:
         console.log('no options for this');
         break;
+    }
+    if (this.legend) {
+      this.options.legend = {
+        display: true,
+        position: 'bottom',
+        labels: {
+          usePointStyle: true
+        }
+      };
     }
     // getting data for the chart
     // this.apiService.get(this.dataSource).subscribe(
