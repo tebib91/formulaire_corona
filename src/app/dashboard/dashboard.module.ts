@@ -8,13 +8,18 @@ import { ChartsModule } from 'ng2-charts';
 import { MapComponent } from './map/map.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { GoogleMapComponent } from './google-map/google-map.component';
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [DashboardComponent, ChartsComponent, MapComponent, GoogleMapComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     ChartsModule,
-    NgxEchartsModule
+    NgxEchartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC1uIT5V4PnZ61dQVehBYBSsIB5FABY9mw',
+      libraries: ['places']
+    }),
   ]
 })
 export class DashboardModule { }

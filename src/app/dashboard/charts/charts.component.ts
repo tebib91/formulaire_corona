@@ -88,7 +88,11 @@ export class ChartsComponent implements OnInit {
     },
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
-    scales: { xAxes: [{}], yAxes: [{}] },
+    scales: { xAxes: [{}], yAxes: [{
+      ticks: {
+        beginAtZero: true,
+      }
+    }] },
     plugins: {
       datalabels: {
         anchor: 'end',
@@ -173,10 +177,41 @@ export class ChartsComponent implements OnInit {
               this.pieData = [data.imported, data.local];
               break;
             case 'countriesPie':
+              this.lineChartLabels = Object.keys(data);
+              this.pieData = Object.values(data);
               break;
             case 'ageGenderRepartition':
               break;
             case 'casePerDay':
+              this.options.scales.xAxes[0].stacked = true;
+              this.options.scales.yAxes[0]['ticks']['beginAtZero'] = true;
+              let allLabels = [];
+              Object.keys(data).map((key: any) => {
+                allLabels = [...Object.keys(data[key])];
+              });
+              // remove duplicate labels
+              const cleanLabels = allLabels.filter((elem, index, self) => {
+                return index === self.indexOf(elem);
+              });
+              // sorting labels
+              const sortedLabels = cleanLabels.sort((a: any, b: any) => b.date - a.date);
+              this.lineChartLabels = sortedLabels;
+              const dataStacked = [];
+              if (data.Confirmed) {
+                dataStacked.push({data: Object.values(data.Confirmed), label: 'Cas Confirmés'});
+              }
+              if (data.Discharged) {
+                dataStacked.push({data: Object.values(data.Discharged), label: 'Cas Déchargés'})
+              }
+              if (data.Recovred) {
+                dataStacked.push({data: Object.values(data.Recovred), label: 'Cas récovrés'})
+              }
+              if (data.Dead) {
+                dataStacked.push({data: Object.values(data.Confirmed), label: 'Cas mortes'})
+              }
+              console.log('dataa stacked', dataStacked);
+              console.log('labels', sortedLabels);
+              this.lineChartData = dataStacked;
               break;
             case 'nationalityPie':
               this.lineChartLabels = Object.keys(data);
@@ -199,6 +234,7 @@ export class ChartsComponent implements OnInit {
               console.log('default shit');
               break;
           }
+          this.loading = false;
         });
     }
     switch (this.chartType) {

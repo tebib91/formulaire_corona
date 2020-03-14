@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   clusterEndpoint = '?f=api&endpoint=clusters';
   gendreAgeEndpoint = '?f=api&endpoint=genderAge';
   sourceEndpoint = '?f=api&endpoint=sources';
+  exportersEndpoint = '?f=api&endpoint=exporters';
+  stackedEndpoint = '?f=api&endpoint=stacked';
   // numbers
   confirmed: number;
   hospitalized: number;

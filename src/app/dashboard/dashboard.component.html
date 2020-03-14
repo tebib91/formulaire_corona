@@ -57,7 +57,7 @@
             </div>
           </div>
           <div style="height: 90%;">
-            <app-charts [chartLabel]="'casePerDay'" [chartType]="'bar'"></app-charts>
+            <app-charts [dataSource]="stackedEndpoint" [chartLabel]="'casePerDay'" [chartType]="'bar'"></app-charts>
           </div>
         </div>
       </div>
@@ -168,7 +168,7 @@
               </div>
             </div> -->
           </div>
-          <app-charts [legend]="true" [chartLabel]="'countriesPie'" [chartType]="'pie'"></app-charts>
+          <app-charts [dataSource]="exportersEndpoint" [legend]="true" [chartLabel]="'countriesPie'" [chartType]="'pie'"></app-charts>
         </div>
       </div>
     </div>
