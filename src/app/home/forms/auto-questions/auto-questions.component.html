@@ -1,128 +1,132 @@
-<!--Question-->
-<div class="row mt-5">
-  <div class="col-md-4"><p class="title">Questions :</p></div>
-  <div class="col-md-8"></div>
-</div>
-<div class="form-container">
-  <!--SYMPTOMS-->
-  <form [formGroup]="symptomForm" *ngIf="toDisplay == 1">
-    <div *ngFor="let item of symptomValues; let i = index">
-      <div class="row" *ngIf="i == symptomsIndex">
-        <div class="col-md-4">{{item.label}}</div>
-        <div class="col-md-8">
-          <div [ngSwitch]="item.type">
-            <div *ngSwitchCase="'number'">
-              <mat-radio-group formControlName="{{item.value}}" (change)="next()">
-                <mat-radio-button [value]=0>Oui / نعم</mat-radio-button>
-                <mat-radio-button [value]=1>Non / لا</mat-radio-button>
-                 <mat-radio-button [value]=2><span class="smallSize"> Je ne sais pas / لا أعرف</span></mat-radio-button>
-              </mat-radio-group>
-            </div>
-            <div *ngSwitchCase="'string'">
-              <mat-form-field class="w-25">
-                <input matInput placeholder="Other" formControlName="{{item.value}}"
-                       (blur)="next()">
-              </mat-form-field>
+<div >
+  <div>
+  <!--Question-->
+  <div class="row mt-5">
+    <div class="col-md-4"><p class="title">Questions :</p></div>
+    <div class="col-md-8"></div>
+  </div>
+  <div class="form-container">
+    <!--SYMPTOMS-->
+    <form [formGroup]="symptomForm" *ngIf="toDisplay == 1">
+      <div *ngFor="let item of symptomValues; let i = index">
+        <div class="row" *ngIf="i == symptomsIndex">
+          <div class="col-md-4"><p class="label">{{item.label}} :</p></div>
+          <div class="col-md-8">
+            <div [ngSwitch]="item.type">
+              <div *ngSwitchCase="'number'">
+                <mat-radio-group formControlName="{{item.value}}" (change)="next()">
+                  <mat-radio-button [value]=0>Oui / نعم</mat-radio-button>
+                  <mat-radio-button [value]=1>Non / لا</mat-radio-button>
+                  <mat-radio-button [value]=2><span class="smallSize"> Je ne sais pas / لا أعرف</span></mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <div *ngSwitchCase="'string'">
+                <mat-form-field class="w-25">
+                  <input matInput placeholder="Other" formControlName="{{item.value}}"
+                         (blur)="next()">
+                </mat-form-field>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-  <!--FIN SYMPTOMS-->
+    </form>
+    <!--FIN SYMPTOMS-->
 
-  <!--MEDICAL -->
-  <form [formGroup]="medicalForm" *ngIf="toDisplay == 2">
-    <div *ngFor="let item of medicalExtension; let i = index">
-      <div class="row" *ngIf="medicalIndex == i">
-        <div class="col-md-4">
-          {{item.label}}
-        </div>
-        <div class="col-md-8 d-flex">
-          <div [ngSwitch]="item.type">
-            <div *ngSwitchCase="'group'">
-              <div [formGroupName]="item.value">
-                <mat-radio-group [formControlName]="item.valueRadioBox" (change)="next()">
+    <!--MEDICAL -->
+    <form [formGroup]="medicalForm" *ngIf="toDisplay == 2">
+      <div *ngFor="let item of medicalExtension; let i = index">
+        <div class="row" *ngIf="medicalIndex == i">
+          <div class="col-md-4">
+            <p class="label">{{item.label}} :</p>
+          </div>
+          <div class="col-md-8 d-flex">
+            <div [ngSwitch]="item.type">
+              <div *ngSwitchCase="'group'">
+                <div [formGroupName]="item.value">
+                  <mat-radio-group [formControlName]="item.valueRadioBox" (change)="next()">
+                    <mat-radio-button [value]=0>Oui / نعم</mat-radio-button>
+                    <mat-radio-button [value]=1>Non / لا</mat-radio-button>
+                    <mat-radio-button [value]=2 class="smallSize">Je ne sais pas / لا أعرف</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+
+              <div *ngSwitchCase="'number'">
+                <mat-radio-group [formControlName]="item.value" (change)="next()">
                   <mat-radio-button [value]=0>Oui / نعم</mat-radio-button>
                   <mat-radio-button [value]=1>Non / لا</mat-radio-button>
                   <mat-radio-button [value]=2 class="smallSize">Je ne sais pas / لا أعرف</mat-radio-button>
                 </mat-radio-group>
               </div>
             </div>
-
-            <div *ngSwitchCase="'number'">
-              <mat-radio-group [formControlName]="item.value" (change)="next()">
-                <mat-radio-button [value]=0>Oui / نعم</mat-radio-button>
-                <mat-radio-button [value]=1>Non / لا</mat-radio-button>
-                <mat-radio-button [value]=2 class="smallSize">Je ne sais pas / لا أعرف</mat-radio-button>
-              </mat-radio-group>
+            <div [formGroupName]="item.value" class="input-other"
+                 *ngIf="item.type === 'group' && medicalForm.get(item.value).get(item.valueRadioBox).value === 0">
+              <mat-form-field class="w-25">
+                <input matInput placeholder="Other" formControlName="{{item.valueInput}}"
+                       (blur)="next()">
+              </mat-form-field>
             </div>
-          </div>
-          <div [formGroupName]="item.value" class="input-other"
-               *ngIf="item.type === 'group' && medicalForm.get(item.value).get(item.valueRadioBox).value === 0">
-            <mat-form-field class="w-25">
-              <input matInput placeholder="Other" formControlName="{{item.valueInput}}"
-                      (blur)="next()">
-            </mat-form-field>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-  <!--FIN MEDICAL -->
+    </form>
+    <!--FIN MEDICAL -->
 
-  <!--SPECIMENS -->
-  <form [formGroup]="testingForm" *ngIf="toDisplay == 3">
-    <div *ngFor="let item of testingDiag; let i = index">
-      <div class="row" *ngIf="testingIndex == i">
-        <div class="col-md-4">
-          <div class="d-flex align-items-center">
-            <p class="mb-1">{{item.label}}</p>
-            <div [ngSwitch]="item.valueType" class="ml-3">
-              <div [formGroupName]="item.value">
-                <div *ngSwitchCase="'type'">
-                  <mat-radio-group formControlName="firstValue" (change)="next()">
-                    <mat-radio-button [value]=0>A</mat-radio-button>
-                    <mat-radio-button [value]=1>B</mat-radio-button>
-                  </mat-radio-group>
-                </div>
-                <div *ngSwitchCase="'string'">
-                  <mat-form-field class="w-25">
-                    <input matInput placeholder="Other" formControlName="firstValue" (blur)="next()">
-                  </mat-form-field>
+    <!--SPECIMENS -->
+    <form [formGroup]="testingForm" *ngIf="toDisplay == 3">
+      <div *ngFor="let item of testingDiag; let i = index">
+        <div class="row" *ngIf="testingIndex == i">
+          <div class="col-md-4">
+            <div class="d-flex align-items-center">
+              <p class="mb-1 label">{{item.label}} :</p>
+              <div [ngSwitch]="item.valueType" class="ml-3">
+                <div [formGroupName]="item.value">
+                  <div *ngSwitchCase="'type'">
+                    <mat-radio-group formControlName="firstValue" (change)="next()">
+                      <mat-radio-button [value]=0>A</mat-radio-button>
+                      <mat-radio-button [value]=1>B</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  <div *ngSwitchCase="'string'">
+                    <mat-form-field class="w-25">
+                      <input matInput placeholder="Other" formControlName="firstValue" (blur)="next()">
+                    </mat-form-field>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-8">
-          <div [ngSwitch]="item.type">
-            <div *ngSwitchCase="'number'">
-              <mat-radio-group [formControlName]="item.value" (change)="next()">
-                <mat-radio-button [value]=0>Pos</mat-radio-button>
-                <mat-radio-button [value]=1>Neg</mat-radio-button>
-                <mat-radio-button [value]=2>Pend.</mat-radio-button>
-                <mat-radio-button [value]=3>Not done</mat-radio-button>
-              </mat-radio-group>
-            </div>
-
-            <div *ngSwitchCase="'group'">
-              <div formGroupName="{{item.value}}">
-                <mat-radio-group required formControlName="secondValue" (change)="next()">
+          <div class="col-md-8">
+            <div [ngSwitch]="item.type">
+              <div *ngSwitchCase="'number'">
+                <mat-radio-group [formControlName]="item.value" (change)="next()">
                   <mat-radio-button [value]=0>Pos</mat-radio-button>
                   <mat-radio-button [value]=1>Neg</mat-radio-button>
                   <mat-radio-button [value]=2>Pend.</mat-radio-button>
                   <mat-radio-button [value]=3>Not done</mat-radio-button>
                 </mat-radio-group>
               </div>
+
+              <div *ngSwitchCase="'group'">
+                <div formGroupName="{{item.value}}">
+                  <mat-radio-group required formControlName="secondValue" (change)="next()">
+                    <mat-radio-button [value]=0>Pos</mat-radio-button>
+                    <mat-radio-button [value]=1>Neg</mat-radio-button>
+                    <mat-radio-button [value]=2>Pend.</mat-radio-button>
+                    <mat-radio-button [value]=3>Not done</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </form>
-  <!--FIN SPECIMENS -->
+    </form>
+    <!--FIN SPECIMENS -->
+  </div>
+  <button mat-stroked-button class="mr-2" (click)="previous()">Précédent</button>
+  <button mat-stroked-button  (click)="next()" *ngIf="!done">Suivant</button>
+  <button mat-stroked-button (click)="save()" color="primary" *ngIf="done">Confirmer</button>
+  </div>
 </div>
-<button mat-stroked-button class="mr-2" (click)="previous()">Précédent</button>
-<button mat-stroked-button  (click)="next()" *ngIf="!done">Suivant</button>
-<button mat-stroked-button (click)="save()" color="primary" *ngIf="done">Confirmer</button>
