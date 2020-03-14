@@ -13,11 +13,12 @@ export class ChartsComponent implements OnInit {
   @Input() data: any;
   @Input() dataSource: string;
   options: any;
-  public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C' }
+  public lineChartData: any = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Cas confirmés' },
+    { data: [28, 2, 10, 5, 6, 8, 10], label: 'Débraillé' },
+    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Symptômes signalés' }
   ];
+  dataPie: any;
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartLegend = true;
   public lineChartOptions = {
@@ -59,14 +60,15 @@ export class ChartsComponent implements OnInit {
     },
     plugins: {
       datalabels: {
-        formatter: (value, ctx) => {
-          const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label;
-        },
+        // formatter: (value, ctx) => {
+        //   // const label = ctx.chart.data.labels[ctx.dataIndex];
+        //   return label;
+        // },
       },
     }
   };
-  public colors: Color[] = [
+  colors: any;
+  public lineColors: Color[] = [
     { // grey
       backgroundColor: '#6342D2',
       borderColor: '#8c6bfa',
@@ -92,18 +94,33 @@ export class ChartsComponent implements OnInit {
       pointHoverBorderColor: '#fca4b1'
     }
   ];
+  public pieChartColors = [
+    {
+      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
+    },
+  ];
+  public barChartData: ChartDataSets[] = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Masculin' },
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Féminin' }
+  ];
   constructor(private apiService: ApiserviceService) { }
 
   ngOnInit() {
     switch (this.chartType) {
       case 'line':
         this.options = this.lineChartOptions;
+        this.colors = this.lineColors;
         break;
       case 'bar':
         this.options = this.barChartOptions;
+        this.colors = this.lineColors;
+        this.lineChartData = this.barChartData;
         break;
       case 'pie':
         this.options = this.pieChartOptions;
+        this.colors = this.pieChartColors;
+        this.lineChartLabels = ['Masculin', 'Féminin'];
+        this.data = [300, 500];
         break;
       default:
         console.log('no options for this');
