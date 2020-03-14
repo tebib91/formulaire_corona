@@ -1,4 +1,4 @@
-<div class="container">
+<div class="">
   <!--HEADER-->
   <div class="row">
     <div class="col-12">
@@ -11,73 +11,262 @@
   <div class="">
     <!---CARDS-->
     <div class="row">
-      <div class="col-md-3">
-        <div class="card no-chart">
-          <span class="header-title">Cas confirmés</span>
-          <span>200</span>
+      <div class="col-md-2 offset-md-1">
+        <div class="card no-chart ml-0">
+          <span class="header-title">confirmés</span>
+          <span>{{confirmed ? confirmed : 0}}</span>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <div class="card no-chart">
-          <span class="header-title">Cas actuellement à l'hôpital</span>
-          <span>200</span>
+          <span class="header-title">hospitalisé</span>
+          <span>{{hospitalized ? hospitalized : 0}}</span>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="card no-chart">
-          <span class="header-title">Cas en soins intensifs</span>
-          <span>200</span>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card no-chart">
+      <div class="col-md-2">
+        <div class="card no-chart 0">
           <span class="header-title">Déchargé</span>
-          <span>200</span>
+          <span>{{discharged ? discharged : 0}}</span>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="card no-chart">
+          <span class="header-title">rétabli</span>
+          <span>{{restablished ? restablished : 0}}</span>
+        </div>
+      </div>
+      <div class="col-md-2 mr-0">
+        <div class="card no-chart">
+          <span class="header-title">mort</span>
+          <span>{{dead ? dead : 0}}</span>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8">
         <div class="card-chart cases-card">
-          <span class="header-title-charts">Number of cases per day:</span>
-          <app-charts [chartType]="'line'"></app-charts>
+          <div class="chart-header">
+            <span class="header-title-charts">Nombre des cas par jour:</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Cas confirmés</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Débraillé</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #FB6B80;"></span>
+                <span class="legend-label">Symptômes signalés</span>
+              </div>
+            </div>
+          </div>
+          <div style="height: 90%;">
+            <app-charts [chartLabel]="'casePerDay'" [chartType]="'bar'"></app-charts>
+          </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card-chart cases-card">
-          <span class="header-title-charts">Genre:</span>
-          <app-charts [chartType]="'pie'"></app-charts>
+          <div class="chart-header">
+            <span class="header-title-charts">Genre:</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Masculin</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Fémenin</span>
+              </div>
+            </div>
+          </div>
+          <app-charts [chartLabel]="'genderPie'" [dataSource]="genderPieEndpoint" [chartType]="'pie'"></app-charts>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card-chart cases-card">
+          <div class="chart-header">
+            <span class="header-title-charts">Nationalité:</span>
+          </div>
+          <app-charts [chartLabel]="'nationalityPie'" [legend]="true" [chartType]="'pie'"></app-charts>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-chart cases-card">
+          <div class="chart-header">
+            <span class="header-title-charts">Répartition par âge et par sexe</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Masculin</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Fémenin</span>
+              </div>
+            </div>
+          </div>
+          <app-charts [chartLabel]="'ageGenderRepartition'" [chartType]="'bar'"></app-charts>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card-chart cases-card">
+          <div class="chart-header">
+            <span class="header-title-charts">Source:</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Masculin</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Fémenin</span>
+              </div>
+            </div>
+          </div>
+          <app-charts [chartLabel]="'sourcePie'" [chartType]="'pie'"></app-charts>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-4">
-        <div class="card-chart cases-card">
-          <span class="header-title-charts">Nationalité:</span>
-          <app-charts [chartType]="'pie'"></app-charts>
+        <div class="cases-card map">
+          <div class="chart-header">
+            <span class="header-title-charts">Clusters:</span>
+          </div>
+          <app-google-map></app-google-map>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-4">
         <div class="card-chart cases-card">
-          <span class="header-title-charts">Répartition par âge et par sexe</span>
-          <app-charts [chartType]="'bar'"></app-charts>
+          <div class="chart-header">
+            <span class="header-title-charts">Les gouvernorats:</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Masculin</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Fémenin</span>
+              </div>
+            </div>
+          </div>
+          <app-charts [chartLabel]="'govsPie'" [chartType]="'pie'"></app-charts>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-chart cases-card">
+          <div class="chart-header">
+            <span class="header-title-charts">Les pays exportatuers:</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">Masculin</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">Fémenin</span>
+              </div>
+            </div>
+          </div>
+          <app-charts [chartLabel]="'countriesPie'" [chartType]="'pie'"></app-charts>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
-        <div class="card-chart cases-card">
-          <span class="header-title-charts">Clusters:</span>
-          <app-map></app-map>
+      <div class="col-md-12">
+        <div class="card-chart cases-card table-chart">
+          <div class="chart-header">
+            <span class="header-title-charts">Cas:</span><br>
+            <small class="text-muted">Cas déclarés en Tunisie</small>
+          </div>
+          <table class="table">
+            <thead>
+              <tr class="table-light">
+                <th>Cas</th>
+                <th>Date confirmée</th>
+                <th>Age</th>
+                <th>Genre</th>
+                <th>Syptomatique à</th>
+              </tr>
+            </thead>
+            <tr>
+              <td class="table-light">
+                16
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+            </tr>
+            <tr>
+              <td class="table-light">
+                16
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+            </tr>
+            <tr>
+              <td class="table-light">
+                16
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+            </tr>
+            <tr>
+              <td class="table-light">
+                16
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+              <td class="table-light">
+                13 Mars 2020
+              </td>
+            </tr>
+          </table>
+          <!-- On rows -->
         </div>
       </div>
-      <div class="col-md-8">
-        <div class="card-chart cases-card">
-          <span class="header-title-charts">Cas:</span>
-          <app-charts [chartType]="'line'"></app-charts>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>

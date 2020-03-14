@@ -14,6 +14,7 @@ const routes: Routes = [
   {
     path: 'secondForm', component: AutoQuestionsComponent
   },
+  { path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListModule) },
 ];
 
 @NgModule({

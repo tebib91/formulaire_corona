@@ -7,8 +7,9 @@ import { DashboardComponent } from './dashboard.component';
 import { ChartsModule } from 'ng2-charts';
 import { MapComponent } from './map/map.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { GoogleMapComponent } from './google-map/google-map.component';
 @NgModule({
-  declarations: [DashboardComponent, ChartsComponent, MapComponent],
+  declarations: [DashboardComponent, ChartsComponent, MapComponent, GoogleMapComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
