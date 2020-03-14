@@ -3,6 +3,13 @@
   border-radius: 0.25rem;
   margin: 0 0 16px;
   padding: 16px;
+  position: relative;
+}
+.table {
+  margin-top: 16px;
+}
+tr td {
+  height: 60px;
 }
 .cases-card {
   height: 500px;
@@ -25,6 +32,14 @@
   font-weight: 600;
   color: #1b2e4b;
   margin-bottom: 8px;
+}
+.table {
+  overflow-y: scroll;
+}
+@media (min-width: 1200px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1610px !important;
+  }
 }
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 
@@ -51,5 +66,8 @@
 @media (min-width: 320px) and (max-width: 480px) {
   .card-chart {
     height: 250px;
+  }
+  .table-chart {
+    height: 500px;
   }
 }

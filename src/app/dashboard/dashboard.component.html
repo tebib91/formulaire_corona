@@ -1,4 +1,4 @@
-<div class="container">
+<div class="">
   <!--HEADER-->
   <div class="row">
     <div class="col-12">
@@ -12,7 +12,7 @@
     <!---CARDS-->
     <div class="row">
       <div class="col-md-3">
-        <div class="card no-chart">
+        <div class="card no-chart ml-0">
           <span class="header-title">Cas confirmés</span>
           <span>16</span>
         </div>
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="card no-chart">
+        <div class="card no-chart mr-0">
           <span class="header-title">Déchargé</span>
           <span>0</span>
         </div>
@@ -40,7 +40,9 @@
       <div class="col-md-8">
         <div class="card-chart cases-card">
           <span class="header-title-charts">Nombre des cas par jour:</span>
-          <app-charts [chartType]="'line'"></app-charts>
+          <div style="height: 90%;">
+            <app-charts [chartType]="'line'"></app-charts>
+          </div>
         </div>
       </div>
       <div class="col-md-4">
@@ -51,16 +53,22 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="card-chart cases-card">
           <span class="header-title-charts">Nationalité:</span>
           <app-charts [chartType]="'pie'"></app-charts>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-6">
         <div class="card-chart cases-card">
           <span class="header-title-charts">Répartition par âge et par sexe</span>
           <app-charts [chartType]="'bar'"></app-charts>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card-chart cases-card">
+          <span class="header-title-charts">Nationalité:</span>
+          <app-charts [chartType]="'pie'"></app-charts>
         </div>
       </div>
     </div>
@@ -72,11 +80,12 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class="card-chart cases-card">
-          <span class="header-title-charts">Cas:</span>
-          <table class="table table-sm">
+        <div class="card-chart cases-card table-chart">
+          <span class="header-title-charts">Cas:</span><br>
+          <small class="text-muted">Cas déclarés en Tunisie</small>
+          <table class="table">
             <thead>
-              <tr class="table-active">
+              <tr class="table-light">
                 <th>Cas</th>
                 <th>Date confirmée</th>
                 <th>Age</th>
@@ -85,70 +94,70 @@
               </tr>
             </thead>
             <tr>
-              <td class="table-active">
+              <td class="table-light">
                 16
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
             </tr>
             <tr>
-              <td class="table-active">
+              <td class="table-light">
                 16
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
             </tr>
             <tr>
-              <td class="table-active">
+              <td class="table-light">
                 16
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
             </tr>
             <tr>
-              <td class="table-active">
+              <td class="table-light">
                 16
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
-              <td class="table-active">
+              <td class="table-light">
                 13 Mars 2020
               </td>
             </tr>

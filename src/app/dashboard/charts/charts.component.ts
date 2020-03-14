@@ -22,7 +22,8 @@ export class ChartsComponent implements OnInit {
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartLegend = true;
   public lineChartOptions = {
-    // responsive: true,
+    responsive: true,
+    maintainAspectRatio: false,
     elements: {
       line: {
         tension: 0.4,
@@ -30,6 +31,11 @@ export class ChartsComponent implements OnInit {
         spanGaps: true,
         bezierCurve: true
       }
+    },
+    tooltips: {
+      intersect: false,
+      mode: 'x',
+      axis: 'x'
     },
     scales: {
       xAxes: [
@@ -79,52 +85,53 @@ export class ChartsComponent implements OnInit {
         anchor: 'end',
         align: 'end',
       }
-    }
+    },
+    maintainAspectRatio: false,
   };
   public pieChartOptions = {
     responsive: true,
     legend: {
       position: 'top',
     },
-    plugins: {
-      datalabels: {
-        // formatter: (value, ctx) => {
-        //   // const label = ctx.chart.data.labels[ctx.dataIndex];
-        //   return label;
-        // },
-      },
-    }
+    elements: {
+      line: {
+        tension: 0,
+        fill: false, // disables bezier curves
+        spanGaps: true
+      }
+    },
+    maintainAspectRatio: false,
   };
   colors: any;
   public lineColors: Color[] = [
-    { // grey
+    {
       backgroundColor: '#6342D2',
-      borderColor: '#8c6bfa',
-      pointBackgroundColor: '#8c6bfa',
+      borderColor: '#6342D2',
+      pointBackgroundColor: '#6342D2',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
-    { // dark grey
+    {
       backgroundColor: '#59D5FD',
-      borderColor: '#89defa',
-      pointBackgroundColor: '#89defa',
+      borderColor: '#59D5FD',
+      pointBackgroundColor: '#59D5FD',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: '#59D5FD'
     },
-    { // red
+    {
       backgroundColor: '#FB6B80',
-      borderColor: '#fca4b1',
-      pointBackgroundColor: '#fca4b1',
+      borderColor: '#FB6B80',
+      pointBackgroundColor: '#FB6B80',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: '#fca4b1'
+      pointHoverBorderColor: '#FB6B80'
     }
   ];
   public pieChartColors = [
     {
-      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
+      backgroundColor: ['#6342D2', '#59D5FD', '#FB6B80'],
     },
   ];
   public barChartData: ChartDataSets[] = [
