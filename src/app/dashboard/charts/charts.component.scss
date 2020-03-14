@@ -2,3 +2,41 @@
   height: 100%;
   width: 100%;
 }
+canvas {
+  height: 100%;
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+  //CSS
+
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  .chart-canvas {
+    position: relative;
+    min-height: unset;
+  }
+
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+  .chart-canvas {
+    position: relative;
+    min-height: unset;
+  }
+
+}
