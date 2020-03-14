@@ -140,6 +140,14 @@ export class ChartsComponent implements OnInit {
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: '#FB6B80'
+    },
+    {
+      backgroundColor: '#3BA756',
+      borderColor: '#3BA756',
+      pointBackgroundColor: '#3BA756',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: '#3BA756'
     }
   ];
   public pieChartColors = [
@@ -181,6 +189,15 @@ export class ChartsComponent implements OnInit {
               this.pieData = Object.values(data);
               break;
             case 'ageGenderRepartition':
+              let genderallLabels = [];
+              Object.keys(data).map((key: any) => {
+                allLabels = [...Object.keys(data[key])];
+              });
+              // remove duplicate labels
+              const gendercleanLabels = genderallLabels.filter((elem, index, self) => {
+                return index === self.indexOf(elem);
+              });
+
               break;
             case 'casePerDay':
               this.options.scales.xAxes[0].stacked = true;

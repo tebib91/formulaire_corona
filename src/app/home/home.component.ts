@@ -187,7 +187,11 @@ export class HomeComponent implements OnInit {
     this.routeSub = this.route.params.subscribe(params => {
       this.case = +params['id'];
       console.log(params['id']) //log the value of id
-      this.getData(params['id']);
+      if (this.case) {
+        console.log('here  id');
+
+        this.getData(params['id']);
+      }
     });
     // GET DATA CASE
     // this.getData(2);

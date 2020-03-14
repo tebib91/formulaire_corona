@@ -1,5 +1,6 @@
 import { ApiserviceService } from './../apiservice.service';
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit {
   hospitalized: number;
   discharged: number;
   restablished: number;
-  constructor(private apiService: ApiserviceService) { }
+  constructor(private apiService: ApiserviceService, private router: Router) { }
 
   ngOnInit(): void {
     // getting numbers
@@ -34,5 +35,7 @@ export class DashboardComponent implements OnInit {
         this.restablished = data.restablished;
       });
   }
-
+  goTo(route) {
+    this.router.navigate([route]);
+}
 }
