@@ -94,6 +94,7 @@ export class HomeComponent implements OnInit {
       latitude: [''],
       longitude: ['']
     }),
+    commentaire: ['']
   });
   newCase(): FormGroup {
     return this.fb.group({
@@ -175,15 +176,7 @@ export class HomeComponent implements OnInit {
       console.log('value  on init', value);
     });
 
-    // this.route.queryParams.subscribe(queryParams => {
-    //   console.log(queryParams);
 
-    //   const id = queryParams['id'];
-    //   console.log('id', id);
-
-    //   this.getData(id);
-
-    // });
     this.routeSub = this.route.params.subscribe(params => {
       this.case = +params['id'];
       console.log(params['id']) //log the value of id
@@ -205,14 +198,14 @@ export class HomeComponent implements OnInit {
         data = this.profileForm.controls.adress.value;
         break;
       case 'work_location':
-        this.profileForm.controls.workLocation.value;
+        data = this.profileForm.controls.workLocation.value;
         break;
 
       case 'recent_location':
-        this.profileForm.controls.location[i].place.value;
+        data = this.profileForm.controls.location[i].place.value;
         break;
       case 'hospital_place':
-        this.profileForm.get('hospitalized').get('adress').value;
+        data = this.profileForm.get('hospitalized').get('adress').value;
         break;
       default:
         break;
