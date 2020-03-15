@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   exportersEndpoint = '?f=api&endpoint=exporters';
   stackedEndpoint = '?f=api&endpoint=stacked';
   casesEndpoint = '?f=api&endpoint=cases';
+  govsEndpoint = '?f=api&endpoint=governates';
   // numbers
   confirmed: number;
   hospitalized: number;
@@ -33,7 +34,7 @@ export class DashboardComponent implements OnInit {
     // getting numbers
     this.apiService.get(this.numbersEndpoint).subscribe(
       (data: any) => {
-        this.confirmed = data.confirmed;
+        this.confirmed = data.Confirmed;
         this.hospitalized = data.hospitalized;
         this.discharged = data.discharged;
         this.restablished = data.restablished;
