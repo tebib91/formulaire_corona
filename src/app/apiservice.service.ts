@@ -7,8 +7,8 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ApiserviceService {
-  baseurl = 'http://covid19.knsd.digital/api/';
-  formUrl = 'http://covid19.knsd.digital/api/?f=save&dst=declaration';
+  baseurl = 'https://covid19.knsd.digital/api/';
+  formUrl = 'https://covid19.knsd.digital/api/?f=save&dst=declaration';
 
   constructor(private https: HttpClient) { }
 
