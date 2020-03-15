@@ -9,7 +9,7 @@
     <!--SYMPTOMS-->
     <form [formGroup]="symptomForm" *ngIf="toDisplay == 1">
       <div *ngFor="let item of symptomValues; let i = index">
-        <div class="" *ngIf="i == symptomsIndex">
+        <div class="swing-in-top-fwd" *ngIf="i == symptomsIndex">
           <div class=""><p class="label">{{item.label}} :</p></div>
           <div class="">
             <div [ngSwitch]="item.type">
