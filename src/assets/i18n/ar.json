@@ -58,5 +58,8 @@
   },
   "asymptomic_at": {
     "title": "تاريخ ضهور الأعراض"
+  },
+  "fever": {
+    "title": "حمى"
   }
 }
