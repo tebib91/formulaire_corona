@@ -39,7 +39,7 @@
     "title": "Les gouvernorats"
   },
   "cluster": {
-    "title": "Grappe"
+    "title": "Distribution géographique"
   },
   "case": {
     "title": "Cas"
@@ -64,5 +64,8 @@
   },
   "men": {
     "title": "Féminin"
+  },
+  "dashbord_title": {
+    "title": "Tableau de board du virus COVID-19 en Tunisie"
   }
 }
