@@ -1,6 +1,6 @@
 import { ApiserviceService } from './../apiservice.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-dashboard',
@@ -28,8 +28,21 @@ export class DashboardComponent implements OnInit {
   // table charts
   cases: any[];
   averageAge: number;
-  constructor(private apiService: ApiserviceService, private router: Router, private translate: TranslateService) {
-    translate.setDefaultLang('fr');
+  language: string;
+  constructor(
+    private apiService: ApiserviceService,
+    private router: Router,
+    private translate: TranslateService,
+    private route: ActivatedRoute) {
+    console.log('Called Constructor');
+    this.route.queryParams.subscribe(params => {
+      if (params.lang) {
+        this.language = params.lang;
+      } else {
+        this.language = 'fr';
+      }
+    });
+    translate.setDefaultLang(this.language);
   }
 
   ngOnInit(): void {
@@ -53,7 +66,7 @@ export class DashboardComponent implements OnInit {
   }
 
   changeLaneguage(event) {
-    console.log("change", event.target.value);
-    this.translate.use(event.target.value)
+    console.log("change", event.value);
+    this.translate.use(event.value)
   }
 }

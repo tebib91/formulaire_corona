@@ -59,6 +59,15 @@
   "asymptomic_at": {
     "title": "تاريخ ضهور الأعراض"
   },
+  "women": {
+    "title": "ذكر"
+  },
+  "men": {
+    "title": "أنثى"
+  },
+  "dashbord_title": {
+    "title": "احصائيات فيروس COVID-19 بتونس"
+  },
   "fever": {
     "title": "حمى"
   }
