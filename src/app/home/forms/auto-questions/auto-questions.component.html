@@ -14,14 +14,14 @@
           <div class="col-md-8">
             <div [ngSwitch]="item.type">
               <div *ngSwitchCase="'number'">
-                <mat-radio-group formControlName="{{item.value}}" (change)="next()">
+                <mat-radio-group formControlName="{{item.value}}" (change)="next()" class="align-column">
                   <mat-radio-button [value]=0>Oui / نعم</mat-radio-button>
                   <mat-radio-button [value]=1>Non / لا</mat-radio-button>
                   <mat-radio-button [value]=2><span class="smallSize"> Je ne sais pas / لا أعرف</span></mat-radio-button>
                 </mat-radio-group>
               </div>
               <div *ngSwitchCase="'string'">
-                <mat-form-field class="w-25">
+                <mat-form-field class="w-100">
                   <input matInput placeholder="Other" formControlName="{{item.value}}"
                          (blur)="next()">
                 </mat-form-field>
@@ -44,7 +44,7 @@
             <div [ngSwitch]="item.type">
               <div *ngSwitchCase="'group'">
                 <div [formGroupName]="item.value">
-                  <mat-radio-group [formControlName]="item.valueRadioBox" (change)="next()">
+                  <mat-radio-group [formControlName]="item.valueRadioBox" class="align-column">
                     <mat-radio-button [value]=0>Oui / نعم</mat-radio-button>
                     <mat-radio-button [value]=1>Non / لا</mat-radio-button>
                     <mat-radio-button [value]=2 class="smallSize">Je ne sais pas / لا أعرف</mat-radio-button>
@@ -53,7 +53,7 @@
               </div>
 
               <div *ngSwitchCase="'number'">
-                <mat-radio-group [formControlName]="item.value" (change)="next()">
+                <mat-radio-group [formControlName]="item.value" (change)="next()" class="align-column">
                   <mat-radio-button [value]=0>Oui / نعم</mat-radio-button>
                   <mat-radio-button [value]=1>Non / لا</mat-radio-button>
                   <mat-radio-button [value]=2 class="smallSize">Je ne sais pas / لا أعرف</mat-radio-button>
@@ -62,8 +62,8 @@
             </div>
             <div [formGroupName]="item.value" class="input-other"
                  *ngIf="item.type === 'group' && medicalForm.get(item.value).get(item.valueRadioBox).value === 0">
-              <mat-form-field class="w-25">
-                <input matInput placeholder="Other" formControlName="{{item.valueInput}}"
+              <mat-form-field class="w-100">
+                <input matInput placeholder="Spécifiez" formControlName="{{item.valueInput}}"
                        (blur)="next()">
               </mat-form-field>
             </div>
@@ -83,13 +83,13 @@
               <div [ngSwitch]="item.valueType" class="ml-3">
                 <div [formGroupName]="item.value">
                   <div *ngSwitchCase="'type'">
-                    <mat-radio-group formControlName="firstValue" (change)="next()">
+                    <mat-radio-group formControlName="firstValue" class="align" (change)="next()">
                       <mat-radio-button [value]=0>A</mat-radio-button>
                       <mat-radio-button [value]=1>B</mat-radio-button>
                     </mat-radio-group>
                   </div>
                   <div *ngSwitchCase="'string'">
-                    <mat-form-field class="w-25">
+                    <mat-form-field class="w-100">
                       <input matInput placeholder="Other" formControlName="firstValue" (blur)="next()">
                     </mat-form-field>
                   </div>
@@ -100,7 +100,7 @@
           <div class="col-md-8">
             <div [ngSwitch]="item.type">
               <div *ngSwitchCase="'number'">
-                <mat-radio-group [formControlName]="item.value" (change)="next()">
+                <mat-radio-group [formControlName]="item.value" (change)="next()" class="align-column">
                   <mat-radio-button [value]=0>Pos</mat-radio-button>
                   <mat-radio-button [value]=1>Neg</mat-radio-button>
                   <mat-radio-button [value]=2>Pend.</mat-radio-button>
@@ -110,7 +110,7 @@
 
               <div *ngSwitchCase="'group'">
                 <div formGroupName="{{item.value}}">
-                  <mat-radio-group required formControlName="secondValue" (change)="next()">
+                  <mat-radio-group required formControlName="secondValue" (change)="next()" class="align-column">
                     <mat-radio-button [value]=0>Pos</mat-radio-button>
                     <mat-radio-button [value]=1>Neg</mat-radio-button>
                     <mat-radio-button [value]=2>Pend.</mat-radio-button>

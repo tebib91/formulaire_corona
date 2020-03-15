@@ -160,7 +160,7 @@ export class AutoQuestionsComponent implements OnInit {
   }
 
   specifyGroup(): FormGroup {
-    return this.fb.group({radio: ['', Validators.required], specify: ['', Validators.required]});
+    return this.fb.group({radio: ['', Validators.required], specify: ['']});
   }
 
   specimensGroup(): FormGroup {

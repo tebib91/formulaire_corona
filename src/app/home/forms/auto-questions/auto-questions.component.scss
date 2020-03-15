@@ -11,7 +11,12 @@ table {
 th, td {
   padding: 15px;
 }
-.mat-radio-button ~ .mat-radio-button {
+.align-column {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+.align{
   margin-left: 16px;
 }
 
@@ -30,9 +35,11 @@ th, td {
   font-size: 16px;
   font-weight: 500;
 }
-.form-container {
-  height: 70px;
-}
+
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
   margin-top: -24px;
+}
+
+.example-radio-group {
+
 }
