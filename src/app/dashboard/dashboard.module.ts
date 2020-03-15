@@ -14,8 +14,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MatSelectModule } from '@angular/material/select';
+import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 @NgModule({
-  declarations: [DashboardComponent, ChartsComponent, MapComponent, GoogleMapComponent],
+  declarations: [DashboardComponent, ChartsComponent, MapComponent, GoogleMapComponent, LeafletMapComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
