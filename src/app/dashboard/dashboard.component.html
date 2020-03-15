@@ -142,7 +142,7 @@
           <div class="chart-header" [ngClass]="{rtl: language === 'ar'}">
             <span class="header-title-charts">{{'cluster.title' | translate}}</span>
           </div>
-          <app-google-map [dataSource]="clusterEndpoint"></app-google-map>
+          <app-leaflet-map [dataSource]="clusterEndpoint"></app-leaflet-map>
         </div>
       </div>
       <div class="col-md-4">
