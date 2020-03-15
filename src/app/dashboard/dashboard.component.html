@@ -82,7 +82,7 @@
               </div>
             </div> -->
           </div>
-          <app-charts [legend]="true" [chartLabel]="'genderPie'" [dataSource]="genderPieEndpoint" [chartType]="'pie'">
+          <app-charts [legend]="true" [language]="language" [chartLabel]="'genderPie'" [dataSource]="genderPieEndpoint" [chartType]="'pie'">
           </app-charts>
         </div>
       </div>
@@ -131,7 +131,7 @@
               </div>
             </div> -->
           </div>
-          <app-charts [legend]="true" [dataSource]="sourceEndpoint" [chartLabel]="'sourcePie'" [chartType]="'pie'">
+          <app-charts [language]="language" [legend]="true" [dataSource]="sourceEndpoint" [chartLabel]="'sourcePie'" [chartType]="'pie'">
           </app-charts>
         </div>
       </div>

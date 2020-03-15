@@ -15,6 +15,7 @@ export class ChartsComponent implements OnInit {
   @Input() dataSource: string;
   @Input() legend: boolean;
   @Input() chartLabel: string;
+  @Input() language: string;
   options: any;
   public lineChartData: any = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Cas confirmés' },
@@ -190,10 +191,16 @@ export class ChartsComponent implements OnInit {
           switch (this.chartLabel) {
             case 'genderPie':
               console.log('gender pie');
+              if (this.language === 'ar') {
+                this.lineChartLabels = ['ذكر', 'أنثى'];
+              }
               this.pieData = [data.men, data.women];
               break;
             case 'sourcePie':
               this.lineChartLabels = ['Importé', 'Local'];
+              if (this.language === 'ar') {
+                this.lineChartLabels = ['مستوردة', 'محلية']
+              }
               this.pieData = [data.imported, data.local];
               break;
             case 'countriesPie':
