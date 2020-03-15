@@ -1,7 +1,7 @@
 import { ApiserviceService } from './../apiservice.service';
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
   cases: any[];
   averageAge: number;
   constructor(private apiService: ApiserviceService, private router: Router, private translate: TranslateService) {
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('fr');
   }
 
   ngOnInit(): void {
@@ -50,5 +50,10 @@ export class DashboardComponent implements OnInit {
   }
   goTo(route) {
     this.router.navigate([route]);
-}
+  }
+
+  changeLaneguage(event) {
+    console.log("change", event.target.value);
+    this.translate.use(event.target.value)
+  }
 }
