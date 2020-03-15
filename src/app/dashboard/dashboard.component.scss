@@ -40,8 +40,9 @@ tr td {
   color: #1b2e4b;
   margin-bottom: 8px;
 }
-.table {
-  overflow-y: scroll;
+.table-container {
+  width: 100%;
+  overflow-x: auto;
 }
 .chart-header {
   height: 10%;
