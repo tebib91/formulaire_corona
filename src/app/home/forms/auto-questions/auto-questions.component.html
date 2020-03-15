@@ -9,7 +9,7 @@
     <!--SYMPTOMS-->
     <form [formGroup]="symptomForm" *ngIf="toDisplay == 1">
       <div *ngFor="let item of symptomValues; let i = index">
-        <div class="swing-in-top-fwd" *ngIf="i == symptomsIndex">
+        <div class="slide-in-left" *ngIf="i == symptomsIndex">
           <div class=""><p class="label">{{item.label}} :</p></div>
           <div class="">
             <div [ngSwitch]="item.type">
@@ -36,7 +36,7 @@
     <!--MEDICAL -->
     <form [formGroup]="medicalForm" *ngIf="toDisplay == 2">
       <div *ngFor="let item of medicalExtension; let i = index">
-        <div class="row" *ngIf="medicalIndex == i">
+        <div class="row slide-in-left" *ngIf="medicalIndex == i">
           <div class="">
             <p class="label">{{item.label}} :</p>
           </div>
@@ -76,7 +76,7 @@
     <!--SPECIMENS -->
     <form [formGroup]="testingForm" *ngIf="toDisplay == 3">
       <div *ngFor="let item of testingDiag; let i = index">
-        <div class="row" *ngIf="testingIndex == i">
+        <div class="row slide-in-left" *ngIf="testingIndex == i">
           <div class="">
             <div class="d-flex align-items-center">
               <p class="mb-1 label">{{item.label}} :</p>
