@@ -1,0 +1,62 @@
+{
+  "confirmed": {
+    "title": "Confirmé"
+  },
+  "discharged": {
+    "title": "Déchargé"
+  },
+  "restablished": {
+    "title": "Rétabli"
+  },
+  "hospitalised": {
+    "title": "Hospitalisé"
+  },
+  "number_of_cases_per_day": {
+    "title": "Nombre des cas par jour"
+  },
+  "dead": {
+    "title": "Morts"
+  },
+  "gender": {
+    "title": "Genre"
+  },
+  "male": {
+    "title": "Masculin"
+  },
+  "female": {
+    "title": "Féminin"
+  },
+  "nationality": {
+    "title": "Nationalité"
+  },
+  "reparition_age_sex": {
+    "title": "Répartition par âge et par sexe"
+  },
+  "source": {
+    "title": "Source"
+  },
+  "govs": {
+    "title": "Les gouvernorats"
+  },
+  "cluster": {
+    "title": "Grappe"
+  },
+  "case": {
+    "title": "Cas"
+  },
+  "declared_cases_tunisia": {
+    "title": "Cas déclarés en Tunisie"
+  },
+  "countries_exports": {
+    "title": "Les pays exportatuers"
+  },
+  "confirmed_at": {
+    "title": "Date de confirmation"
+  },
+  "age": {
+    "title": "Age"
+  },
+  "asymptomic_at": {
+    "title": "Syptomatique à"
+  }
+}

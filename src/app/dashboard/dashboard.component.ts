@@ -1,7 +1,7 @@
 import { ApiserviceService } from './../apiservice.service';
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -28,7 +28,9 @@ export class DashboardComponent implements OnInit {
   // table charts
   cases: any[];
   averageAge: number;
-  constructor(private apiService: ApiserviceService, private router: Router) { }
+  constructor(private apiService: ApiserviceService, private router: Router, private translate: TranslateService) {
+    translate.setDefaultLang('en');
+  }
 
   ngOnInit(): void {
     // getting numbers

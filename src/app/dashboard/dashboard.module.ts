@@ -10,6 +10,9 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { AgmCoreModule } from '@agm/core';
 import {MatButtonModule} from '@angular/material/button';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 @NgModule({
   declarations: [DashboardComponent, ChartsComponent, MapComponent, GoogleMapComponent],
     imports: [
@@ -21,7 +24,19 @@ import {MatButtonModule} from '@angular/material/button';
             apiKey: 'AIzaSyC1uIT5V4PnZ61dQVehBYBSsIB5FABY9mw',
             libraries: ['places']
         }),
-        MatButtonModule
+        MatButtonModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
     ]
 })
 export class DashboardModule { }
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

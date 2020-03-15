@@ -1,0 +1,62 @@
+{
+  "confirmed": {
+    "title": "مؤكد"
+  },
+  "discharged": {
+    "title": "Déchargé ***"
+  },
+  "restablished": {
+    "title": "مسترد عافيته"
+  },
+  "hospitalised": {
+    "title": "في المستشفى"
+  },
+  "number_of_cases_per_day": {
+    "title": "عدد الحالات يوميا"
+  },
+  "dead": {
+    "title": "وفاة"
+  },
+  "gender": {
+    "title": "جنس"
+  },
+  "male": {
+    "title": "ذكر"
+  },
+  "female": {
+    "title": "أنثى"
+  },
+  "nationality": {
+    "title": "الجنسية"
+  },
+  "reparition_age_sex": {
+    "title": "التفصيل حسب العمر والجنس"
+  },
+  "source": {
+    "title": "المصدر"
+  },
+  "govs": {
+    "title": "الولايات"
+  },
+  "cluster": {
+    "title": "توزع الحالات"
+  },
+  "case": {
+    "title": "حالة"
+  },
+  "declared_cases_tunisia": {
+    "title": "الحالات المبلغ عنها في تونس"
+  },
+  "countries_exports": {
+    "title": "الدول المصدرة"
+  },
+  "confirmed_at": {
+    "title": "تاريخ التأكيد"
+  },
+  "age": {
+    "title": "العمر"
+  },
+  "asymptomic_at": {
+    "title": "تاريخ ضهور الأعراض"
+  }
+}
