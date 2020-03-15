@@ -9,6 +9,237 @@ declare const Chart;
   styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent implements OnInit {
+  govs = {
+    Tataouine: 'تطاوين',
+    Kebili: 'قبلي',
+    Medenine: 'مدنين',
+    Kasserine: 'القصرين',
+    Gafsa: 'قفصة',
+    Sfax: 'صفاقس',
+    'Sidi Bouzid': 'سيدي بوزيد',
+    'Gabès': 'قابس',
+    Kairouan: 'القيروان',
+    Tozeur: 'توزر',
+    Kef: 'الكاف',
+    Siliana: 'سليانة',
+    Bizerte: 'بنزرت',
+    Beja: 'باجة',
+    Jendouba: 'جندوبة',
+    Mahdia: 'المهدية',
+    Nabeul: 'نابل',
+    Zaghouan: 'زغوان',
+    Sousse: 'سوسة',
+    Mannouba: 'منوبة',
+    Monastir: 'المنستير',
+    'Ben Arous': 'بن عروس',
+    Ariana: 'أريانة',
+    Tunis: 'تونس'
+  };
+  // nationalities
+  nationalities = {
+    Afghan: 'أفغاني',
+    Albanian: 'ألباني',
+    Algerian: 'جزائري',
+    American: 'أمريكي',
+    Andorran: 'أندوري',
+    Angolan: 'أنغولي',
+    Antiguans: 'انتيغوا',
+    Argentinean: 'أرجنتيني',
+    Armenian: 'أرميني',
+    Australian: 'أسترالي',
+    Austrian: 'نمساوي',
+    Azerbaijani: 'أذربيجاني',
+    Bahamian: 'باهامى',
+    Bahraini: 'بحريني',
+    Bangladeshi: 'بنجلاديشي',
+    Barbadian: 'باربادوسي',
+    Barbudans: 'بربودا',
+    Batswana: 'بوتسواني',
+    Belarusian: 'بيلاروسي',
+    Belgian: 'بلجيكي',
+    Belizean: 'بليزي',
+    Beninese: 'بنيني',
+    Bhutanese: 'بوتاني',
+    Bolivian: 'بوليفي',
+    Bosnian: 'بوسني',
+    Brazilian: 'برازيلي',
+    British: 'بريطاني',
+    Bruneian: 'بروناى',
+    Bulgarian: 'بلغاري',
+    Burkinabe: 'بوركيني',
+    Burmese: 'بورمي',
+    Burundian: 'بوروندي',
+    Cambodian: 'كمبودي',
+    Cameroonian: 'كاميروني',
+    Canadian: 'كندي',
+    'Cape Verdean': 'االرأس الأخضر',
+    'Central African': 'وسط أفريقيا',
+    Chadian: 'تشادي',
+    Chilean: 'شيلي',
+    Chinese: 'صينى',
+    Colombian: 'كولومبي',
+    Comoran: 'جزر القمر',
+    Congolese: 'كونغولي',
+    'Costa Rican': 'كوستاريكي',
+    Croatian: 'كرواتية',
+    Cuban: 'كوبي',
+    Cypriot: 'قبرصي',
+    Czech: 'تشيكي',
+    Danish: 'دانماركي',
+    Djibouti: 'جيبوتي',
+    Dominican: 'دومينيكاني',
+    Dutch: 'هولندي',
+    'East Timorese': 'تيموري شرقي',
+    Ecuadorean: 'اكوادوري',
+    Egyptian: 'مصري',
+    Emirian: 'إماراتي',
+    'Equatorial Guinean': 'غيني  استوائي',
+    Eritrean: 'إريتري',
+    Estonian: 'إستوني',
+    Ethiopian: 'حبشي',
+    Fijian: 'فيجي',
+    Filipino: 'فلبيني',
+    Finnish: 'فنلندي',
+    French: 'فرنسي',
+    Gabonese: 'جابوني',
+    Gambian: 'غامبيي',
+    Georgian: 'جورجي',
+    German: 'ألماني',
+    Ghanaian: 'غاني',
+    Greek: 'إغريقي',
+    Grenadian: 'جرينادي',
+    Guatemalan: 'غواتيمالي',
+    'Guinea-Bissauan': 'غيني بيساوي',
+    Guinean: 'غيني',
+    Guyanese: 'جوياني',
+    Haitian: 'هايتي',
+    Herzegovinian: 'هرسكي',
+    Honduran: 'هندوراسي',
+    Hungarian: 'هنغاري',
+    Icelander: 'إيسلندي',
+    Indian: 'هندي',
+    Indonesian: 'إندونيسي',
+    Iranian: 'إيراني',
+    Iraqi: 'عراقي',
+    Irish: 'إيرلندي',
+    Italian: 'إيطالي',
+    Ivorian: 'إفواري',
+    Jamaican: 'جامايكي',
+    Japanese: 'ياباني',
+    Jordanian: 'أردني',
+    Kazakhstani: 'كازاخستاني',
+    Kenyan: 'كيني',
+    'Kittian and Nevisian': 'كيتياني ونيفيسياني',
+    Kuwaiti: 'كويتي',
+    Kyrgyz: 'قيرغيزستان',
+    Laotian: 'لاوسي',
+    Latvian: 'لاتفي',
+    Lebanese: 'لبناني',
+    Liberian: 'ليبيري',
+    Libyan: 'ليبي',
+    Liechtensteiner: 'ليختنشتايني',
+    Lithuanian: 'لتواني',
+    Luxembourger: 'لكسمبرغي',
+    Macedonian: 'مقدوني',
+    Malagasy: 'مدغشقري',
+    Malawian: 'مالاوى',
+    Malaysian: 'ماليزي',
+    Maldivan: 'مالديفي',
+    Malian: 'مالي',
+    Maltese: 'مالطي',
+    Marshallese: 'مارشالي',
+    Mauritanian: 'موريتاني',
+    Mauritian: 'موريشيوسي',
+    Mexican: 'مكسيكي',
+    Micronesian: 'ميكرونيزي',
+    Moldovan: 'مولدوفي',
+    Monacan: 'موناكو',
+    Mongolian: 'منغولي',
+    Moroccan: 'مغربي',
+    Mosotho: 'ليسوتو',
+    Motswana: 'لتسواني',
+    Mozambican: 'موزمبيقي',
+    Namibian: 'ناميبي',
+    Nauruan: 'ناورو',
+    Nepalese: 'نيبالي',
+    'New Zealander': 'نيوزيلندي',
+    'Ni-Vanuatu': 'ني فانواتي',
+    Nicaraguan: 'نيكاراغوا',
+    Nigerien: 'نيجري',
+    'North Korean': 'كوري شمالي',
+    'Northern Irish': 'إيرلندي شمالي',
+    Norwegian: 'نرويجي',
+    Omani: 'عماني',
+    Pakistani: 'باكستاني',
+    Palauan: 'بالاوي',
+    Palestinian: 'فلسطيني',
+    Panamanian: 'بنمي',
+    'Papua New Guinean': 'بابوا غينيا الجديدة',
+    Paraguayan: 'باراغواياني',
+    Peruvian: 'بيروفي',
+    Polish: 'بولندي',
+    Portuguese: 'برتغالي',
+    Qatari: 'قطري',
+    Romanian: 'روماني',
+    Russian: 'روسي',
+    Rwandan: 'رواندي',
+    'Saint Lucian': 'لوسياني',
+    Salvadoran: 'سلفادوري',
+    Samoan: 'ساموايان',
+    'San Marinese': 'سان مارينيز',
+    'Sao Tomean': 'ساو توميان',
+    Saudi: 'سعودي',
+    Scottish: 'سكتلندي',
+    Senegalese: 'سنغالي',
+    Serbian: 'صربي',
+    Seychellois: 'سيشلي',
+    'Sierra Leonean': 'سيرا ليوني',
+    Singaporean: 'سنغافوري',
+    Slovakian: 'سلوفاكي',
+    Slovenian: 'سلوفيني',
+    'Solomon Islander': 'جزر سليمان',
+    Somali: 'صومالي',
+    'South African': 'جنوب افريقيي',
+    'South Korean': 'كوري جنوبي',
+    Spanish: 'إسباني',
+    'Sri Lankan': 'سري لانكي',
+    Sudanese: 'سوداني',
+    Surinamer: 'سورينامي',
+    Swazi: 'سوازي',
+    Swedish: 'سويدي',
+    Swiss: 'سويسري',
+    Syrian: 'سوري',
+    Taiwanese: 'تايواني',
+    Tajik: 'طاجيكي',
+    Tanzanian: 'تنزاني',
+    Thai: 'التايلاندي',
+    Togolese: 'توغواني',
+    Tongan: 'تونجاني',
+    'Trinidadian or Tobagonian': 'ترينيدادي أو توباغوني',
+    Tunisian: 'تونسي',
+    Turkish: 'تركي',
+    Tuvaluan: 'توفالي',
+    Ugandan: 'أوغندي',
+    Ukrainian: 'أوكراني',
+    Uruguayan: 'أوروجواي',
+    Uzbekistani: 'أوزبكستاني',
+    Venezuelan: 'فنزويلي',
+    Vietnamese: 'فيتنامي',
+    Welsh: 'ويلزي',
+    Yemenite: 'يمني',
+    Zambian: 'زامبي',
+    Zimbabwean: 'زيمبابوي'
+  };
+  countries = {
+    Egypt: 'مصر',
+    France: 'فرنسا',
+    Italy: 'ايطاليا',
+    China: 'الصين',
+    Morroco: 'المغرب',
+    Spain: 'اسبانيا',
+    Algeria: 'الجزائر',
+    Libya: 'ليبيا'
+  };
   loading = true;
   @Input() chartType: string;
   pieData: any;
@@ -199,12 +430,27 @@ export class ChartsComponent implements OnInit {
             case 'sourcePie':
               this.lineChartLabels = ['Importé', 'Local'];
               if (this.language === 'ar') {
-                this.lineChartLabels = ['مستوردة', 'محلية']
+                this.lineChartLabels = ['مستوردة', 'محلية'];
               }
               this.pieData = [data.imported, data.local];
               break;
             case 'countriesPie':
-              this.lineChartLabels = Object.keys(data);
+              let countrieslabels = [];
+              if (this.language === 'ar') {
+                console.log('labels in countries', Object.keys(data));
+                Object.keys(data).map(key => {
+                  if (this.countries[key]) {
+                    console.log('this.nationalities[key]', this.countries[key]);
+                    countrieslabels.push(this.countries[key]);
+                  } else {
+                    countrieslabels.push(key);
+                  }
+                });
+              } else {
+                countrieslabels = Object.keys(data);
+              }
+              console.log('countrieslabels', countrieslabels);
+              this.lineChartLabels = countrieslabels;
               this.pieData = Object.values(data);
               break;
             case 'ageGenderRepartition':
@@ -217,13 +463,13 @@ export class ChartsComponent implements OnInit {
                 dataMan.push(data[key].men ? data[key].men : 0);
               });
               barData = [{ data: dataMan, label: 'Male' }, { data: dataWomen, label: 'Female' }];
-              console.log('bar data', barData)
+              console.log('bar data', barData);
               this.lineChartLabels = Object.keys(data);
               this.lineChartData = barData;
               break;
             case 'casePerDay':
               this.options.scales.xAxes[0].stacked = true;
-              this.options.scales.yAxes[0]['ticks']['beginAtZero'] = true;
+              this.options.scales.yAxes[0].ticks.beginAtZero = true;
               let allLabels = [];
               Object.keys(data).map((key: any) => {
                 allLabels = [...Object.keys(data[key])];
@@ -240,20 +486,32 @@ export class ChartsComponent implements OnInit {
                 dataStacked.push({ data: Object.values(data.Confirmed), label: 'Cas Confirmés' });
               }
               if (data.Discharged) {
-                dataStacked.push({ data: Object.values(data.Discharged), label: 'Cas Déchargés' })
+                dataStacked.push({ data: Object.values(data.Discharged), label: 'Cas Déchargés' });
               }
               if (data.Recovred) {
-                dataStacked.push({ data: Object.values(data.Recovred), label: 'Cas récovrés' })
+                dataStacked.push({ data: Object.values(data.Recovred), label: 'Cas récovrés' });
               }
               if (data.Dead) {
-                dataStacked.push({ data: Object.values(data.Confirmed), label: 'Cas mortes' })
+                dataStacked.push({ data: Object.values(data.Confirmed), label: 'Cas mortes' });
               }
               console.log('dataa stacked', dataStacked);
               console.log('labels', sortedLabels);
               this.lineChartData = dataStacked;
               break;
             case 'nationalityPie':
-              this.lineChartLabels = Object.keys(data);
+              let labels = [];
+              if (this.language === 'ar') {
+                Object.keys(data).map(key => {
+                  if (this.nationalities[key]) {
+                    labels.push(this.nationalities[key]);
+                  } else {
+                    labels.push(key);
+                  }
+                });
+              } else {
+                labels = Object.keys(data);
+              }
+              this.lineChartLabels = labels;
               this.pieData = Object.values(data);
               break;
             case 'govsPie':
@@ -262,7 +520,11 @@ export class ChartsComponent implements OnInit {
               Object.keys(data).map(key => {
                 if (key.includes('Tunisia')) {
                   const formattedKey = key.split(',')[0];
-                  templabels.push(formattedKey);
+                  if (this.govs[formattedKey]) {
+                    templabels.push(this.govs[formattedKey]);
+                  } else {
+                    templabels.push(formattedKey);
+                  }
                   dataGovs.push(data[key]);
                 }
               });
@@ -302,7 +564,7 @@ export class ChartsComponent implements OnInit {
         position: 'bottom',
         labels: {
           usePointStyle: true,
-          generateLabels: function (chart) {
+          generateLabels(chart) {
             const data = chart.data;
             if (data.labels.length && data.datasets.length) {
               return data.labels.map(function (label, i) {

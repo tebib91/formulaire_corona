@@ -93,7 +93,7 @@
           <div class="chart-header" [ngClass]="{rtl: language === 'ar'}">
             <span class="header-title-charts">{{'nationality.title' | translate}}</span>
           </div>
-          <app-charts [chartLabel]="'nationalityPie'" [dataSource]="nationalitiesEndpoint" [legend]="true"
+          <app-charts [language]="language" [chartLabel]="'nationalityPie'" [dataSource]="nationalitiesEndpoint" [legend]="true"
             [chartType]="'pie'"></app-charts>
         </div>
       </div>
@@ -179,7 +179,7 @@
               </div>
             </div> -->
           </div>
-          <app-charts [dataSource]="exportersEndpoint" [legend]="true" [chartLabel]="'countriesPie'"
+          <app-charts [language]="language" [dataSource]="exportersEndpoint" [legend]="true" [chartLabel]="'countriesPie'"
             [chartType]="'pie'"></app-charts>
         </div>
       </div>
