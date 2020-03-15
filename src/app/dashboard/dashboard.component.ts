@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
   }
 
   changeLaneguage(event) {
-    console.log("change", event.target.value);
-    this.translate.use(event.target.value)
+    console.log("change", event.value);
+    this.translate.use(event.value)
   }
 }

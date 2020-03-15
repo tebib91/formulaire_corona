@@ -58,5 +58,11 @@
   },
   "asymptomic_at": {
     "title": "تاريخ ضهور الأعراض"
+  },
+  "women": {
+    "title": "ذكر"
+  },
+  "men": {
+    "title": "أنثى"
   }
 }

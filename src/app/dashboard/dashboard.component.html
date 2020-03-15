@@ -1,17 +1,11 @@
 <div class="">
   <!--HEADER-->
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 d-flex justify-content-between">
       <!-- <button mat-flat-button class="float-right"  (click)="goTo('declaration')">Déclaration</button>
       <button mat-flat-button class="float-right"  (click)="goTo('diagnostic')">Diagnostique</button> -->
       <div class="d-flex justify-content-between align-items-center">
         <h3>Tableau de board du virus COVID-19 en Tunisie</h3>
-      </div>
-      <div>
-        <select name="" id="" (change)="changeLaneguage($event)">
-          <option value="fr">Français</option>
-          <option value="ar">عربي</option>
-        </select>
       </div>
     </div>
   </div>
@@ -22,19 +16,19 @@
       <div class="col-md-3">
         <div class="card no-chart ml-0">
           <span class="header-title">{{'confirmed.title' | translate}}</span>
-          <span   class="number-no-chart">{{confirmed ? confirmed : 0}}</span>
+          <span class="number-no-chart">{{confirmed ? confirmed : 0}}</span>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card no-chart">
           <span class="header-title">{{'hospitalised.title' | translate}}</span>
-          <span   class="number-no-chart">{{hospitalized ? hospitalized : 0}}</span>
+          <span class="number-no-chart">{{hospitalized ? hospitalized : 0}}</span>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card no-chart 0">
           <span class="header-title">{{'discharged.title' | translate}}</span>
-          <span  class="number-no-chart">{{discharged ? discharged : 0}}</span>
+          <span class="number-no-chart">{{discharged ? discharged : 0}}</span>
         </div>
       </div>
       <div class="col-md-3 mr-0">
@@ -88,7 +82,8 @@
               </div>
             </div> -->
           </div>
-          <app-charts [legend]="true" [chartLabel]="'genderPie'" [dataSource]="genderPieEndpoint" [chartType]="'pie'"></app-charts>
+          <app-charts [legend]="true" [chartLabel]="'genderPie'" [dataSource]="genderPieEndpoint" [chartType]="'pie'">
+          </app-charts>
         </div>
       </div>
     </div>
@@ -98,7 +93,8 @@
           <div class="chart-header">
             <span class="header-title-charts">{{'nationality.title' | translate}}</span>
           </div>
-          <app-charts [chartLabel]="'nationalityPie'" [dataSource]="nationalitiesEndpoint" [legend]="true" [chartType]="'pie'"></app-charts>
+          <app-charts [chartLabel]="'nationalityPie'" [dataSource]="nationalitiesEndpoint" [legend]="true"
+            [chartType]="'pie'"></app-charts>
         </div>
       </div>
       <div class="col-md-6">
@@ -116,7 +112,8 @@
               </div>
             </div>
           </div>
-          <app-charts [dataSource]="gendreAgeEndpoint" [chartLabel]="'ageGenderRepartition'" [chartType]="'bar'"></app-charts>
+          <app-charts [dataSource]="gendreAgeEndpoint" [chartLabel]="'ageGenderRepartition'" [chartType]="'bar'">
+          </app-charts>
         </div>
       </div>
       <div class="col-md-3">
@@ -134,7 +131,8 @@
               </div>
             </div> -->
           </div>
-          <app-charts [legend]="true" [dataSource]="sourceEndpoint" [chartLabel]="'sourcePie'" [chartType]="'pie'"></app-charts>
+          <app-charts [legend]="true" [dataSource]="sourceEndpoint" [chartLabel]="'sourcePie'" [chartType]="'pie'">
+          </app-charts>
         </div>
       </div>
     </div>
@@ -162,7 +160,8 @@
               </div>
             </div> -->
           </div>
-          <app-charts [dataSource]="govsEndpoint" [legend]="true" [chartLabel]="'govsPie'" [chartType]="'pie'"></app-charts>
+          <app-charts [dataSource]="govsEndpoint" [legend]="true" [chartLabel]="'govsPie'" [chartType]="'pie'">
+          </app-charts>
         </div>
       </div>
       <div class="col-md-4">
@@ -180,7 +179,8 @@
               </div>
             </div> -->
           </div>
-          <app-charts [dataSource]="exportersEndpoint" [legend]="true" [chartLabel]="'countriesPie'" [chartType]="'pie'"></app-charts>
+          <app-charts [dataSource]="exportersEndpoint" [legend]="true" [chartLabel]="'countriesPie'"
+            [chartType]="'pie'"></app-charts>
         </div>
       </div>
     </div>
@@ -212,7 +212,7 @@
                 {{case.age}}
               </td>
               <td class="table-light">
-                {{case.gender}}
+                {{case.gender + '.title' | translate}}
               </td>
               <td class="table-light">
                 {{case.symptomatic_at}}

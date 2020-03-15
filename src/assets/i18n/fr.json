@@ -58,5 +58,11 @@
   },
   "asymptomic_at": {
     "title": "Syptomatique à"
+  },
+  "women": {
+    "title": "Masculin"
+  },
+  "men": {
+    "title": "Féminin"
   }
 }
