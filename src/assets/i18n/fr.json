@@ -67,5 +67,8 @@
   },
   "dashbord_title": {
     "title": "Tableau de board du virus COVID-19 en Tunisie"
+  },
+  "number_last_day": {
+    "title": " Nombre des cas jusqu'à hier"
   }
 }

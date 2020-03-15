@@ -3,7 +3,7 @@
     "title": "مؤكد"
   },
   "discharged": {
-    "title": "Déchargé ***"
+    "title": "الحالات التي تم تسريحها"
   },
   "restablished": {
     "title": "مسترد عافيته"
@@ -67,6 +67,9 @@
   },
   "dashbord_title": {
     "title": "احصائيات فيروس COVID-19 بتونس"
+  },
+  "number_last_day": {
+    "title": "عدد الإصابات المسجلة حتى يوم الأمس"
   },
   "Afghan": "أفغاني",
   "Albanian": "ألباني",

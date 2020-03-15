@@ -520,8 +520,13 @@ export class ChartsComponent implements OnInit {
               Object.keys(data).map(key => {
                 if (key.includes('Tunisia')) {
                   const formattedKey = key.split(',')[0];
-                  if (this.govs[formattedKey]) {
-                    templabels.push(this.govs[formattedKey]);
+                  if (this.language === 'ar') {
+                    if (this.govs[formattedKey]) {
+                      console.log('this.govs[formattedKey', this.govs[formattedKey])
+                      templabels.push(this.govs[formattedKey]);
+                    } else {
+                      templabels.push(formattedKey);
+                    }
                   } else {
                     templabels.push(formattedKey);
                   }

@@ -21,7 +21,7 @@
       </div>
       <div class="col-md-3">
         <div class="card no-chart">
-          <span class="header-title">{{'hospitalised.title' | translate}}</span>
+          <span class="header-title">{{'number_last_day.title' | translate}}</span>
           <span class="number-no-chart">{{hospitalized ? hospitalized : 0}}</span>
         </div>
       </div>
@@ -160,7 +160,7 @@
               </div>
             </div> -->
           </div>
-          <app-charts [dataSource]="govsEndpoint" [legend]="true" [chartLabel]="'govsPie'" [chartType]="'pie'">
+          <app-charts [language]="language" [dataSource]="govsEndpoint" [legend]="true" [chartLabel]="'govsPie'" [chartType]="'pie'">
           </app-charts>
         </div>
       </div>
