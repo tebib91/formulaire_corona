@@ -12,7 +12,7 @@
   <!---CONTENT-->
   <div class="">
     <!---CARDS-->
-    <div class="row">
+    <div class="row" [ngClass]="{rtl: language === 'ar'}">
       <div class="col-md-3">
         <div class="card no-chart ml-0">
           <span class="header-title">{{'confirmed.title' | translate}}</span>
@@ -41,7 +41,7 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card-chart cases-card">
-          <div class="chart-header">
+          <div class="chart-header" [ngClass]="{rtl: language === 'ar'}">
             <span class="header-title-charts">{{'number_of_cases_per_day.title' | translate}}</span>
             <div class="legends">
               <div class="one-legend">
@@ -69,7 +69,7 @@
       </div>
       <div class="col-md-4">
         <div class="card-chart cases-card">
-          <div class="chart-header">
+          <div class="chart-header" [ngClass]="{rtl: language === 'ar'}">
             <span class="header-title-charts">{{'gender.title' | translate}}</span>
             <!-- <div class="legends">
               <div class="one-legend">
@@ -90,7 +90,7 @@
     <div class="row">
       <div class="col-md-3">
         <div class="card-chart cases-card">
-          <div class="chart-header">
+          <div class="chart-header" [ngClass]="{rtl: language === 'ar'}">
             <span class="header-title-charts">{{'nationality.title' | translate}}</span>
           </div>
           <app-charts [chartLabel]="'nationalityPie'" [dataSource]="nationalitiesEndpoint" [legend]="true"
@@ -99,7 +99,7 @@
       </div>
       <div class="col-md-6">
         <div class="card-chart cases-card">
-          <div class="chart-header">
+          <div class="chart-header" [ngClass]="{rtl: language === 'ar'}">
             <span class="header-title-charts">{{'reparition_age_sex.title' | translate}}</span>
             <div class="legends">
               <div class="one-legend">
@@ -118,7 +118,7 @@
       </div>
       <div class="col-md-3">
         <div class="card-chart cases-card">
-          <div class="chart-header">
+          <div class="chart-header" [ngClass]="{rtl: language === 'ar'}">
             <span class="header-title-charts">{{'source.title' | translate}}</span>
             <!-- <div class="legends">
               <div class="one-legend">
@@ -139,7 +139,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="cases-card map">
-          <div class="chart-header">
+          <div class="chart-header" [ngClass]="{rtl: language === 'ar'}">
             <span class="header-title-charts">{{'cluster.title' | translate}}</span>
           </div>
           <app-google-map [dataSource]="clusterEndpoint"></app-google-map>
@@ -147,7 +147,7 @@
       </div>
       <div class="col-md-4">
         <div class="card-chart cases-card">
-          <div class="chart-header">
+          <div class="chart-header" [ngClass]="{rtl: language === 'ar'}">
             <span class="header-title-charts">{{'govs.title' | translate}}</span>
             <!-- <div class="legends">
               <div class="one-legend">
@@ -166,7 +166,7 @@
       </div>
       <div class="col-md-4">
         <div class="card-chart cases-card">
-          <div class="chart-header">
+          <div class="chart-header" [ngClass]="{rtl: language === 'ar'}">
             <span class="header-title-charts">{{'countries_exports.title' | translate}}</span>
             <!-- <div class="legends">
               <div class="one-legend">
@@ -186,12 +186,12 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div class="card-chart cases-card table-chart">
+        <div class="card-chart cases-card table-chart" [ngClass]="{rtl: language === 'ar'}">
           <div class="chart-header">
             <span class="header-title-charts">{{'case.title' | translate}}</span><br>
             <small class="text-muted">{{'declared_cases_tunisia.title' | translate}}</small>
           </div>
-          <table class="table">
+          <table class="table ">
             <thead>
               <tr class="table-light">
                 <th>{{'case.title' | translate}}</th>
