@@ -1,30 +1,25 @@
-<section class="container">
+<div class="bg-light">
 
-  <!-- Header Bar -->
-  <header>
+  <main role="main" class="container">
 
-
-    <div class="status-col">
-      <label> Case Id </label>
-    </div>
-
-    <div class="button-col">
-      <button class="btn" name="Add Task"> Add Task </button>
-    </div>
-
-  </header>
-
-  <!-- List Items -->
-  <div class="items  row">
-    <div class="float-right" *ngFor="let item of data; let i=index">
-      <!-- List Item -->
-      <div class="item " [routerLink]="['/formulaire', item.case]">
-        <div> {{item.case}}</div>
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+      <div class="d-flex justify-content-between border-bottom border-gray align-items-center">
+        <h4 class=" pb-2 mb-0 font-weight-bold">Liste des cas</h4>
+        <button  mat-stroked-button [routerLink]="['/formulaire']" class="font-weight-bold">Nouveau cas</button>
+      </div>
+      <div class="media text-muted pt-3" *ngFor="let item of data; let i=index">
+        <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="text-gray-dark">{{item?.case}}</strong>
+            <a [routerLink]="['/formulaire', item?.case]">Ouvrir</a>
+          </div>
+          <span class="d-block">{{item?.gender | titlecase}}</span>
+        </div>
       </div>
 
+
+
     </div>
-
-
-  </div>
-
-</section>
+  </main>
+</div>

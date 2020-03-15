@@ -27,8 +27,8 @@ export class AutocompleteComponent implements OnInit {
     if (this.data) {
       this.latitude = this.data.latitude;
       this.longitude = this.data.longitude;
-      this.placesName = this.data.adress;
-            console.log('this.latitude', this.latitude, 'this.longitude', this.longitude, 'this.placesName ', this.placesName);
+      this.placesName = this.data.adress ? this.data.adress : this.data.workLocation;
+      console.log('this.latitude', this.latitude, 'this.longitude', this.longitude, 'this.placesName ', this.placesName);
 
     }
 
@@ -62,6 +62,10 @@ export class AutocompleteComponent implements OnInit {
 
   onGermanAddressMapped($event: GermanAddress) {
     console.log('onGermanAddressMapped', $event);
+  }
+  onKey($event) {
+    console.log($event);
+
   }
   ngAfterContentInit(): void {
     // Called after ngOnInit when the component's or directive's content has been initialized.
