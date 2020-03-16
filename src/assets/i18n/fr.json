@@ -57,7 +57,7 @@
     "title": "Age"
   },
   "asymptomic_at": {
-    "title": "Syptomatique à"
+    "title": "Symptomatique à"
   },
   "women": {
     "title": "Féminin"
@@ -69,6 +69,9 @@
     "title": "Tableau de board du virus COVID-19 en Tunisie"
   },
   "number_last_day": {
-    "title": " Nombre des cas jusqu'à hier"
+    "title": " Nombre des cas hier"
+  },
+  "last_update": {
+    "title": "Dernière mise à jour"
   }
 }

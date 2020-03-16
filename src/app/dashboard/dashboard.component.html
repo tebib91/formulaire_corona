@@ -1,14 +1,10 @@
 <div class="">
   <!--HEADER-->
-  <!-- <div class="row"> -->
-  <!-- <div class="col-12 d-flex justify-content-between"> -->
-  <!-- <button mat-flat-button class="float-right"  (click)="goTo('declaration')">Déclaration</button>
-      <button mat-flat-button class="float-right"  (click)="goTo('diagnostic')">Diagnostique</button> -->
-  <!-- <div class="d-flex justify-content-between align-items-center">
-        <h3 [ngClass]="{'rtl': language === 'ar'}">{{'dashbord_title.title' | translate}}</h3>
-      </div>
+  <div class="row mb-4">
+    <div class="col-12">
+      <small>{{'last_update.title' | translate}}: 15-3-2020</small>
     </div>
-  </div> -->
+  </div>
   <!---CONTENT-->
   <div class="">
     <!---CARDS-->
@@ -55,47 +51,31 @@
             }}</span>
             <div class="legends">
               <div class="one-legend">
-                <span
-                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
-                  style="background-color: #6342D2;"
-                ></span>
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
                 <span class="legend-label">{{
                   "confirmed.title" | translate
                 }}</span>
               </div>
               <div class="one-legend">
-                <span
-                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
-                  style="background-color: #59D5FD;"
-                ></span>
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
                 <span class="legend-label">{{
                   "discharged.title" | translate
                 }}</span>
               </div>
               <div class="one-legend">
-                <span
-                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
-                  style="background-color: #FB6B80;"
-                ></span>
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #FB6B80;"></span>
                 <span class="legend-label">{{
                   "restablished.title" | translate
                 }}</span>
               </div>
               <div class="one-legend">
-                <span
-                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
-                  style="background-color: #3BA756;"
-                ></span>
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #3BA756;"></span>
                 <span class="legend-label">{{ "dead.title" | translate }}</span>
               </div>
             </div>
           </div>
           <div style="height: 90%;">
-            <app-charts
-              [dataSource]="stackedEndpoint"
-              [chartLabel]="'casePerDay'"
-              [chartType]="'bar'"
-            ></app-charts>
+            <app-charts [dataSource]="stackedEndpoint" [chartLabel]="'casePerDay'" [chartType]="'bar'"></app-charts>
           </div>
         </div>
       </div>
@@ -116,13 +96,8 @@
               </div>
             </div> -->
           </div>
-          <app-charts
-            [legend]="true"
-            [language]="language"
-            [chartLabel]="'genderPie'"
-            [dataSource]="genderPieEndpoint"
-            [chartType]="'pie'"
-          >
+          <app-charts [legend]="true" [language]="language" [chartLabel]="'genderPie'" [dataSource]="genderPieEndpoint"
+            [chartType]="'pie'">
           </app-charts>
         </div>
       </div>
@@ -135,13 +110,8 @@
               "nationality.title" | translate
             }}</span>
           </div>
-          <app-charts
-            [language]="language"
-            [chartLabel]="'nationalityPie'"
-            [dataSource]="nationalitiesEndpoint"
-            [legend]="true"
-            [chartType]="'pie'"
-          ></app-charts>
+          <app-charts [language]="language" [chartLabel]="'nationalityPie'" [dataSource]="nationalitiesEndpoint"
+            [legend]="true" [chartType]="'pie'"></app-charts>
         </div>
       </div>
       <div class="col-md-6">
@@ -152,28 +122,18 @@
             }}</span>
             <div class="legends">
               <div class="one-legend">
-                <span
-                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
-                  style="background-color: #6342D2;"
-                ></span>
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
                 <span class="legend-label">{{ "male.title" | translate }}</span>
               </div>
               <div class="one-legend">
-                <span
-                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
-                  style="background-color: #59D5FD;"
-                ></span>
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
                 <span class="legend-label">{{
                   "female.title" | translate
                 }}</span>
               </div>
             </div>
           </div>
-          <app-charts
-            [dataSource]="gendreAgeEndpoint"
-            [chartLabel]="'ageGenderRepartition'"
-            [chartType]="'bar'"
-          >
+          <app-charts [dataSource]="gendreAgeEndpoint" [chartLabel]="'ageGenderRepartition'" [chartType]="'bar'">
           </app-charts>
         </div>
       </div>
@@ -194,13 +154,8 @@
               </div>
             </div> -->
           </div>
-          <app-charts
-            [language]="language"
-            [legend]="true"
-            [dataSource]="sourceEndpoint"
-            [chartLabel]="'sourcePie'"
-            [chartType]="'pie'"
-          >
+          <app-charts [language]="language" [legend]="true" [dataSource]="sourceEndpoint" [chartLabel]="'sourcePie'"
+            [chartType]="'pie'">
           </app-charts>
         </div>
       </div>
@@ -220,6 +175,7 @@
               height: 90%;
               max-width: 100%;
             }
+
             .embed-container iframe,
             .embed-container object,
             .embed-container iframe {
@@ -229,6 +185,7 @@
               width: 100%;
               height: 100%;
             }
+
             small {
               position: absolute;
               z-index: 40;
@@ -237,14 +194,9 @@
             }
           </style>
           <div class="embed-container">
-            <iframe
-              frameborder="0"
-              scrolling="no"
-              marginheight="0"
-              marginwidth="0"
+            <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
               title="Carte de situation COVID-19 (Tableau de bord Clair)"
-              src="//ageos-tunisie.maps.arcgis.com/apps/Embed/index.html?webmap=8c1087c6911b4407adc5aa1202be7fa0&extent=0.7993,29.6834,18.8608,37.9746&zoom=true&previewImage=false&scale=true&disable_scroll=true&theme=light"
-            ></iframe>
+              src="//ageos-tunisie.maps.arcgis.com/apps/Embed/index.html?webmap=8c1087c6911b4407adc5aa1202be7fa0&extent=0.7993,29.6834,18.8608,37.9746&zoom=true&previewImage=false&scale=true&disable_scroll=true&theme=light"></iframe>
           </div>
         </div>
       </div>
@@ -265,13 +217,8 @@
               </div>
             </div> -->
           </div>
-          <app-charts
-            [language]="language"
-            [dataSource]="govsEndpoint"
-            [legend]="true"
-            [chartLabel]="'govsPie'"
-            [chartType]="'pie'"
-          >
+          <app-charts [language]="language" [dataSource]="govsEndpoint" [legend]="true" [chartLabel]="'govsPie'"
+            [chartType]="'pie'">
           </app-charts>
         </div>
       </div>
@@ -292,27 +239,18 @@
               </div>
             </div> -->
           </div>
-          <app-charts
-            [language]="language"
-            [dataSource]="exportersEndpoint"
-            [legend]="true"
-            [chartLabel]="'countriesPie'"
-            [chartType]="'pie'"
-          ></app-charts>
+          <app-charts [language]="language" [dataSource]="exportersEndpoint" [legend]="true"
+            [chartLabel]="'countriesPie'" [chartType]="'pie'"></app-charts>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div
-          class="card-chart cases-card table-chart"
-          [ngClass]="{ rtl: language === 'ar' }"
-        >
+        <div class="card-chart cases-card table-chart" [ngClass]="{ rtl: language === 'ar' }">
           <div class="chart-header">
             <span class="header-title-charts">{{
               "case.title" | translate
-            }}</span
-            ><br />
+            }}</span><br />
             <small class="text-muted">{{
               "declared_cases_tunisia.title" | translate
             }}</small>

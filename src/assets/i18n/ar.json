@@ -71,6 +71,9 @@
   "number_last_day": {
     "title": "عدد الإصابات المسجلة حتى يوم الأمس"
   },
+  "last_update": {
+    "title": "اخر تحديث"
+  },
   "Afghan": "أفغاني",
   "Albanian": "ألباني",
   "Algerian": "جزائري",
