@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit {
       if (index < this.pageSize + (this.pageSize * this.pageIndex) && index >= this.pageIndex * this.pageSize) {
         this.casesPaginator.push(item);
       }
-    })
+    });
     console.log('casesPaginator', this.casesPaginator);
   }
 
