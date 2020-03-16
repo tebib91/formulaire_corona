@@ -74,6 +74,18 @@
   "last_update": {
     "title": "اخر تحديث"
   },
+  "quarantaine_number": {
+    "title": "عدد الأشخاص الذين تم عزلهم في الحجر الصحي"
+  },
+  "current_quarantaine_number": {
+    "title": "عدد الأشخاص في الحجر الصحي حاليا"
+  },
+  "tests_number": {
+    "title": "عدد اختبارات الفحص"
+  },
+  "positive_tests_positif": {
+    "title": "نسبة الاختبارات الإيجابية"
+  },
   "Afghan": "أفغاني",
   "Albanian": "ألباني",
   "Algerian": "جزائري",
