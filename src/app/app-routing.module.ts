@@ -15,7 +15,8 @@ const routes: Routes = [
   {
     path: 'declaration', component: AutoQuestionsComponent
   },
-  {path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListModule)}
+  {path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListModule)},
+  { path: 'back-office', loadChildren: () => import('./back-office/back-office.module').then(m => m.BackOfficeModule) }
 ];
 
 @NgModule({

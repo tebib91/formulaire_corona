@@ -26,6 +26,13 @@ export class ApiserviceService {
         catchError(this.errorHandl)
       );
   }
+  updateback(data)
+  : Observable<any> {
+    return this.https.post<any>(this.baseurl + '?f=stats', JSON.stringify(data), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandl)
+      );
+  }
   getAll(): Observable<any> {
     return this.https.get<any>(`${this.baseurl}?f=list`, this.httpOptions)
     .pipe(
