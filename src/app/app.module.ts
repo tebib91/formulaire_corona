@@ -10,7 +10,8 @@ import { DemoMaterialModule } from './material-module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     DemoMaterialModule,
     MatGoogleMapsAutocompleteModule,
     AgmCoreModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
