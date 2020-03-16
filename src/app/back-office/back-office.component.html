@@ -1,0 +1,35 @@
+<div class="container">
+  <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+    <div class="row mt-5">
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre de personnes actuellement en quarantaine</mat-label>
+          <input matInput placeholder="Nombre" formControlName="quarantaine">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre de tests de depistage</mat-label>
+          <input matInput placeholder="Nombre de tests de depistage" formControlName="depistage">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Ratio de tests positifs</mat-label>
+          <input matInput placeholder="Adresse" formControlName="ratio">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Date de mise à jour</mat-label>
+          <input matInput type="date" placeholder="Date de mise à jour" formControlName="date">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button class="d-flex mx-auto mb-5" mat-raised-button type="submit">Update </button>
+      </div>
+    </div>
+  </form>
+</div>
