@@ -266,7 +266,8 @@
                   <th>{{ "asymptomic_at.title" | translate }}</th>
                 </tr>
               </thead>
-              <tr *ngFor="let case of cases">
+              <ng-container *ngFor="let case of casesPaginator; let i = index">
+              <tr *ngIf="i < pageSize + (pageSize * pageIndex)">
                 <td class="table-light">
                   {{ case.case }}
                 </td>
@@ -283,7 +284,13 @@
                   {{ case.symptomatic_at }}
                 </td>
               </tr>
+              </ng-container>
             </table>
+            <mat-paginator     [length]="length"
+                           [pageIndex]="pageIndex"
+                           [pageSize]="pageSize"
+                           [pageSizeOptions]="[5, 10, 25, 100]" (page)="getServerData($event)">
+            </mat-paginator>
           </div>
 
           <!-- On rows -->

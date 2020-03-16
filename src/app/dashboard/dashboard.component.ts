@@ -1,7 +1,9 @@
-import { ApiserviceService } from './../apiservice.service';
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import {ApiserviceService} from './../apiservice.service';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+import {PageEvent} from '@angular/material/paginator';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -28,8 +30,14 @@ export class DashboardComponent implements OnInit {
   last_update: number;
   // table charts
   cases: any[];
+  casesPaginator: any[];
   averageAge: number;
   language: string;
+  pageEvent: PageEvent;
+  pageIndex = 0;
+  length = 100;
+  pageSize = 10;
+
   constructor(
     private apiService: ApiserviceService,
     private router: Router,
@@ -56,19 +64,41 @@ export class DashboardComponent implements OnInit {
         this.restablished = data.restablished;
         this.last_update = data.last_update;
       });
+    this.getCases();
+  }
+
+  public getCases() {
     // getting table data
     this.apiService.get(this.casesEndpoint).subscribe(
       (data: any) => {
-        this.cases = data.cases;
+        this.cases = data.cases.reverse();
+        this.getServerData();
         this.averageAge = data.average;
+        this.length = data.cases.length;
       });
   }
+
+  getServerData(event?) {
+    console.log(event);
+    if (event) {
+      this.pageSize = event.pageSize;
+      this.pageIndex = event.pageIndex;
+    }
+    this.casesPaginator = [];
+    this.cases.forEach((item, index) => {
+      if (index < this.pageSize + (this.pageSize * this.pageIndex) && index >= this.pageIndex * this.pageSize) {
+        this.casesPaginator.push(item);
+      }
+    })
+    console.log('casesPaginator', this.casesPaginator);
+  }
+
   goTo(route) {
     this.router.navigate([route]);
   }
 
   changeLaneguage(event) {
-    console.log("change", event.value);
-    this.translate.use(event.value)
+    console.log('change', event.value);
+    this.translate.use(event.value);
   }
 }
