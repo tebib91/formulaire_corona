@@ -18,6 +18,7 @@ export class BackOfficeComponent implements OnInit {
     depistage: [''],
     ratio: [''],
     date: [''],
+    quarantaine_achevee: ['']
   });
   ngOnInit(): void {
   }
