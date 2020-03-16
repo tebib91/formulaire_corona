@@ -57,18 +57,33 @@
     "title": "Age"
   },
   "asymptomic_at": {
-    "title": "Syptomatique à"
+    "title": "Symptomatique à"
   },
   "women": {
-    "title": "Masculin"
+    "title": "Féminin"
   },
   "men": {
-    "title": "Féminin"
+    "title": "Masculin"
   },
   "dashbord_title": {
     "title": "Tableau de board du virus COVID-19 en Tunisie"
   },
-  "fever": {
-    "title": "Fièvre (>38°C)"
+  "number_last_day": {
+    "title": " Nombre des cas hier"
+  },
+  "quarantaine_number": {
+    "title": "Nombre de personnes quarantaine achevée"
+  },
+  "current_quarantaine_number": {
+    "title": "Nombre de personnes actuellement en quarantaine"
+  },
+  "tests_number": {
+    "title": "Nombre de tests de depistage"
+  },
+  "positive_tests_positif": {
+    "title": "Ratio de tests positifs"
+  },
+  "last_update": {
+    "title": "Dernière mise à jour"
   }
 }

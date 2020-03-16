@@ -2,7 +2,7 @@
   <!--HEADER-->
   <div class="row mb-4">
     <div class="col-12">
-      <small>{{'last_update.title' | translate}}: {{last_update ? last_update : 5-3-2020}}</small>
+      <small>{{"last_update.title" | translate}}: {{last_update ? last_update : 5-3-2020}}</small>
     </div>
   </div>
   <!---CONTENT-->
@@ -38,6 +38,40 @@
           }}</span>
           <span class="number-no-chart">{{
             restablished ? restablished : 0
+          }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="row" [ngClass]="{ rtl: language === 'ar' }">
+      <div class="col-md-3">
+        <div class="card no-chart ml-0">
+          <span class="header-title">{{ "quarantaine_number.title" | translate }}</span>
+          <span class="number-no-chart">{{ 3700 }}</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card no-chart">
+          <span class="header-title">{{
+            "current_quarantaine_number.title" | translate
+          }}</span>
+          <span class="number-no-chart">{{
+            1235
+          }}</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card no-chart 0">
+          <span class="header-title">{{ "tests_number.title" | translate }}</span>
+          <span class="number-no-chart">{{ 3520 }}</span>
+        </div>
+      </div>
+      <div class="col-md-3 mr-0">
+        <div class="card no-chart mr-0">
+          <span class="header-title">{{
+            "positive_tests_positif.title" | translate
+          }}</span>
+          <span class="number-no-chart">{{
+            '20%'
           }}</span>
         </div>
       </div>

@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'formulaire', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
   {path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)},
+  {path: 'preprod', loadChildren: () => import('./dashboard-preprod/dashboard.module').then(m => m.DashboardModule)},
   {
     path: 'diagnostic', component: FormsComponent
   },
