@@ -263,7 +263,7 @@
                 <th>{{ "asymptomic_at.title" | translate }}</th>
               </tr>
               </thead>
-              <ng-container *ngFor="let case of cases; let i = index">
+              <ng-container *ngFor="let case of casesPaginator; let i = index">
                 <tr *ngIf="i < pageSize + (pageSize * pageIndex)">
                   <td class="table-light">
                     {{ case.case }}

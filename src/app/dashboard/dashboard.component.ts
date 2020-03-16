@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
     // getting table data
     this.apiService.get(this.casesEndpoint).subscribe(
       (data: any) => {
-        this.cases = data.cases.reverse();
+        this.cases = data.cases;
         this.getServerData();
         this.averageAge = data.average;
         this.length = data.cases.length;
