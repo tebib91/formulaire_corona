@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
-import { FormsComponent } from './forms/forms.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DemoMaterialModule } from '../material-module';
+import {HomeRoutingModule} from './home-routing.module';
+import {HomeComponent} from './home.component';
+import {FormsComponent} from './forms/forms.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DemoMaterialModule} from '../material-module';
 
-import { AgmCoreModule } from '@agm/core';
-import { AutocompleteComponent } from './autocomplete/autocomplete.component';
-import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import {AgmCoreModule} from '@agm/core';
+import {AutocompleteComponent} from './autocomplete/autocomplete.component';
+import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { AutoQuestionsComponent } from './forms/auto-questions/auto-questions.component';
-import { DialogsucessComponent } from './dialogsucess/dialogsucess.component';
+import {AutoQuestionsComponent} from './forms/auto-questions/auto-questions.component';
+import {DialogsucessComponent} from './dialogsucess/dialogsucess.component';
 
 @NgModule({
   declarations: [HomeComponent, FormsComponent, AutocompleteComponent, AutoQuestionsComponent, DialogsucessComponent],
@@ -29,10 +29,12 @@ import { DialogsucessComponent } from './dialogsucess/dialogsucess.component';
       apiKey: 'AIzaSyC1uIT5V4PnZ61dQVehBYBSsIB5FABY9mw',
       libraries: ['places']
     }),
-    MatGoogleMapsAutocompleteModule,
-
+    MatGoogleMapsAutocompleteModule
   ],
   exports: [AutocompleteComponent, DialogsucessComponent],
   entryComponents: [AutocompleteComponent, DialogsucessComponent]
 })
-export class HomeModule { }
+
+export class HomeModule {
+}
+

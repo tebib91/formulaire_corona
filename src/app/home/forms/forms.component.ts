@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MedicalExtension, SymptomForm, Testing, Specimens} from './symptom-form';
 import {ApiserviceService} from '../../apiservice.service';
 
+
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
@@ -19,7 +20,9 @@ export class FormsComponent implements OnInit {
   preExisting: number;
   specimen = Specimens;
   show = false;
+  language: string;
   constructor(private fb: FormBuilder, private api: ApiserviceService) {
+
   }
 
   ngOnInit() {

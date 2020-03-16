@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
     // getting table data
     this.apiService.get(this.casesEndpoint).subscribe(
       (data: any) => {
-        this.cases = data.cases;
+        this.cases = data.cases.reverse();
         this.getServerData();
         this.averageAge = data.average;
         this.length = data.cases.length;
@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit {
       if (index < this.pageSize + (this.pageSize * this.pageIndex) && index >= this.pageIndex * this.pageSize) {
         this.casesPaginator.push(item);
       }
-    });
+    })
     console.log('casesPaginator', this.casesPaginator);
   }
 
