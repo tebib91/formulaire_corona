@@ -42,6 +42,40 @@
         </div>
       </div>
     </div>
+    <div class="row" [ngClass]="{ rtl: language === 'ar' }">
+      <div class="col-md-3">
+        <div class="card no-chart ml-0">
+          <span class="header-title">{{ "quarantaine_number.title" | translate }}</span>
+          <span class="number-no-chart">{{ quarantaine ? quarantaine : 0 }}</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card no-chart">
+          <span class="header-title">{{
+            "current_quarantaine_number.title" | translate
+          }}</span>
+          <span class="number-no-chart">{{
+            quarantaine_achevee ? quarantaine_achevee : 0
+          }}</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card no-chart 0">
+          <span class="header-title">{{ "tests_number.title" | translate }}</span>
+          <span class="number-no-chart">{{ depistage ? depistage : 0 }}</span>
+        </div>
+      </div>
+      <div class="col-md-3 mr-0">
+        <div class="card no-chart mr-0">
+          <span class="header-title">{{
+            "positive_tests_positif.title" | translate
+          }}</span>
+          <span class="number-no-chart">{{
+            ratio ? ratio : 0
+          }}%</span>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-8">
         <div class="card-chart cases-card">

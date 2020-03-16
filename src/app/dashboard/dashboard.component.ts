@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   stackedEndpoint = '?f=api&endpoint=stacked';
   casesEndpoint = '?f=api&endpoint=cases';
   govsEndpoint = '?f=api&endpoint=governates';
+  statsEndpoint = '?f=api&endpoint=statistics';
   // numbers
   confirmed: number;
   hospitalized: number;
@@ -37,7 +38,10 @@ export class DashboardComponent implements OnInit {
   pageIndex = 0;
   length = 100;
   pageSize = 10;
-
+  quarantaine: number;
+  depistage: number;
+  ratio: number;
+  quarantaine_achevee: number;
   constructor(
     private apiService: ApiserviceService,
     private router: Router,
@@ -63,6 +67,13 @@ export class DashboardComponent implements OnInit {
         this.discharged = data.discharged;
         this.restablished = data.restablished;
         this.last_update = data.last_update;
+      });
+    this.apiService.get(this.statsEndpoint).subscribe(
+      (data: any) => {
+        this.quarantaine = data.quarantaine;
+        this.depistage = data.depistage;
+        this.ratio = data.ratio.toFixed(2);
+        this.quarantaine_achevee = data.quarantaine_achevee;
       });
     this.getCases();
   }
