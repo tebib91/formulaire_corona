@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
   hospitalized: number;
   discharged: number;
   restablished: number;
+  last_update: number;
   // table charts
   cases: any[];
   averageAge: number;
@@ -53,6 +54,7 @@ export class DashboardComponent implements OnInit {
         this.hospitalized = data.hospitalized;
         this.discharged = data.discharged;
         this.restablished = data.restablished;
+        this.last_update = data.last_update;
       });
     // getting table data
     this.apiService.get(this.casesEndpoint).subscribe(
