@@ -1,0 +1,84 @@
+<div class="">
+  <!--HEADER-->
+  <div class="row mb-4">
+    <div class="col-12">
+      <small>{{'last_update.title' | translate}}: {{last_update ? last_update : 5-3-2020}}</small>
+    </div>
+  </div>
+  <!---CONTENT-->
+  <div class="">
+    <!---CARDS-->
+    <div class="row" [ngClass]="{ rtl: language === 'ar' }">
+      <div class="col-md-3">
+        <div class="card no-chart ml-0">
+          <span class="header-title">{{ "confirmed.title" | translate }}</span>
+          <span class="number-no-chart">{{ confirmed ? confirmed : 0 }}</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card no-chart">
+          <span class="header-title">{{
+            "number_last_day.title" | translate
+          }}</span>
+          <span class="number-no-chart">{{
+            hospitalized ? hospitalized : 0
+          }}</span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card no-chart 0">
+          <span class="header-title">{{ "discharged.title" | translate }}</span>
+          <span class="number-no-chart">{{ discharged ? discharged : 0 }}</span>
+        </div>
+      </div>
+      <div class="col-md-3 mr-0">
+        <div class="card no-chart mr-0">
+          <span class="header-title">{{
+            "restablished.title" | translate
+          }}</span>
+          <span class="number-no-chart">{{
+            restablished ? restablished : 0
+          }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-chart cases-card">
+          <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
+            <span class="header-title-charts">{{
+              "number_of_cases_per_day.title" | translate
+            }}</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
+                <span class="legend-label">{{
+                  "confirmed.title" | translate
+                }}</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
+                <span class="legend-label">{{
+                  "discharged.title" | translate
+                }}</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #FB6B80;"></span>
+                <span class="legend-label">{{
+                  "restablished.title" | translate
+                }}</span>
+              </div>
+              <div class="one-legend">
+                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #3BA756;"></span>
+                <span class="legend-label">{{ "dead.title" | translate }}</span>
+              </div>
+            </div>
+          </div>
+          <div style="height: 90%;">
+            <app-charts [dataSource]="stackedEndpoint" [chartLabel]="'casePerDay'" [chartType]="'bar'"></app-charts>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
