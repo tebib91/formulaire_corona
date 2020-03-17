@@ -23,6 +23,9 @@
   "male": {
     "title": "ذكر"
   },
+  "unknown": {
+    "title": "معلومة غير متوفرة"
+  },
   "female": {
     "title": "أنثى"
   },
