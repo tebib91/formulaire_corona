@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
       (data: any) => {
         this.confirmed = data.Confirmed;
         this.hospitalized = data.hospitalized;
-        this.discharged = data.discharged;
+        this.discharged = data.Discharged;
         this.restablished = data.restablished;
         this.last_update = data.last_update;
       });
