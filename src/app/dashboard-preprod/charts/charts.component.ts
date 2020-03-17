@@ -397,7 +397,7 @@ export class ChartsComponent implements OnInit {
   ];
   public pieChartColors = [
     {
-      backgroundColor: ['#6342D2', '#59D5FD', '#FB6B80', '#FF9578', '#3BA756', '#6563FF', '#FCBE2C'],
+      backgroundColor: ['#6342D2', '#59D5FD', '#FB6B80', '#FF9578', '#3BA756', '#6563FF', '#FCBE2C' , 'black'],
     },
   ];
   public barChartData: ChartDataSets[] = [
