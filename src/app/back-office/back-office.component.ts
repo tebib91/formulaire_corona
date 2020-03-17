@@ -29,10 +29,10 @@ export class BackOfficeComponent implements OnInit {
     // TODO: Use EventEmitter with form value
     console.warn(this.updateForm.value);
     // /api/?f=stats
-    // this.apiService.updateback(this.updateForm.value).subscribe(value => {
-    //   console.log('value update', value);
+    this.apiService.updateback(this.updateForm.value).subscribe(value => {
+      console.log('value update', value);
 
-    // });
+    });
 
   }
 }
