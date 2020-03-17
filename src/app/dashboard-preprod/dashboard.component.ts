@@ -3,6 +3,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {PageEvent} from '@angular/material/paginator';
+import {MatDialog} from '@angular/material/dialog';
+import {HelpComponent} from './help/help.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,6 +36,7 @@ export class DashboardComponent implements OnInit {
   casesPaginator: any[];
   averageAge: number;
   language: string;
+  dateStatistics: string;
   pageEvent: PageEvent;
   pageIndex = 0;
   length = 100;
@@ -46,6 +49,7 @@ export class DashboardComponent implements OnInit {
     private apiService: ApiserviceService,
     private router: Router,
     private translate: TranslateService,
+    private matDialog: MatDialog,
     private route: ActivatedRoute) {
     console.log('Called Constructor');
     this.route.queryParams.subscribe(params => {
@@ -74,6 +78,8 @@ export class DashboardComponent implements OnInit {
         this.depistage = data.depistage;
         this.ratio = data.ratio.toFixed(2);
         this.quarantaine_achevee = data.quarantaine_achevee;
+        // update date of all this values
+        this.dateStatistics = data.date;
       });
     this.getCases();
   }
@@ -87,6 +93,15 @@ export class DashboardComponent implements OnInit {
         this.averageAge = data.average;
         this.length = data.cases.length;
       });
+  }
+
+  openHelpPopup(help) {
+    this.matDialog.open(HelpComponent, {
+      data: {
+        help,
+        lang: this.language
+      }
+    });
   }
 
   getServerData(event?) {

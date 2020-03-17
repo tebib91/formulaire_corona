@@ -247,6 +247,7 @@ export class ChartsComponent implements OnInit {
   @Input() legend: boolean;
   @Input() chartLabel: string;
   @Input() language: string;
+  lastUpdate: string;
   options: any;
   public lineChartData: any = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Cas confirmés' },

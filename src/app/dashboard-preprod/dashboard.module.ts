@@ -16,29 +16,33 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MatSelectModule } from '@angular/material/select';
 import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatIconModule} from '@angular/material/icon';
+import { HelpComponent } from './help/help.component';
 @NgModule({
-  declarations: [DashboardComponent, ChartsComponent, MapComponent, GoogleMapComponent, LeafletMapComponent],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    ChartsModule,
-    NgxEchartsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyC1uIT5V4PnZ61dQVehBYBSsIB5FABY9mw',
-      libraries: ['places']
-    }),
-    MatButtonModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    MatSelectModule,
-    MatPaginatorModule
-  ]
+  declarations: [DashboardComponent, ChartsComponent, MapComponent, GoogleMapComponent, LeafletMapComponent, HelpComponent],
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        ChartsModule,
+        NgxEchartsModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyC1uIT5V4PnZ61dQVehBYBSsIB5FABY9mw',
+            libraries: ['places']
+        }),
+        MatButtonModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        MatSelectModule,
+        MatPaginatorModule,
+        MatIconModule
+    ],
+  entryComponents: [HelpComponent]
 })
 export class DashboardModule { }
 // required for AOT compilation

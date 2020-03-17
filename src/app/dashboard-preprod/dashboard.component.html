@@ -2,7 +2,7 @@
   <!--HEADER-->
   <div class="row mb-4">
     <div class="col-12">
-      <small>{{'last_update.title' | translate}}: {{last_update ? last_update : 5 - 3 - 2020}}</small>
+<!--      <small>{{'last_update.title' | translate}}: {{last_update ? last_update : 5 - 3 - 2020}}</small>-->
     </div>
   </div>
   <!---CONTENT-->
@@ -12,7 +12,11 @@
       <div class="col-md-3">
         <div class="card no-chart ml-0">
           <span class="header-title">{{ "confirmed.title" | translate }}</span>
-          <span class="number-no-chart">{{ confirmed ? confirmed : 0 }}</span>
+          <div class="">
+            <p class="number-no-chart">{{ confirmed ? confirmed : 0 }}</p>
+            <p class="small">{{'last_update.title' | translate}}: {{last_update ? last_update : 5 - 3 - 2020}}</p>
+          </div>
+
         </div>
       </div>
       <div class="col-md-3">
@@ -20,25 +24,38 @@
           <span class="header-title">{{
             "number_last_day.title" | translate
             }}</span>
-          <span class="number-no-chart">{{
-            hospitalized ? hospitalized : 0
-            }}</span>
+          <div class="">
+                      <p class="number-no-chart">{{
+                        hospitalized ? hospitalized : 0
+                        }}</p>
+            <p class="small">{{'last_update.title' | translate}}: {{last_update ? last_update : 5 - 3 - 2020}}</p>
+          </div>
+
         </div>
       </div>
       <div class="col-md-3">
         <div class="card no-chart 0">
           <span class="header-title">{{ "discharged.title" | translate }}</span>
-          <span class="number-no-chart">{{ discharged ? discharged : 0 }}</span>
+          <div class="">
+            <p class="number-no-chart">{{ discharged ? discharged : 0 }}  </p>
+            <p class="small">{{'last_update.title' | translate}}: {{last_update ? last_update : 5 - 3 - 2020}}</p>
+          </div>
+
         </div>
+
       </div>
       <div class="col-md-3 mr-0">
         <div class="card no-chart mr-0">
           <span class="header-title">{{
             "restablished.title" | translate
             }}</span>
-          <span class="number-no-chart">{{
-            restablished ? restablished : 0
-            }}</span>
+          <div class="">
+                      <p class="number-no-chart">{{
+                        restablished ? restablished : 0
+                        }}</p>
+            <p class="small">{{'last_update.title' | translate}}: {{last_update ? last_update : 5 - 3 - 2020}}</p>
+          </div>
+
         </div>
       </div>
     </div>
@@ -46,33 +63,54 @@
       <div class="col-md-3">
         <div class="card no-chart ml-0">
           <span class="header-title">{{ "quarantaine_number.title" | translate }}</span>
-          <span class="number-no-chart">{{ quarantaine ? quarantaine : 0 }}</span>
+          <div class="">
+            <p class="number-no-chart">{{ quarantaine ? quarantaine : 0 }}</p>
+            <p
+              class="small">{{'last_update.title' | translate}}
+              : {{dateStatistics ? dateStatistics : '-'}}</p>
+          </div>
+
         </div>
       </div>
       <div class="col-md-3">
         <div class="card no-chart">
           <span class="header-title">{{
             "current_quarantaine_number.title" | translate
-          }}</span>
-          <span class="number-no-chart">{{
-            quarantaine_achevee ? quarantaine_achevee : 0
-          }}</span>
+            }}</span>
+          <div class="">
+            <p class="number-no-chart">{{
+              quarantaine_achevee ? quarantaine_achevee : 0
+              }}</p>
+            <p
+              class="small">{{'last_update.title' | translate}}
+              : {{dateStatistics ? dateStatistics : '-'}}</p>
+          </div>
+
         </div>
       </div>
       <div class="col-md-3">
         <div class="card no-chart 0">
           <span class="header-title">{{ "tests_number.title" | translate }}</span>
-          <span class="number-no-chart">{{ depistage ? depistage : 0 }}</span>
+          <div class="">
+            <span class="number-no-chart">{{ depistage ? depistage : 0 }}</span>
+            <p class="small">{{'last_update.title' | translate}}: {{dateStatistics ? dateStatistics : '-'}}</p>
+          </div>
+
+
         </div>
       </div>
       <div class="col-md-3 mr-0">
         <div class="card no-chart mr-0">
           <span class="header-title">{{
             "positive_tests_positif.title" | translate
-          }}</span>
-          <span class="number-no-chart">{{
-            ratio ? ratio : 0
-          }}%</span>
+            }}</span>
+          <div class="">
+                      <p class="number-no-chart">{{
+                        ratio ? ratio : 0
+                        }}%</p>
+            <p class="small">{{'last_update.title' | translate}}: {{dateStatistics ? dateStatistics : '-'}}</p>
+          </div>
+
         </div>
       </div>
     </div>
@@ -295,6 +333,7 @@
                 <th>{{ "age.title" | translate }}</th>
                 <th>{{ "gender.title" | translate }}</th>
                 <th>{{ "asymptomic_at.title" | translate }}</th>
+                <th>{{ "help.title" | translate }}</th>
               </tr>
               </thead>
               <ng-container *ngFor="let case of casesPaginator; let i = index">
@@ -314,6 +353,7 @@
                   <td class="table-light">
                     {{ case.symptomatic_at }}
                   </td>
+                  <td><mat-icon class="icon" (click)="openHelpPopup(case.comment)">help</mat-icon></td>
                 </tr>
               </ng-container>
             </table>
