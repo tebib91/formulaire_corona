@@ -121,6 +121,7 @@
             <span class="header-title-charts">{{
               "number_of_cases_per_day.title" | translate
               }}</span>
+
             <div class="legends">
               <div class="one-legend">
                 <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
@@ -145,9 +146,11 @@
                 <span class="legend-label">{{ "dead.title" | translate }}</span>
               </div>
             </div>
+            <p>{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['casePerDay'] ? lastUpdates['casePerDay'] : '-'}}</p>
           </div>
+
           <div style="height: 90%;">
-            <app-charts [dataSource]="stackedEndpoint" [chartLabel]="'casePerDay'" [chartType]="'bar'"></app-charts>
+            <app-charts [dataSource]="stackedEndpoint" [chartLabel]="'casePerDay'" [chartType]="'bar'" (lastUpdate)="resultLastUpdate($event)"></app-charts>
           </div>
         </div>
       </div>

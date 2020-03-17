@@ -45,6 +45,8 @@ export class DashboardComponent implements OnInit {
   depistage: number;
   ratio: number;
   quarantaine_achevee: number;
+  lastUpdate: string;
+  lastUpdates: {};
   constructor(
     private apiService: ApiserviceService,
     private router: Router,
@@ -127,4 +129,9 @@ export class DashboardComponent implements OnInit {
     console.log('change', event.value);
     this.translate.use(event.value);
   }
+  resultLastUpdate(event) {
+    console.log('event :', event);
+    this.lastUpdates = event;
+  }
+
 }
