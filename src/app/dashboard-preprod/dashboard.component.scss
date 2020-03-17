@@ -38,7 +38,7 @@ tr td {
   letter-spacing: 0.5px;
   font-weight: 600;
   color: #1b2e4b;
-  margin-bottom: 8px;
+  //margin-bottom: 8px;
 }
 .table-container {
   width: 100%;
@@ -54,6 +54,7 @@ tr td {
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .legends {
   display: flex;

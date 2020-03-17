@@ -12,18 +12,18 @@ import {HelpComponent} from './help/help.component';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  // endpoints
-  genderPieEndpoint = '?f=api&endpoint=genderPie';
   casesTable = '?f=api&endpoint=cases';
-  numbersEndpoint = '?f=api&endpoint=numbers';
-  nationalitiesEndpoint = '?f=api&endpoint=nationalities';
   clusterEndpoint = '?f=api&endpoint=clusters';
-  gendreAgeEndpoint = '?f=api&endpoint=genderAge';
-  sourceEndpoint = '?f=api&endpoint=sources';
-  exportersEndpoint = '?f=api&endpoint=exporters';
-  stackedEndpoint = '?f=api&endpoint=stacked';
+  // endpoints
+  genderPieEndpoint = '?f=api&endpoint=genderPie&preprod';
+  stackedEndpoint = '?f=api&endpoint=stacked&preprod';
+  nationalitiesEndpoint = '?f=api&endpoint=nationalities&preprod';
+  gendreAgeEndpoint = '?f=api&endpoint=genderAge&preprod';
+  sourceEndpoint = '?f=api&endpoint=sources&preprod';
+  govsEndpoint = '?f=api&endpoint=governates&preprod';
+  exportersEndpoint = '?f=api&endpoint=exporters&preprod';
   casesEndpoint = '?f=api&endpoint=cases';
-  govsEndpoint = '?f=api&endpoint=governates';
+  numbersEndpoint = '?f=api&endpoint=numbers';
   statsEndpoint = '?f=api&endpoint=statistics';
   // numbers
   confirmed: number;
@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
   ratio: number;
   quarantaine_achevee: number;
   lastUpdate: string;
-  lastUpdates: {};
+  lastUpdates: any = {};
   constructor(
     private apiService: ApiserviceService,
     private router: Router,
@@ -129,9 +129,9 @@ export class DashboardComponent implements OnInit {
     console.log('change', event.value);
     this.translate.use(event.value);
   }
-  resultLastUpdate(event) {
-    console.log('event :', event);
-    this.lastUpdates = event;
+  resultLastUpdate(event, label) {
+    this.lastUpdates[label] = event;
+    console.log('event :', this.lastUpdates);
   }
 
 }
