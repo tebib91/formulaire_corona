@@ -409,7 +409,7 @@ export class ChartsComponent implements OnInit {
     // legends margin bottom
     public pieChartPlugins = [{
         beforeInit: (chart, options) => {
-            chart.legend.afterFit = function() {
+            chart.legend.afterFit = function () {
                 this.height += 20; // must use `function` and not => because of `this`
             };
         }
@@ -528,7 +528,7 @@ export class ChartsComponent implements OnInit {
                                     const formattedKey = key.split(',')[0];
                                     if (this.language === 'ar') {
                                         if (this.govs[formattedKey]) {
-                                            console.log('this.govs[formattedKey', this.govs[formattedKey])
+                                            console.log('this.govs[formattedKey', this.govs[formattedKey]);
                                             templabels.push(this.govs[formattedKey]);
                                         } else {
                                             templabels.push(formattedKey);
