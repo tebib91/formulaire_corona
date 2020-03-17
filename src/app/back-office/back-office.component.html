@@ -3,20 +3,26 @@
     <div class="row mt-5">
       <div class="col-md-6">
         <mat-form-field appearance="outline">
-          <mat-label>Nombre de personnes actuellement en quarantaine</mat-label>
-          <input matInput placeholder="Nombre" formControlName="quarantaine">
+          <mat-label>Confirmé</mat-label>
+          <input matInput placeholder="Nombre" formControlName="Confirmed">
         </mat-form-field>
       </div>
       <div class="col-md-6">
         <mat-form-field appearance="outline">
-          <mat-label>Nombre de tests de depistage</mat-label>
-          <input matInput placeholder="Nombre de tests de depistage" formControlName="depistage">
+          <mat-label>Nombre des cas hier</mat-label>
+          <input matInput placeholder="Nombre de tests de depistage" formControlName="hospitalized">
         </mat-form-field>
       </div>
       <div class="col-md-6">
         <mat-form-field appearance="outline">
-          <mat-label>Ratio de tests positifs</mat-label>
-          <input matInput placeholder="Adresse" formControlName="ratio">
+          <mat-label>Dechargé</mat-label>
+          <input matInput placeholder="Adresse" formControlName="Discharged">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Rétabli </mat-label>
+          <input matInput  placeholder="Quarantaine achevée" formControlName="Recovered">
         </mat-form-field>
       </div>
       <div class="col-md-6">
@@ -31,7 +37,18 @@
           <input matInput  placeholder="Quarantaine achevée" formControlName="quarantaine_achevee">
         </mat-form-field>
       </div>
-
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>NB Quarantaine </mat-label>
+          <input matInput  placeholder="Quarantaine achevée" formControlName="quarantaine">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre de test de depistage </mat-label>
+          <input matInput  placeholder="Quarantaine achevée" formControlName="depistage">
+        </mat-form-field>
+      </div>
     </div>
     <div class="row">
       <div class="col-12">

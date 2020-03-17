@@ -23,6 +23,9 @@
   "male": {
     "title": "Masculin"
   },
+  "unknown": {
+    "title": "Pas d'information"
+  },
   "female": {
     "title": "Féminin"
   },

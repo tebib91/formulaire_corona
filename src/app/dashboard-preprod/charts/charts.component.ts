@@ -424,9 +424,9 @@ export class ChartsComponent implements OnInit {
             case 'genderPie':
               console.log('gender pie');
               if (this.language === 'ar') {
-                this.lineChartLabels = ['ذكر', 'أنثى'];
+                this.lineChartLabels = ['ذكر', 'أنثى', 'معلومة غير متوفرة'];
               }
-              this.pieData = [data.men, data.women];
+              this.pieData = [data.men, data.women, data.unknown];
               break;
             case 'sourcePie':
               this.lineChartLabels = ['Importé', 'Local'];
@@ -557,7 +557,7 @@ export class ChartsComponent implements OnInit {
       case 'pie':
         this.options = this.pieChartOptions;
         this.colors = this.pieChartColors;
-        this.lineChartLabels = ['Masculin', 'Féminin'];
+        this.lineChartLabels = ['Masculin', 'Féminin' , 'Pas d\'information'];
         this.pieData = [300, 500];
         break;
       default:
