@@ -1,27 +1,27 @@
-import { ApiserviceService } from "./../apiservice.service";
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { TranslateService } from "@ngx-translate/core";
-import { PageEvent } from "@angular/material/paginator";
+import { ApiserviceService } from './../apiservice.service';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "./dashboard.component.html",
-  styleUrls: ["./dashboard.component.scss"]
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
   // endpoints
-  genderPieEndpoint = "?f=api&endpoint=genderPie";
-  casesTable = "?f=api&endpoint=cases";
-  numbersEndpoint = "?f=api&endpoint=numbers";
-  nationalitiesEndpoint = "?f=api&endpoint=nationalities";
-  clusterEndpoint = "?f=api&endpoint=clusters";
-  gendreAgeEndpoint = "?f=api&endpoint=genderAge";
-  sourceEndpoint = "?f=api&endpoint=sources";
-  exportersEndpoint = "?f=api&endpoint=exporters";
-  stackedEndpoint = "?f=api&endpoint=stacked";
-  casesEndpoint = "?f=api&endpoint=cases";
-  govsEndpoint = "?f=api&endpoint=governates";
+  genderPieEndpoint = '?f=api&endpoint=genderPie';
+  casesTable = '?f=api&endpoint=cases';
+  numbersEndpoint = '?f=api&endpoint=numbers';
+  nationalitiesEndpoint = '?f=api&endpoint=nationalities';
+  clusterEndpoint = '?f=api&endpoint=clusters';
+  gendreAgeEndpoint = '?f=api&endpoint=genderAge';
+  sourceEndpoint = '?f=api&endpoint=sources';
+  exportersEndpoint = '?f=api&endpoint=exporters';
+  stackedEndpoint = '?f=api&endpoint=stacked';
+  casesEndpoint = '?f=api&endpoint=cases';
+  govsEndpoint = '?f=api&endpoint=governates';
   statsEndpoint = '?f=api&endpoint=statistics';
   // numbers
   confirmed: number;
@@ -49,12 +49,12 @@ export class DashboardComponent implements OnInit {
     private translate: TranslateService,
     private route: ActivatedRoute
   ) {
-    console.log("Called Constructor");
+    console.log('Called Constructor');
     this.route.queryParams.subscribe(params => {
       if (params.lang) {
         this.language = params.lang;
       } else {
-        this.language = "fr";
+        this.language = 'fr';
       }
     });
     translate.setDefaultLang(this.language);
@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit {
         this.casesPaginator.push(item);
       }
     });
-    console.log("casesPaginator", this.casesPaginator);
+    console.log('casesPaginator', this.casesPaginator);
   }
 
   goTo(route) {
@@ -112,7 +112,7 @@ export class DashboardComponent implements OnInit {
   }
 
   changeLaneguage(event) {
-    console.log("change", event.value);
+    console.log('change', event.value);
     this.translate.use(event.value);
   }
 }
