@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
   depistage: number;
   ratio: number;
   quarantaine_achevee: number;
+  dateStatistics: string;
   constructor(
     private apiService: ApiserviceService,
     private router: Router,
@@ -74,6 +75,7 @@ export class DashboardComponent implements OnInit {
         this.depistage = data.depistage;
         this.ratio = data.ratio.toFixed(2);
         this.quarantaine_achevee = data.quarantaine_achevee;
+        this.dateStatistics = data.date;
       });
     this.getCases();
   }
