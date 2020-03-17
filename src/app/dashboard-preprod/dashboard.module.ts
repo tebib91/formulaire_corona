@@ -15,6 +15,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MatSelectModule } from '@angular/material/select';
 import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [DashboardComponent, ChartsComponent, MapComponent, GoogleMapComponent, LeafletMapComponent],
   imports: [
@@ -35,7 +36,8 @@ import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
         deps: [HttpClient]
       }
     }),
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule
   ]
 })
 export class DashboardModule { }

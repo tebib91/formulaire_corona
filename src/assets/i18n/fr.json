@@ -72,13 +72,13 @@
     "title": " Nombre des cas hier"
   },
   "quarantaine_number": {
-    "title": "Nombre de personnes quarantaine achevée"
+    "title": "Nb quarantaine achevée"
   },
   "current_quarantaine_number": {
-    "title": "Nombre de personnes actuellement en quarantaine"
+    "title": "Nb quarantaine"
   },
   "tests_number": {
-    "title": "Nombre de tests de depistage"
+    "title": "Nb tests depistage"
   },
   "positive_tests_positif": {
     "title": "Ratio de tests positifs"
