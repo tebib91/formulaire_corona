@@ -14,11 +14,14 @@ export class BackOfficeComponent implements OnInit {
     private apiService: ApiserviceService,
   ) { }
   updateForm = this.fb.group({
-    quarantaine: ['',],
-    depistage: [''],
-    ratio: [''],
+    Confirmed: [''],
+    hospitalized: [''],
+    Discharged: [''],
     date: [''],
-    quarantaine_achevee: ['']
+    quarantaine_achevee: [''],
+    quarantaine: [''],
+    depistage: [''],
+    Recovered: ['']
   });
   ngOnInit(): void {
   }
@@ -26,10 +29,10 @@ export class BackOfficeComponent implements OnInit {
     // TODO: Use EventEmitter with form value
     console.warn(this.updateForm.value);
     // /api/?f=stats
-    this.apiService.updateback(this.updateForm.value).subscribe(value => {
-      console.log('value update', value);
+    // this.apiService.updateback(this.updateForm.value).subscribe(value => {
+    //   console.log('value update', value);
 
-    })
+    // });
 
   }
 }
