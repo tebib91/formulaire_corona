@@ -145,9 +145,12 @@
                 <span class="legend-label">{{ "dead.title" | translate }}</span>
               </div>
             </div>
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['casePerDay'] ? lastUpdates['casePerDay'] : '-'}}</p>
           </div>
+
           <div style="height: 90%;">
-            <app-charts [dataSource]="stackedEndpoint" [chartLabel]="'casePerDay'" [chartType]="'bar'"></app-charts>
+            <app-charts [dataSource]="stackedEndpoint" [chartLabel]="'casePerDay'" [chartType]="'bar'"
+                        (lastUpdate)="resultLastUpdate($event, 'casePerDay')"></app-charts>
           </div>
         </div>
       </div>
@@ -167,8 +170,11 @@
                 <span class="legend-label">Fémenin</span>
               </div>
             </div> -->
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['genderPie'] ? lastUpdates['genderPie'] : '-'}}</p>
+
           </div>
           <app-charts [legend]="true" [language]="language" [chartLabel]="'genderPie'" [dataSource]="genderPieEndpoint"
+                      (lastUpdate)="resultLastUpdate($event, 'genderPie')"
                       [chartType]="'pie'">
           </app-charts>
         </div>
@@ -181,9 +187,11 @@
             <span class="header-title-charts">{{
               "nationality.title" | translate
               }}</span>
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['nationalityPie'] ? lastUpdates['nationalityPie'] : '-'}}</p>
+
           </div>
           <app-charts [language]="language" [chartLabel]="'nationalityPie'" [dataSource]="nationalitiesEndpoint"
-                      [legend]="true" [chartType]="'pie'"></app-charts>
+                      [legend]="true" [chartType]="'pie'" (lastUpdate)="resultLastUpdate($event, 'nationalityPie')"></app-charts>
         </div>
       </div>
       <div class="col-md-6">
@@ -204,8 +212,10 @@
                   }}</span>
               </div>
             </div>
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['ageGenderRepartition'] ? lastUpdates['ageGenderRepartition'] : '-'}}</p>
           </div>
-          <app-charts [dataSource]="gendreAgeEndpoint" [chartLabel]="'ageGenderRepartition'" [chartType]="'bar'">
+          <app-charts [dataSource]="gendreAgeEndpoint" [chartLabel]="'ageGenderRepartition'" [chartType]="'bar'"
+                      (lastUpdate)="resultLastUpdate($event, 'ageGenderRepartition')">
           </app-charts>
         </div>
       </div>
@@ -225,9 +235,10 @@
                 <span class="legend-label">Local</span>
               </div>
             </div> -->
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['sourcePie'] ? lastUpdates['sourcePie'] : '-'}}</p>
           </div>
           <app-charts [language]="language" [legend]="true" [dataSource]="sourceEndpoint" [chartLabel]="'sourcePie'"
-                      [chartType]="'pie'">
+                      (lastUpdate)="resultLastUpdate($event, 'sourcePie')" [chartType]="'pie'">
           </app-charts>
         </div>
       </div>
@@ -288,9 +299,10 @@
                 <span class="legend-label">Fémenin</span>
               </div>
             </div> -->
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['govsPie'] ? lastUpdates['govsPie'] : '-'}}</p>
           </div>
           <app-charts [language]="language" [dataSource]="govsEndpoint" [legend]="true" [chartLabel]="'govsPie'"
-                      [chartType]="'pie'">
+                      (lastUpdate)="resultLastUpdate($event, 'govsPie')"   [chartType]="'pie'">
           </app-charts>
         </div>
       </div>
@@ -310,9 +322,10 @@
                 <span class="legend-label">Fémenin</span>
               </div>
             </div> -->
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['countriesPie'] ? lastUpdates['countriesPie'] : '-'}}</p>
           </div>
           <app-charts [language]="language" [dataSource]="exportersEndpoint" [legend]="true"
-                      [chartLabel]="'countriesPie'" [chartType]="'pie'"></app-charts>
+                      (lastUpdate)="resultLastUpdate($event, 'countriesPie')"   [chartLabel]="'countriesPie'" [chartType]="'pie'"></app-charts>
         </div>
       </div>
     </div>
