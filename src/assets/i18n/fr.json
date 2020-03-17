@@ -1,12 +1,15 @@
 {
   "confirmed": {
-    "title": "Confirmé"
+    "title": "Confirmé",
+    "help": "Toute personne, symptomatique ou non, avec une confirmation d’infection par le SARS-CoV-2 par un laboratoire. "
   },
   "discharged": {
-    "title": "Déchargé"
+    "title": "Déchargé",
+    "help": "Toute personne ayant passé des analyses, et dont les résultats sont négatifs."
   },
   "restablished": {
-    "title": "Rétabli"
+    "title": "Rétabli",
+    "help": "Toute personne rétablie ayant été infectée auparavant par le SARS-COV-2"
   },
   "hospitalised": {
     "title": "Hospitalisé"
@@ -72,24 +75,29 @@
     "title": "Tableau de board du virus COVID-19 en Tunisie"
   },
   "number_last_day": {
-    "title": " Nombre des cas hier"
+    "title": " Nombre des cas hier",
+    "help": "Le Nombre total des nouveaux cas la veille"
   },
   "quarantaine_number": {
-    "title": "Nb quarantaine achevée"
+    "title": "Nb quarantaine achevée",
+    "help": "Toute personne ayant terminé sa période de suivi de 14 jours ou qui repartie à son pays de résidence."
   },
   "current_quarantaine_number": {
-    "title": "Nb quarantaine"
+    "title": "Nb quarantaine",
+    "help": "Toute personne qui est en période de suivi et d’observation de 14 jours"
   },
   "tests_number": {
-    "title": "Nb tests depistage"
+    "title": "Nb tests depistage",
+    "help": "Nombre des prélèvements parvenus au laboratoire national de référence et ayant été analysés."
   },
   "positive_tests_positif": {
-    "title": "Ratio de tests positifs"
+    "title": "Ratio de tests positifs",
+    "help": "La pourcentage des tests positifs au SARS- CoV-2 par rapport au nombre total de tests."
   },
   "last_update": {
     "title": "Mise à jour"
   },
   "help": {
-    "title": "Aide"
+    "title": "Info"
   }
 }

@@ -333,7 +333,7 @@
               <tr class="table-light">
                 <th>{{ "case.title" | translate }}</th>
                 <th>{{ "confirmed_at.title" | translate }}</th>
-                <th>{{ "age.title" | translate }}</th>
+                <th>{{  "age.title" | translate }}</th>
                 <th>{{ "gender.title" | translate }}</th>
                 <th>{{ "asymptomic_at.title" | translate }}</th>
                 <th>{{ "help.title" | translate }}</th>
@@ -348,7 +348,7 @@
                     {{ case.confirmed_date }}
                   </td>
                   <td class="table-light">
-                    {{ case.age }}
+                    {{ case.age !== 0 ? case.age : 'NA' }}
                   </td>
                   <td class="table-light">
                     {{ case.gender + ".title" | translate }}

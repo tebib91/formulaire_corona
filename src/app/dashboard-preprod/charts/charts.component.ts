@@ -19,7 +19,7 @@ export class ChartsComponent implements OnInit {
         Gafsa: 'قفصة',
         Sfax: 'صفاقس',
         'Sidi Bouzid': 'سيدي بوزيد',
-        Gabès: 'قابس',
+        'Gabès': 'قابس',
         Kairouan: 'القيروان',
         Tozeur: 'توزر',
         Kef: 'الكاف',
@@ -250,7 +250,6 @@ export class ChartsComponent implements OnInit {
     @Input() chartLabel: string;
     @Input() language: string;
     @Output() lastUpdate = new EventEmitter<object>();
-
     options: any;
     public lineChartData: any = [
         {data: [65, 59, 80, 81, 56, 55, 40], label: 'Cas confirmés'},
@@ -400,7 +399,7 @@ export class ChartsComponent implements OnInit {
     ];
     public pieChartColors = [
         {
-            backgroundColor: ['#6342D2', '#59D5FD', '#FB6B80', '#FF9578', '#3BA756', '#6563FF', '#FCBE2C']
+            backgroundColor: ['#6342D2', '#59D5FD', '#FB6B80', '#FF9578', '#3BA756', '#6563FF', '#FCBE2C', 'black']
         }
     ];
     public barChartData: ChartDataSets[] = [
@@ -410,7 +409,7 @@ export class ChartsComponent implements OnInit {
     // legends margin bottom
     public pieChartPlugins = [{
         beforeInit: (chart, options) => {
-            chart.legend.afterFit = function () {
+            chart.legend.afterFit = function() {
                 this.height += 20; // must use `function` and not => because of `this`
             };
         }
