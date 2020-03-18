@@ -3,6 +3,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {PageEvent} from '@angular/material/paginator';
+import {HelpComponent} from '../dashboard-preprod/help/help.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,7 +45,37 @@ export class DashboardComponent implements OnInit {
   ratio: number;
   quarantaine_achevee: number;
   dateStatistics: string;
+  lastUpdates: any = {};
+  govs = {
+    Tataouine: 'تطاوين',
+    Kebili: 'قبلي',
+    Medenine: 'مدنين',
+    Kasserine: 'القصرين',
+    Gafsa: 'قفصة',
+    Sfax: 'صفاقس',
+    'Sidi Bouzid': 'سيدي بوزيد',
+    'Gabès': 'قابس',
+    Kairouan: 'القيروان',
+    Tozeur: 'توزر',
+    Kef: 'الكاف',
+    Siliana: 'سليانة',
+    Bizerte: 'بنزرت',
+    Beja: 'باجة',
+    Jendouba: 'جندوبة',
+    Mahdia: 'المهدية',
+    Nabeul: 'نابل',
+    Zaghouan: 'زغوان',
+    Sousse: 'سوسة',
+    Mannouba: 'منوبة',
+    Monastir: 'المنستير',
+    'Ben Arous': 'بن عروس',
+    Ariana: 'أريانة',
+    Tunis: 'تونس',
+    unknown: 'غير معروف'
+  };
+
   constructor(
+    private matDialog: MatDialog,
     private apiService: ApiserviceService,
     private router: Router,
     private translate: TranslateService,
@@ -78,6 +110,7 @@ export class DashboardComponent implements OnInit {
         this.dateStatistics = data.date;
       });
     this.getCases();
+
   }
 
   public getCases() {
@@ -113,5 +146,30 @@ export class DashboardComponent implements OnInit {
   changeLaneguage(event) {
     console.log('change', event.value);
     this.translate.use(event.value);
+  }
+
+  openHelpPopup(help) {
+    this.matDialog.open(HelpComponent, {
+      data: {
+        help,
+        lang: this.language
+      }
+    });
+  }
+
+  arGourenorate(gov) {
+    Object.keys(this.govs).forEach(value => {
+      const include = gov.includes(value);
+      // console.log(include);
+      if (include) {
+        console.log(this.govs[value]);
+        return this.govs[value];
+      }
+    });
+  }
+
+  resultLastUpdate(event, label) {
+    this.lastUpdates[label] = event;
+    console.log('event :', this.lastUpdates);
   }
 }

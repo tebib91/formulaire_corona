@@ -12,7 +12,7 @@
       <div class="col-md-3">
         <div class="card no-chart ml-0">
           <span class="header-title">{{ "confirmed.title" | translate }}</span>
-          <div class="">
+          <div>
             <p class="number-no-chart">{{ confirmed ? confirmed : 0 }}</p>
             <p class="small">{{'last_update.title' | translate}}: {{last_update ? last_update : 5 - 3 - 2020}}</p>
           </div>
@@ -368,7 +368,7 @@
                   <td class="table-light">
                     {{ case.symptomatic_at }}
                   </td>
-                  <td><mat-icon class="icon" (click)="openHelpPopup(case.comment)">help</mat-icon></td>
+                  <td><mat-icon class="icon" (click)="openHelpPopup(language == 'ar' ? case.comment_ar : case.comment)">help</mat-icon></td>
                 </tr>
               </ng-container>
             </table>

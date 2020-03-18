@@ -210,13 +210,12 @@
                 <span class="legend-label">{{ "dead.title" | translate }}</span>
               </div>
             </div>
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['casePerDay'] ? lastUpdates['casePerDay'] : '-'}}</p>
+
           </div>
           <div style="height: 90%;">
-            <app-charts
-              [dataSource]="stackedEndpoint"
-              [chartLabel]="'casePerDay'"
-              [chartType]="'bar'"
-            ></app-charts>
+            <app-charts [dataSource]="stackedEndpoint" [chartLabel]="'casePerDay'" [chartType]="'bar'"
+                        (lastUpdate)="resultLastUpdate($event, 'casePerDay')"></app-charts>
           </div>
         </div>
       </div>
@@ -236,14 +235,12 @@
                 <span class="legend-label">Fémenin</span>
               </div>
             </div> -->
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['genderPie'] ? lastUpdates['genderPie'] : '-'}}</p>
+
           </div>
-          <app-charts
-            [legend]="true"
-            [language]="language"
-            [chartLabel]="'genderPie'"
-            [dataSource]="genderPieEndpoint"
-            [chartType]="'pie'"
-          >
+          <app-charts [legend]="true" [language]="language" [chartLabel]="'genderPie'" [dataSource]="genderPieEndpoint"
+                      (lastUpdate)="resultLastUpdate($event, 'genderPie')"
+                      [chartType]="'pie'">
           </app-charts>
         </div>
       </div>
@@ -255,14 +252,11 @@
             <span class="header-title-charts">{{
               "nationality.title" | translate
             }}</span>
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['nationalityPie'] ? lastUpdates['nationalityPie'] : '-'}}</p>
+
           </div>
-          <app-charts
-            [language]="language"
-            [chartLabel]="'nationalityPie'"
-            [dataSource]="nationalitiesEndpoint"
-            [legend]="true"
-            [chartType]="'pie'"
-          ></app-charts>
+          <app-charts [language]="language" [chartLabel]="'nationalityPie'" [dataSource]="nationalitiesEndpoint"
+                      [legend]="true" [chartType]="'pie'" (lastUpdate)="resultLastUpdate($event, 'nationalityPie')"></app-charts>
         </div>
       </div>
       <div class="col-md-6">
@@ -298,12 +292,11 @@
                 }}</span>
               </div>
             </div>
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['ageGenderRepartition'] ? lastUpdates['ageGenderRepartition'] : '-'}}</p>
+
           </div>
-          <app-charts
-            [dataSource]="gendreAgeEndpoint"
-            [chartLabel]="'ageGenderRepartition'"
-            [chartType]="'bar'"
-          >
+          <app-charts [dataSource]="gendreAgeEndpoint" [chartLabel]="'ageGenderRepartition'" [chartType]="'bar'"
+                      (lastUpdate)="resultLastUpdate($event, 'ageGenderRepartition')">
           </app-charts>
         </div>
       </div>
@@ -323,14 +316,11 @@
                 <span class="legend-label">Local</span>
               </div>
             </div> -->
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['sourcePie'] ? lastUpdates['sourcePie'] : '-'}}</p>
+
           </div>
-          <app-charts
-            [language]="language"
-            [legend]="true"
-            [dataSource]="sourceEndpoint"
-            [chartLabel]="'sourcePie'"
-            [chartType]="'pie'"
-          >
+          <app-charts [language]="language" [legend]="true" [dataSource]="sourceEndpoint" [chartLabel]="'sourcePie'"
+                      (lastUpdate)="resultLastUpdate($event, 'sourcePie')" [chartType]="'pie'">
           </app-charts>
         </div>
       </div>
@@ -396,14 +386,11 @@
                 <span class="legend-label">Fémenin</span>
               </div>
             </div> -->
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['govsPie'] ? lastUpdates['govsPie'] : '-'}}</p>
+
           </div>
-          <app-charts
-            [language]="language"
-            [dataSource]="govsEndpoint"
-            [legend]="true"
-            [chartLabel]="'govsPie'"
-            [chartType]="'pie'"
-          >
+          <app-charts [language]="language" [dataSource]="govsEndpoint" [legend]="true" [chartLabel]="'govsPie'"
+                      (lastUpdate)="resultLastUpdate($event, 'govsPie')"   [chartType]="'pie'">
           </app-charts>
         </div>
       </div>
@@ -423,14 +410,11 @@
                 <span class="legend-label">Fémenin</span>
               </div>
             </div> -->
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['countriesPie'] ? lastUpdates['countriesPie'] : '-'}}</p>
+
           </div>
-          <app-charts
-            [language]="language"
-            [dataSource]="exportersEndpoint"
-            [legend]="true"
-            [chartLabel]="'countriesPie'"
-            [chartType]="'pie'"
-          ></app-charts>
+          <app-charts [language]="language" [dataSource]="exportersEndpoint" [legend]="true"
+                      (lastUpdate)="resultLastUpdate($event, 'countriesPie')"   [chartLabel]="'countriesPie'" [chartType]="'pie'"></app-charts>
         </div>
       </div>
     </div>
@@ -449,16 +433,18 @@
           <div class="table-container">
             <table class="table ">
               <thead>
-                <tr class="table-light">
-                  <th>{{ "case.title" | translate }}</th>
-                  <th>{{ "confirmed_at.title" | translate }}</th>
-                  <th>{{ "age.title" | translate }}</th>
-                  <th>{{ "gender.title" | translate }}</th>
-                  <th>{{ "asymptomic_at.title" | translate }}</th>
-                </tr>
+              <tr class="table-light">
+                <th>{{ "case.title" | translate }}</th>
+                <th>{{ "confirmed_at.title" | translate }}</th>
+                <th>{{  "age.title" | translate }}</th>
+                <th>{{ "gender.title" | translate }}</th>
+                <th>{{ "gouvernorat.title" | translate }}</th>
+                <th>{{ "asymptomic_at.title" | translate }}</th>
+                <th>{{ "help.title" | translate }}</th>
+              </tr>
               </thead>
               <ng-container *ngFor="let case of casesPaginator; let i = index">
-                <tr *ngIf="i < pageSize + pageSize * pageIndex">
+                <tr *ngIf="i < pageSize + (pageSize * pageIndex)">
                   <td class="table-light">
                     {{ case.case }}
                   </td>
@@ -466,28 +452,25 @@
                     {{ case.confirmed_date }}
                   </td>
                   <td class="table-light">
-                    {{ case.age }}
+                    {{ case.age !== 0 ? case.age : 'NA' }}
                   </td>
                   <td class="table-light">
                     {{ case.gender + ".title" | translate }}
                   </td>
+                  <td>{{language === 'ar' ? arGourenorate(case.governate) : case.governate}}</td>
                   <td class="table-light">
-                    {{ case.symptomatic_at }}
+                    {{ case.symptomatic_at ? case.symptomatic_at : '-' }}
                   </td>
+                  <td><mat-icon class="icon" (click)="openHelpPopup(language == 'ar' ? case.comment_ar : case.comment)">help</mat-icon></td>
                 </tr>
               </ng-container>
             </table>
-
-            <mat-paginator
-              [length]="length"
-              [pageIndex]="pageIndex"
-              [pageSize]="pageSize"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              (page)="getServerData($event)"
-            >
+            <mat-paginator [length]="length"
+                           [pageIndex]="pageIndex"
+                           [pageSize]="pageSize"
+                           [pageSizeOptions]="[5, 10, 25, 100]" (page)="getServerData($event)">
             </mat-paginator>
           </div>
-
           <!-- On rows -->
         </div>
       </div>
