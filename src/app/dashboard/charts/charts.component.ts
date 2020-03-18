@@ -240,7 +240,8 @@ export class ChartsComponent implements OnInit {
     Spain: 'اسبانيا',
     Algeria: 'الجزائر',
     Libya: 'ليبيا',
-    England: 'أنقلترا'
+    England: 'أنقلترا',
+    unknown: 'غير معروف'
   };
   loading = true;
   @Input() chartType: string;
