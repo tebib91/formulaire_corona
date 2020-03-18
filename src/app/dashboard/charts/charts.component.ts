@@ -33,7 +33,8 @@ export class ChartsComponent implements OnInit {
     Monastir: 'المنستير',
     'Ben Arous': 'بن عروس',
     Ariana: 'أريانة',
-    Tunis: 'تونس'
+    Tunis: 'تونس',
+    unknown: 'غير معروف'
   };
   // nationalities
   nationalities = {
@@ -238,7 +239,8 @@ export class ChartsComponent implements OnInit {
     Morroco: 'المغرب',
     Spain: 'اسبانيا',
     Algeria: 'الجزائر',
-    Libya: 'ليبيا'
+    Libya: 'ليبيا',
+    England: 'أنقلترا'
   };
   loading = true;
   @Input() chartType: string;
@@ -396,7 +398,7 @@ export class ChartsComponent implements OnInit {
   ];
   public pieChartColors = [
     {
-      backgroundColor: ['#6342D2', '#59D5FD', '#FB6B80', '#FF9578', '#3BA756', '#6563FF', '#FCBE2C'],
+      backgroundColor: ['#6342D2', '#59D5FD', '#FB6B80', '#FF9578', '#3BA756', '#6563FF', '#FCBE2C', '#0A2463', '#D8315B', '#006494', '#DC493A', '#4392F1'],
     },
   ];
   public barChartData: ChartDataSets[] = [
