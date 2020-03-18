@@ -242,6 +242,7 @@ export class ChartsComponent implements OnInit {
     Algeria: 'الجزائر',
     Libya: 'ليبيا',
     England: 'أنقلترا',
+    Turkey: 'تركيا',
     unknown: 'غير معروف'
   };
   loading = true;
@@ -434,7 +435,9 @@ export class ChartsComponent implements OnInit {
               if (this.language === 'ar') {
                 this.lineChartLabels = ['ذكر', 'أنثى', 'معلومة غير متوفرة'];
               }
-              this.pieData = [this.data.men, this.data.women, this.data.unknown];
+              this.pieData = [this.data.men, this.data.women, this.data.unknown ? this.data.unknown : 0];
+              console.log('gender pie data', this.data);
+              console.log('gender pie data for chart', this.pieData);
               break;
             case 'sourcePie':
               this.lineChartLabels = ['Importé', 'Local'];
@@ -497,7 +500,7 @@ export class ChartsComponent implements OnInit {
               if (this.data.Discharged) {
                 dataStacked.push({data: Object.values(this.data.Discharged), label: 'Cas Déchargés'});
               }
-              if (this.data.Recovred) {
+              if (this.data.Recovered) {
                 dataStacked.push({data: Object.values(this.data.Recovred), label: 'Cas récovrés'});
               }
               if (this.data.Dead) {

@@ -435,7 +435,7 @@ export class ChartsComponent implements OnInit {
                             if (this.language === 'ar') {
                                 this.lineChartLabels = ['ذكر', 'أنثى', 'معلومة غير متوفرة'];
                             }
-                            this.pieData = [this.data.men, this.data.women, this.data.unknown];
+                            this.pieData = [this.data.men, this.data.women, this.data.unknown ? this.data.unknown : 0];
                             break;
                         case 'sourcePie':
                             this.lineChartLabels = ['Importé', 'Local'];
@@ -498,7 +498,7 @@ export class ChartsComponent implements OnInit {
                             if (this.data.Discharged) {
                                 dataStacked.push({data: Object.values(this.data.Discharged), label: 'Cas Déchargés'});
                             }
-                            if (this.data.Recovred) {
+                            if (this.data.Recovered) {
                                 dataStacked.push({data: Object.values(this.data.Recovred), label: 'Cas récovrés'});
                             }
                             if (this.data.Dead) {
