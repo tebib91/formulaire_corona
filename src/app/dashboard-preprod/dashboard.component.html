@@ -345,6 +345,7 @@
                 <th>{{ "confirmed_at.title" | translate }}</th>
                 <th>{{  "age.title" | translate }}</th>
                 <th>{{ "gender.title" | translate }}</th>
+                <th>{{ "gouvernorat.title" | translate }}</th>
                 <th>{{ "asymptomic_at.title" | translate }}</th>
                 <th>{{ "help.title" | translate }}</th>
               </tr>
@@ -363,6 +364,7 @@
                   <td class="table-light">
                     {{ case.gender + ".title" | translate }}
                   </td>
+                  <td>{{case.governate}}</td>
                   <td class="table-light">
                     {{ case.symptomatic_at }}
                   </td>
