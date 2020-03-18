@@ -457,7 +457,7 @@
                   <td class="table-light">
                     {{ case.gender + ".title" | translate }}
                   </td>
-                  <td>{{language === 'ar' ? arGourenorate(case.governate) : case.governate}}</td>
+                  <td>{{language == 'ar' ? arGourenorate(case.governate) : case.governate}}</td>
                   <td class="table-light">
                     {{ case.symptomatic_at ? case.symptomatic_at : '-' }}
                   </td>

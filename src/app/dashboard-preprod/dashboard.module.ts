@@ -18,6 +18,7 @@ import { LeafletMapComponent } from './leaflet-map/leaflet-map.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatIconModule} from '@angular/material/icon';
 import { HelpComponent } from './help/help.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   declarations: [DashboardComponent, ChartsComponent, MapComponent, GoogleMapComponent, LeafletMapComponent, HelpComponent],
     imports: [
@@ -40,7 +41,8 @@ import { HelpComponent } from './help/help.component';
         }),
         MatSelectModule,
         MatPaginatorModule,
-        MatIconModule
+        MatIconModule,
+        MatTooltipModule
     ],
   entryComponents: [HelpComponent]
 })

@@ -12,18 +12,18 @@ import {MatDialog} from '@angular/material/dialog';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+
   // endpoints
-  genderPieEndpoint = '?f=api&endpoint=genderPie';
-  casesTable = '?f=api&endpoint=cases';
-  numbersEndpoint = '?f=api&endpoint=numbers';
-  nationalitiesEndpoint = '?f=api&endpoint=nationalities';
-  clusterEndpoint = '?f=api&endpoint=clusters';
-  gendreAgeEndpoint = '?f=api&endpoint=genderAge';
-  sourceEndpoint = '?f=api&endpoint=sources';
-  exportersEndpoint = '?f=api&endpoint=exporters';
-  stackedEndpoint = '?f=api&endpoint=stacked';
+  genderPieEndpoint = '?f=api&endpoint=genderPie&preprod';
+  stackedEndpoint = '?f=api&endpoint=stacked&preprod';
+  nationalitiesEndpoint = '?f=api&endpoint=nationalities&preprod';
+  gendreAgeEndpoint = '?f=api&endpoint=genderAge&preprod';
+  sourceEndpoint = '?f=api&endpoint=sources&preprod';
+  govsEndpoint = '?f=api&endpoint=governates&preprod';
+  exportersEndpoint = '?f=api&endpoint=exporters&preprod';
   casesEndpoint = '?f=api&endpoint=cases';
-  govsEndpoint = '?f=api&endpoint=governates';
+  numbersEndpoint = '?f=api&endpoint=numbers';
   statsEndpoint = '?f=api&endpoint=statistics';
   // numbers
   confirmed: number;
@@ -158,14 +158,8 @@ export class DashboardComponent implements OnInit {
   }
 
   arGourenorate(gov) {
-    Object.keys(this.govs).forEach(value => {
-      const include = gov.includes(value);
-      // console.log(include);
-      if (include) {
-        console.log(this.govs[value]);
-        return this.govs[value];
-      }
-    });
+    const governorate = Object.keys(this.govs).find(value => gov.includes(value));
+    return this.govs[governorate];
   }
 
   resultLastUpdate(event, label) {

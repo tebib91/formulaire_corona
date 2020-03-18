@@ -1,10 +1,10 @@
-import {ApiserviceService} from './../apiservice.service';
+import {ApiserviceService} from '../apiservice.service';
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {PageEvent} from '@angular/material/paginator';
-import {MatDialog} from '@angular/material/dialog';
 import {HelpComponent} from './help/help.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +12,7 @@ import {HelpComponent} from './help/help.component';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  casesTable = '?f=api&endpoint=cases';
-  clusterEndpoint = '?f=api&endpoint=clusters';
+
   // endpoints
   genderPieEndpoint = '?f=api&endpoint=genderPie&preprod';
   stackedEndpoint = '?f=api&endpoint=stacked&preprod';
@@ -25,6 +24,7 @@ export class DashboardComponent implements OnInit {
   casesEndpoint = '?f=api&endpoint=cases';
   numbersEndpoint = '?f=api&endpoint=numbers';
   statsEndpoint = '?f=api&endpoint=statistics';
+
   // numbers
   confirmed: number;
   hospitalized: number;
@@ -36,7 +36,6 @@ export class DashboardComponent implements OnInit {
   casesPaginator: any[];
   averageAge: number;
   language: string;
-  dateStatistics: string;
   pageEvent: PageEvent;
   pageIndex = 0;
   length = 100;
@@ -45,13 +44,41 @@ export class DashboardComponent implements OnInit {
   depistage: number;
   ratio: number;
   quarantaine_achevee: number;
-  lastUpdate: string;
+  dateStatistics: string;
   lastUpdates: any = {};
+  govs = {
+    Tataouine: 'تطاوين',
+    Kebili: 'قبلي',
+    Medenine: 'مدنين',
+    Kasserine: 'القصرين',
+    Gafsa: 'قفصة',
+    Sfax: 'صفاقس',
+    'Sidi Bouzid': 'سيدي بوزيد',
+    'Gabès': 'قابس',
+    Kairouan: 'القيروان',
+    Tozeur: 'توزر',
+    Kef: 'الكاف',
+    Siliana: 'سليانة',
+    Bizerte: 'بنزرت',
+    Beja: 'باجة',
+    Jendouba: 'جندوبة',
+    Mahdia: 'المهدية',
+    Nabeul: 'نابل',
+    Zaghouan: 'زغوان',
+    Sousse: 'سوسة',
+    Mannouba: 'منوبة',
+    Monastir: 'المنستير',
+    'Ben Arous': 'بن عروس',
+    Ariana: 'أريانة',
+    Tunis: 'تونس',
+    unknown: 'غير معروف'
+  };
+
   constructor(
+    private matDialog: MatDialog,
     private apiService: ApiserviceService,
     private router: Router,
     private translate: TranslateService,
-    private matDialog: MatDialog,
     private route: ActivatedRoute) {
     console.log('Called Constructor');
     this.route.queryParams.subscribe(params => {
@@ -80,10 +107,10 @@ export class DashboardComponent implements OnInit {
         this.depistage = data.depistage;
         this.ratio = data.ratio.toFixed(2);
         this.quarantaine_achevee = data.quarantaine_achevee;
-        // update date of all this values
         this.dateStatistics = data.date;
       });
     this.getCases();
+
   }
 
   public getCases() {
@@ -95,15 +122,6 @@ export class DashboardComponent implements OnInit {
         this.averageAge = data.average;
         this.length = data.cases.length;
       });
-  }
-
-  openHelpPopup(help) {
-    this.matDialog.open(HelpComponent, {
-      data: {
-        help,
-        lang: this.language
-      }
-    });
   }
 
   getServerData(event?) {
@@ -129,9 +147,23 @@ export class DashboardComponent implements OnInit {
     console.log('change', event.value);
     this.translate.use(event.value);
   }
+
+  openHelpPopup(help) {
+    this.matDialog.open(HelpComponent, {
+      data: {
+        help,
+        lang: this.language
+      }
+    });
+  }
+
+  arGourenorate(gov) {
+    const governorate = Object.keys(this.govs).find(value => gov.includes(value));
+    return this.govs[governorate];
+  }
+
   resultLastUpdate(event, label) {
     this.lastUpdates[label] = event;
     console.log('event :', this.lastUpdates);
   }
-
 }
