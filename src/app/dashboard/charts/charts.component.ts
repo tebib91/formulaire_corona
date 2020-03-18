@@ -418,14 +418,13 @@ export class ChartsComponent implements OnInit {
     if (this.dataSource) {
       this.apiService.get(this.dataSource).subscribe(
         (data: any) => {
-          console.log('data', data);
           switch (this.chartLabel) {
             case 'genderPie':
-              console.log('gender pie');
+              console.log('gender pie', data);
               if (this.language === 'ar') {
-                this.lineChartLabels = ['ذكر', 'أنثى'];
+                this.lineChartLabels = ['ذكر', 'أنثى', 'غير معروف'];
               }
-              this.pieData = [data.men, data.women];
+              this.pieData = [data.men, data.women, data.unknown];
               break;
             case 'sourcePie':
               this.lineChartLabels = ['Importé', 'Local'];
@@ -437,10 +436,8 @@ export class ChartsComponent implements OnInit {
             case 'countriesPie':
               let countrieslabels = [];
               if (this.language === 'ar') {
-                console.log('labels in countries', Object.keys(data));
                 Object.keys(data).map(key => {
                   if (this.countries[key]) {
-                    console.log('this.nationalities[key]', this.countries[key]);
                     countrieslabels.push(this.countries[key]);
                   } else {
                     countrieslabels.push(key);
@@ -449,20 +446,22 @@ export class ChartsComponent implements OnInit {
               } else {
                 countrieslabels = Object.keys(data);
               }
-              console.log('countrieslabels', countrieslabels);
               this.lineChartLabels = countrieslabels;
               this.pieData = Object.values(data);
               break;
             case 'ageGenderRepartition':
+              console.log('age gedner repoartition', data);
               let barData = [];
               const dataWomen = [];
               const dataMan = [];
+              const dataUnknown = [];
               Object.keys(data).map(key => {
                 console.log('data key', data[key]);
                 dataWomen.push(data[key].women ? data[key].women : 0);
                 dataMan.push(data[key].men ? data[key].men : 0);
+                dataUnknown.push(data[key].unknown ? data[key].unknown : 0);
               });
-              barData = [{ data: dataMan, label: 'Male' }, { data: dataWomen, label: 'Female' }];
+              barData = [{ data: dataMan, label: 'Male' }, { data: dataWomen, label: 'Female' }, { data: dataUnknown, label: 'Inconnue' }];
               console.log('bar data', barData);
               this.lineChartLabels = Object.keys(data);
               this.lineChartData = barData;
@@ -556,7 +555,7 @@ export class ChartsComponent implements OnInit {
       case 'pie':
         this.options = this.pieChartOptions;
         this.colors = this.pieChartColors;
-        this.lineChartLabels = ['Masculin', 'Féminin'];
+        this.lineChartLabels = ['Masculin', 'Féminin', 'Inconnue'];
         this.pieData = [300, 500];
         break;
       default:
