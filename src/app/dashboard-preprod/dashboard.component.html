@@ -332,6 +332,8 @@
             <span class="header-title-charts">{{
               "cluster.title" | translate
               }}</span>
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{last_update}}</p>
+
           </div>
           <style>
             .embed-container {
@@ -428,7 +430,8 @@
             <span class="header-title-charts">{{
               "case.title" | translate
               }}</span
-            ><br />
+            >            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdateCases}}</p>
+
           </div>
           <div class="table-container">
             <table class="table ">
@@ -461,7 +464,7 @@
                   <td class="table-light">
                     {{ case.symptomatic_at ? case.symptomatic_at : '-' }}
                   </td>
-                  <td><mat-icon class="icon" (click)="openHelpPopup(language == 'ar' ? case.comment_ar : case.comment)">help</mat-icon></td>
+                  <td><mat-icon class="icon"  [matTooltip]="language == 'ar' ? case.comment_ar : case.comment">help</mat-icon></td>
                 </tr>
               </ng-container>
             </table>

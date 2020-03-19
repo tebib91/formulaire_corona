@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   sourceEndpoint = '?f=api&endpoint=sources&preprod';
   govsEndpoint = '?f=api&endpoint=governates&preprod';
   exportersEndpoint = '?f=api&endpoint=exporters&preprod';
-  casesEndpoint = '?f=api&endpoint=cases';
+  casesEndpoint = '?f=api&endpoint=cases&preprod';
   numbersEndpoint = '?f=api&endpoint=numbers';
   statsEndpoint = '?f=api&endpoint=statistics';
 
@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit {
   casesPaginator: any[];
   averageAge: number;
   language: string;
+  lastUpdateCases: string;
   pageEvent: PageEvent;
   pageIndex = 0;
   length = 100;
@@ -117,10 +118,11 @@ export class DashboardComponent implements OnInit {
     // getting table data
     this.apiService.get(this.casesEndpoint).subscribe(
       (data: any) => {
-        this.cases = data.cases;
+        this.cases = data.chartData.cases;
         this.getServerData();
-        this.averageAge = data.average;
-        this.length = data.cases.length;
+        this.averageAge = data.chartData.average;
+        this.lastUpdateCases = data.last_update;
+        this.length = data.chartData.cases.length;
       });
   }
 
