@@ -465,8 +465,11 @@
                     {{ case.symptomatic_at ? case.symptomatic_at : '-' }}
                   </td>
                   <td class="td-help">
-                    <mat-icon class="icon">help</mat-icon>
-                    <div class="tool">
+                    <mat-icon class="icon"
+                              [ngStyle]="{'color' : case.display ? '#bcbcbc' : ''}"
+                              (click)="mapDisplay() ;case.display ? case.display = !case.display : case.display = true">help
+                    </mat-icon>
+                    <div class="tool" *ngIf="case.display">
                       {{language == 'ar' ? case.comment_ar : case.comment}}
                     </div>
                   </td>
