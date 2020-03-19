@@ -464,7 +464,12 @@
                   <td class="table-light">
                     {{ case.symptomatic_at ? case.symptomatic_at : '-' }}
                   </td>
-                  <td><mat-icon class="icon"  [matTooltip]="language == 'ar' ? case.comment_ar : case.comment">help</mat-icon></td>
+                  <td class="td-help">
+                    <mat-icon class="icon">help</mat-icon>
+                    <div class="tool">
+                      {{language == 'ar' ? case.comment_ar : case.comment}}
+                    </div>
+                  </td>
                 </tr>
               </ng-container>
             </table>
