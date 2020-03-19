@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit {
       this.confirmed = data.Confirmed;
       this.hospitalized = data.hospitalized;
       this.discharged = data.Discharged;
-      this.restablished = data.restablished;
+      this.restablished = data.Recovered;
       this.last_update = data.last_update;
     });
     this.apiService.get(this.statsEndpoint).subscribe((data: any) => {
