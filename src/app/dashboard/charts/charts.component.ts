@@ -13,7 +13,7 @@ export class ChartsComponent implements OnInit {
   govs = {
     Tataouine: 'تطاوين',
     Kebili: 'قبلي',
-    Medenine: 'مدنين',
+    Mednine: 'مدنين',
     Kasserine: 'القصرين',
     Gafsa: 'قفصة',
     Sfax: 'صفاقس',

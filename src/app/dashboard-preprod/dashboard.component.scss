@@ -125,14 +125,6 @@ tr td {
 }
 .td-help {
   .tool {
-    display: none;
-  }
-  position: relative;
-}
-
-.td-help:hover {
-  .tool {
-    display: block;
     position: absolute;
     background: white;
     z-index: 1;
@@ -140,4 +132,12 @@ tr td {
     padding: 5px;
     border-radius: 10px;
   }
+}
+
+
+.icon {
+  cursor: pointer;
+}
+.icon:hover {
+  color: #bcbcbc;
 }
