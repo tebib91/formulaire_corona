@@ -1,5 +1,5 @@
 import { ApiserviceService } from './../../apiservice.service';
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
 declare const Chart;
@@ -13,12 +13,12 @@ export class ChartsComponent implements OnInit {
   govs = {
     Tataouine: 'تطاوين',
     Kebili: 'قبلي',
-    Medenine: 'مدنين',
+    Mednine: 'مدنين',
     Kasserine: 'القصرين',
     Gafsa: 'قفصة',
     Sfax: 'صفاقس',
     'Sidi Bouzid': 'سيدي بوزيد',
-    'Gabès': 'قابس',
+    Gabès: 'قابس',
     Kairouan: 'القيروان',
     Tozeur: 'توزر',
     Kef: 'الكاف',
@@ -259,7 +259,15 @@ export class ChartsComponent implements OnInit {
     { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Symptômes signalés' }
   ];
   dataPie: any;
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Label[] = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July'
+  ];
   public lineChartLegend = true;
   public lineChartOptions = {
     legend: {
@@ -292,7 +300,7 @@ export class ChartsComponent implements OnInit {
           ticks: {
             maxRotation: 0,
             autoSkip: true,
-            maxTicksLimit: 4,
+            maxTicksLimit: 4
           },
           type: 'category',
           unit: 'day',
@@ -313,7 +321,7 @@ export class ChartsComponent implements OnInit {
           type: 'linear',
           ticks: {
             autoSkip: true,
-            maxTicksLimit: 5,
+            maxTicksLimit: 5
           }
         }
       ]
@@ -326,29 +334,33 @@ export class ChartsComponent implements OnInit {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
-      xAxes: [{
-        gridLines: {
-          display: false
+      xAxes: [
+        {
+          gridLines: {
+            display: false
+          }
         }
-      }],
-      yAxes: [{
-        ticks: {
-          beginAtZero: true,
-          // maxTicksLimit: 6,
-          stepSize: 1
-        },
-        gridLines: {
-          display: true
+      ],
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+            // maxTicksLimit: 6,
+            stepSize: 1
+          },
+          gridLines: {
+            display: true
+          }
         }
-      }]
+      ]
     },
     plugins: {
       datalabels: {
         anchor: 'end',
-        align: 'end',
+        align: 'end'
       }
     },
-    maintainAspectRatio: false,
+    maintainAspectRatio: false
   };
   public pieChartOptions = {
     responsive: true,
@@ -362,7 +374,7 @@ export class ChartsComponent implements OnInit {
         spanGaps: true
       }
     },
-    maintainAspectRatio: false,
+    maintainAspectRatio: false
   };
   colors: any;
   public lineColors: Color[] = [
@@ -401,159 +413,206 @@ export class ChartsComponent implements OnInit {
   ];
   public pieChartColors = [
     {
-      backgroundColor: ['#6342D2', '#59D5FD', '#FB6B80', '#FF9578', '#3BA756', '#6563FF', '#FCBE2C', '#0A2463', '#D8315B', '#006494', '#DC493A', '#4392F1'],
-    },
+      backgroundColor: [
+        '#6342D2',
+        '#59D5FD',
+        '#FB6B80',
+        '#FF9578',
+        '#3BA756',
+        '#6563FF',
+        '#FCBE2C',
+        '#0A2463',
+        '#D8315B',
+        '#006494',
+        '#DC493A',
+        '#4392F1'
+      ]
+    }
   ];
   public barChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Masculin' },
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Féminin' }
   ];
   // legends margin bottom
-  public pieChartPlugins = [{
-    beforeInit: (chart, options) => {
-      chart.legend.afterFit = function () {
-        this.height += 20; // must use `function` and not => because of `this`
-      };
+  public pieChartPlugins = [
+    {
+      beforeInit: (chart, options) => {
+        chart.legend.afterFit = function() {
+          this.height += 20; // must use `function` and not => because of `this`
+        };
+      }
     }
-  }];
+  ];
   data: any;
-  constructor(private apiService: ApiserviceService) { }
+  constructor(private apiService: ApiserviceService) {}
 
   ngOnInit() {
     // getting data for the chart
     if (this.dataSource) {
-      this.apiService.get(this.dataSource).subscribe(
-        (data: any) => {
-          console.log('data', data);
-          this.data = data.chartData ? data.chartData : data;
-          if (data.last_update) {
-            this.emitLastUpdate(data.last_update);
-          }
-          switch (this.chartLabel) {
-            case 'genderPie':
-              console.log('gender pie');
-              if (this.language === 'ar') {
-                this.lineChartLabels = ['ذكر', 'أنثى', 'معلومة غير متوفرة'];
-              }
-              this.pieData = [this.data.men, this.data.women, this.data.unknown ? this.data.unknown : 0];
-              console.log('gender pie data', this.data);
-              console.log('gender pie data for chart', this.pieData);
-              break;
-            case 'sourcePie':
-              this.lineChartLabels = ['Importé', 'Local'];
-              if (this.language === 'ar') {
-                this.lineChartLabels = ['مستوردة', 'محلية'];
-              }
-              this.pieData = [this.data.imported, this.data.local];
-              break;
-            case 'countriesPie':
-              let countrieslabels = [];
-              if (this.language === 'ar') {
-                console.log('labels in countries', Object.keys(this.data));
-                Object.keys(this.data).map(key => {
-                  if (this.countries[key]) {
-                    console.log('this.nationalities[key]', this.countries[key]);
-                    countrieslabels.push(this.countries[key]);
-                  } else {
-                    countrieslabels.push(key);
-                  }
-                });
-              } else {
-                countrieslabels = Object.keys(this.data);
-              }
-              console.log('countrieslabels', countrieslabels);
-              this.lineChartLabels = countrieslabels;
-              this.pieData = Object.values(this.data);
-              break;
-            case 'ageGenderRepartition':
-              let barData = [];
-              const dataWomen = [];
-              const dataMan = [];
+      this.apiService.get(this.dataSource).subscribe((data: any) => {
+        console.log('data', data);
+        this.data = data.chartData ? data.chartData : data;
+        if (data.last_update) {
+          this.emitLastUpdate(data.last_update);
+        }
+        switch (this.chartLabel) {
+          case 'genderPie':
+            console.log('gender pie');
+            if (this.language === 'ar') {
+              this.lineChartLabels = ['ذكر', 'أنثى', 'معلومة غير متوفرة'];
+            }
+            this.pieData = [
+              this.data.men,
+              this.data.women,
+              this.data.unknown ? this.data.unknown : 0
+            ];
+            console.log('gender pie data', this.data);
+            console.log('gender pie data for chart', this.pieData);
+            break;
+          case 'sourcePie':
+            this.lineChartLabels = ['Importé', 'Local'];
+            if (this.language === 'ar') {
+              this.lineChartLabels = ['مستوردة', 'محلية'];
+            }
+            this.pieData = [this.data.imported, this.data.local];
+            break;
+          case 'countriesPie':
+            let countrieslabels = [];
+            if (this.language === 'ar') {
+              console.log('labels in countries', Object.keys(this.data));
               Object.keys(this.data).map(key => {
-                console.log('data key', this.data[key]);
-                dataWomen.push(this.data[key].women ? this.data[key].women : 0);
-                dataMan.push(this.data[key].men ? this.data[key].men : 0);
+                if (this.countries[key]) {
+                  console.log('this.nationalities[key]', this.countries[key]);
+                  countrieslabels.push(this.countries[key]);
+                } else {
+                  countrieslabels.push(key);
+                }
               });
-              barData = [{data: dataMan, label: 'Male'}, {data: dataWomen, label: 'Female'}];
-              console.log('bar data', barData);
-              this.lineChartLabels = Object.keys(this.data);
-              this.lineChartData = barData;
-              break;
-            case 'casePerDay':
-              this.options.scales.xAxes[0].stacked = true;
-              this.options.scales.yAxes[0].ticks.beginAtZero = true;
-              let allLabels = [];
-              Object.keys(this.data).map((key: any) => {
-                allLabels = [...Object.keys(this.data[key])];
+            } else {
+              countrieslabels = Object.keys(this.data);
+            }
+            console.log('countrieslabels', countrieslabels);
+            this.lineChartLabels = countrieslabels;
+            this.pieData = Object.values(this.data);
+            break;
+          case 'ageGenderRepartition':
+            let barData = [];
+            const dataWomen = [];
+            const dataMan = [];
+            Object.keys(this.data).map(key => {
+              console.log('data key', this.data[key]);
+              dataWomen.push(this.data[key].women ? this.data[key].women : 0);
+              dataMan.push(this.data[key].men ? this.data[key].men : 0);
+            });
+            barData = [
+              { data: dataMan, label: 'Male' },
+              { data: dataWomen, label: 'Female' }
+            ];
+            console.log('bar data', barData);
+            this.lineChartLabels = Object.keys(this.data);
+            this.lineChartData = barData;
+            break;
+          case 'casePerDay':
+            this.options.scales.xAxes[0].stacked = true;
+            this.options.scales.yAxes[0].ticks.beginAtZero = true;
+            let allLabels = [];
+            Object.keys(this.data).map((key: any) => {
+              allLabels = [...Object.keys(this.data[key])];
+            });
+            // remove duplicate labels
+            const cleanLabels = allLabels.filter((elem, index, self) => {
+              return index === self.indexOf(elem);
+            });
+            // sorting labels
+            const sortedLabels = cleanLabels.sort(
+              (a: any, b: any) => b.date - a.date
+            );
+            this.lineChartLabels = sortedLabels;
+            const dataStacked = [];
+            if (this.data.Confirmed) {
+              dataStacked.push({
+                data: Object.values(this.data.Confirmed),
+                label: 'Cas Confirmés'
               });
-              // remove duplicate labels
-              const cleanLabels = allLabels.filter((elem, index, self) => {
-                return index === self.indexOf(elem);
+            }
+            if (this.data.Discharged) {
+              dataStacked.push({
+                data: Object.values(this.data.Discharged),
+                label: 'Cas Déchargés'
               });
-              // sorting labels
-              const sortedLabels = cleanLabels.sort((a: any, b: any) => b.date - a.date);
-              this.lineChartLabels = sortedLabels;
-              const dataStacked = [];
-              if (this.data.Confirmed) {
-                dataStacked.push({data: Object.values(this.data.Confirmed), label: 'Cas Confirmés'});
-              }
-              if (this.data.Discharged) {
-                dataStacked.push({data: Object.values(this.data.Discharged), label: 'Cas Déchargés'});
-              }
-              if (this.data.Recovered) {
-                dataStacked.push({data: Object.values(this.data.Recovred), label: 'Cas récovrés'});
-              }
-              if (this.data.Dead) {
-                dataStacked.push({data: Object.values(this.data.Confirmed), label: 'Cas mortes'});
-              }
-              console.log('dataa stacked', dataStacked);
-              console.log('labels', sortedLabels);
-              this.lineChartData = dataStacked;
-              break;
-            case 'nationalityPie':
-              let labels = [];
-              if (this.language === 'ar') {
-                Object.keys(this.data).map(key => {
-                  if (this.nationalities[key]) {
-                    labels.push(this.nationalities[key]);
-                  } else {
-                    labels.push(key);
-                  }
-                });
-              } else {
-                labels = Object.keys(this.data);
-              }
-              this.lineChartLabels = labels;
-              this.pieData = Object.values(this.data);
-              break;
-            case 'govsPie':
-              const templabels = [];
-              const dataGovs = [];
+            }
+            if (this.data.Recovered) {
+              dataStacked.push({
+                data: Object.values(this.data.Recovred),
+                label: 'Cas récovrés'
+              });
+            }
+            if (this.data.Dead) {
+              dataStacked.push({
+                data: Object.values(this.data.Confirmed),
+                label: 'Cas mortes'
+              });
+            }
+            console.log('dataa stacked', dataStacked);
+            console.log('labels', sortedLabels);
+            this.lineChartData = dataStacked;
+            break;
+          case 'nationalityPie':
+            let labels = [];
+            if (this.language === 'ar') {
               Object.keys(this.data).map(key => {
-                if (key.includes('Tunisia')) {
-                  const formattedKey = key.split(',')[0];
-                  if (this.language === 'ar') {
-                    if (this.govs[formattedKey]) {
-                      console.log('this.govs[formattedKey', this.govs[formattedKey]);
-                      templabels.push(this.govs[formattedKey]);
-                    } else {
-                      templabels.push(formattedKey);
-                    }
+                if (this.nationalities[key]) {
+                  labels.push(this.nationalities[key]);
+                } else {
+                  labels.push(key);
+                }
+              });
+            } else {
+              labels = Object.keys(this.data);
+            }
+            this.lineChartLabels = labels;
+            this.pieData = Object.values(this.data);
+            break;
+          case 'govsPie':
+            const templabels = [];
+            const dataGovs = [];
+            Object.keys(this.data).map(key => {
+              if (key.includes('Tunisia')) {
+                const formattedKey = key.split(',')[0];
+                if (this.language === 'ar') {
+                  if (this.govs[formattedKey]) {
+                    console.log(
+                      'this.govs[formattedKey',
+                      this.govs[formattedKey]
+                    );
+                    templabels.push(this.govs[formattedKey]);
                   } else {
                     templabels.push(formattedKey);
                   }
-                  dataGovs.push(this.data[key]);
+                } else {
+                  templabels.push(formattedKey);
                 }
-              });
-              this.pieData = dataGovs;
-              this.lineChartLabels = templabels;
-              break;
-            default:
-              console.log('default shit');
-              break;
-          }
-          this.loading = false;
-        });
+                dataGovs.push(this.data[key]);
+              } else if (this.govs[key]) {
+                if (this.language === 'ar') {
+                  console.log('this.govs[formattedKey', this.govs[key]);
+                  templabels.push(this.govs[key]);
+                } else {
+                  templabels.push(key);
+                }
+                dataGovs.push(this.data[key]);
+              }
+            });
+            console.log('temp labels govs', templabels);
+            this.pieData = dataGovs;
+            this.lineChartLabels = templabels;
+            break;
+          default:
+            console.log('default shit');
+            break;
+        }
+        this.loading = false;
+      });
     }
     switch (this.chartType) {
       case 'line':
@@ -584,18 +643,39 @@ export class ChartsComponent implements OnInit {
           generateLabels(chart) {
             const data = chart.data;
             if (data.labels.length && data.datasets.length) {
-              return data.labels.map(function (label, i) {
+              return data.labels.map(function(label, i) {
                 const meta = chart.getDatasetMeta(0);
                 const ds = data.datasets[0];
                 const arc = meta.data[i];
-                const custom = arc && arc.custom || {};
-                const getValueAtIndexOrDefault = Chart.helpers.getValueAtIndexOrDefault;
+                const custom = (arc && arc.custom) || {};
+                const getValueAtIndexOrDefault =
+                  Chart.helpers.getValueAtIndexOrDefault;
                 const arcOpts = chart.options.elements.arc;
-                const fill =
-                  custom.backgroundColor ? custom.backgroundColor : getValueAtIndexOrDefault(ds.backgroundColor, i, arcOpts.backgroundColor);
-                const stroke = custom.borderColor ? custom.borderColor : getValueAtIndexOrDefault(ds.borderColor, i, arcOpts.borderColor);
-                const bw = custom.borderWidth ? custom.borderWidth : getValueAtIndexOrDefault(ds.borderWidth, i, arcOpts.borderWidth);
-                const value = chart.config.data.datasets[arc._datasetIndex].data[arc._index];
+                const fill = custom.backgroundColor
+                  ? custom.backgroundColor
+                  : getValueAtIndexOrDefault(
+                      ds.backgroundColor,
+                      i,
+                      arcOpts.backgroundColor
+                    );
+                const stroke = custom.borderColor
+                  ? custom.borderColor
+                  : getValueAtIndexOrDefault(
+                      ds.borderColor,
+                      i,
+                      arcOpts.borderColor
+                    );
+                const bw = custom.borderWidth
+                  ? custom.borderWidth
+                  : getValueAtIndexOrDefault(
+                      ds.borderWidth,
+                      i,
+                      arcOpts.borderWidth
+                    );
+                const value =
+                  chart.config.data.datasets[arc._datasetIndex].data[
+                    arc._index
+                  ];
                 return {
                   text: label + ' : ' + value,
                   fillStyle: fill,
@@ -609,7 +689,7 @@ export class ChartsComponent implements OnInit {
               return [];
             }
           }
-        },
+        }
       };
     }
   }
