@@ -53,13 +53,13 @@
       <div class="col-md-3">
         <div class="card no-chart 0">
           <div class="card-header-number">
-            <span class="header-title">{{ "discharged.title" | translate }}</span>
-            <i class="material-icons" matTooltip="{{'discharged.help' | translate}}">
+            <span class="header-title">{{ "restablished.title" | translate }}</span>
+            <i class="material-icons" matTooltip="{{'restablished.help' | translate}}">
               help_outline
             </i>
           </div>
           <div class="">
-            <p class="number-no-chart">{{ discharged ? discharged : 0 }}</p>
+            <p class="number-no-chart">{{ restablished ? restablished : 0 }}</p>
             <p class="small">
               {{ "last_update.title" | translate }}:
               {{ last_update ? last_update : 5 - 3 - 2020 }}
@@ -71,14 +71,14 @@
         <div class="card no-chart mr-0">
           <div class="card-header-number">
             <span class="header-title">{{
-              "restablished.title" | translate
+              "dead.title" | translate
             }}</span>
-            <i class="material-icons" matTooltip="{{'restablished.help' | translate}}">
+            <i class="material-icons" matTooltip="{{'dead.help' | translate}}">
               help_outline
             </i>
           </div>
           <div class="">
-            <p class="number-no-chart">{{ restablished ? restablished : 0 }}</p>
+            <p class="number-no-chart">{{ dead ? dead : 0 }}</p>
             <p class="small">
               {{ "last_update.title" | translate }}:
               {{ last_update ? last_update : 5 - 3 - 2020 }}
