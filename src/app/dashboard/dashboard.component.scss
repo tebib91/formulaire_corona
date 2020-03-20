@@ -123,3 +123,21 @@ tr td {
 .rtl {
   direction: rtl;
 }
+.td-help {
+  .tool {
+    position: absolute;
+    background: white;
+    z-index: 1;
+    border: 1px solid gray;
+    padding: 5px;
+    border-radius: 10px;
+  }
+}
+
+
+.icon {
+  cursor: pointer;
+}
+.icon:hover {
+  color: #bcbcbc;
+}

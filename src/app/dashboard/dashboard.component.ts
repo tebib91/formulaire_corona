@@ -166,4 +166,7 @@ export class DashboardComponent implements OnInit {
     this.lastUpdates[label] = event;
     console.log('event :', this.lastUpdates);
   }
+  mapDisplay() {
+    this.cases.map(c => c.display = false);
+  }
 }
