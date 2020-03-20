@@ -16,7 +16,7 @@ th, td {
   flex-direction: column;
   margin: 15px 0;
 }
-.align{
+.align ~ .mat-radio-button {
   margin-left: 16px;
 }
 
@@ -25,15 +25,17 @@ th, td {
 }
 .title {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
 }
 .input-other {
   margin-left: 20px;
 }
 
 .label {
-  font-size: 16px;
+  font-size: 26px;
   font-weight: 500;
+  line-height: 28pt;
+  margin-bottom: 25px;
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
@@ -44,4 +46,38 @@ th, td {
 .slide-in-left {
   -webkit-animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+}
+
+.div-title {
+  background: #f8f8f8;
+  padding: 50px;
+  border-radius: 0 0 10px 10px;
+}
+.div-questions {
+  padding: 50px;
+  font-size: 20px;
+}
+.buttons {
+  padding: 20px;
+  text-align: center;
+  button {
+    font-size: 15px;
+
+  }
+}
+.question {
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  background: #3BA756;
+  border-radius: 10px 10px 0 0;
+  p {
+    color: white;
+    margin-bottom: 0;
+  }
+}
+.question-response {
+  border: 1px solid;
+  border-radius: 0 0 10px 10px;
 }
