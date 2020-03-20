@@ -230,7 +230,8 @@ export class ChartsComponent implements OnInit {
     Welsh: 'ويلزي',
     Yemenite: 'يمني',
     Zambian: 'زامبي',
-    Zimbabwean: 'زيمبابوي'
+    Zimbabwean: 'زيمبابوي',
+    Foreigner: 'أجنبي'
   };
   countries = {
     Egypt: 'مصر',

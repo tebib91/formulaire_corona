@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
   hospitalized: number;
   discharged: number;
   restablished: number;
+  dead: number;
   last_update: number;
   // table charts
   cases: any[];
@@ -100,6 +101,7 @@ export class DashboardComponent implements OnInit {
         this.hospitalized = data.hospitalized;
         this.discharged = data.Discharged;
         this.restablished = data.Recovered;
+        this.dead = data.Dead;
         this.last_update = data.last_update;
       });
     this.apiService.get(this.statsEndpoint).subscribe(
