@@ -20,7 +20,7 @@
   },
   "dead": {
     "title": "Morts",
-    "help": "Toute personne ont perdu la vie ayant été infectée auparavant par le SARS-COV-2"
+    "help": "Toute personne a décédé ayant été infectée auparavant par le SARS-COV-2"
   },
   "gender": {
     "title": "Genre"
