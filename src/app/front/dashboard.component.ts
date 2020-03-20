@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
   discharged: number;
   restablished: number;
   last_update: number;
+  dead;
   // table charts
   cases: any[];
   casesPaginator: any[];
@@ -68,6 +69,7 @@ export class DashboardComponent implements OnInit {
       this.discharged = data.Discharged;
       this.restablished = data.Recovered;
       this.last_update = data.last_update;
+      this.dead = data.Dead;
     });
     this.apiService.get(this.statsEndpoint).subscribe((data: any) => {
       this.quarantaine = data.quarantaine;
