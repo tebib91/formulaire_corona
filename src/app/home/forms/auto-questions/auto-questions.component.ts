@@ -27,6 +27,7 @@ export class AutoQuestionsComponent implements OnInit {
   show = false;
   toDisplay = 1;
   done = false;
+  index = 0;
 
   constructor(private fb: FormBuilder, private api: ApiserviceService, private snackBar: MatSnackBar) {
   }
@@ -102,23 +103,25 @@ export class AutoQuestionsComponent implements OnInit {
       length = this.medicalExtension.length;
     } else if (this.toDisplay === 3) {
       index = 'testingIndex';
+      hasError = this.testingForm.controls[this.testingDiag[this[index]].value].valid;
       length = this.testingDiag.length;
-      hasError = this.testingForm.controls[this.testingForm[this[index]].value].valid;
     }
-
     if (!hasError) {
       this.openSnackBar();
     }
     setTimeout(() => {
       if ((this[index] < length - 1) && hasError === true) {
         this[index]++;
+        this.index = this[index];
       } else {
         if (this.toDisplay !== 3 && hasError === true) {
           this.toDisplay++;
+          this.index = 0;
         }
       }
       if (this.toDisplay && this.testingIndex === length - 1) {
         this.done = true;
+
       }
     }, 200);
   }
@@ -134,9 +137,11 @@ export class AutoQuestionsComponent implements OnInit {
     }
     if (this[index] > 0) {
       this[index]--;
+      this.index = this[index];
     } else {
       if (this.toDisplay !== 1) {
         this.toDisplay--;
+        this.index = 0;
       }
     }
   }
@@ -149,7 +154,7 @@ export class AutoQuestionsComponent implements OnInit {
       testing: this.testingForm.value,
       specimens: this.specimensForm.value
     };
-    if (this.symptomForm.valid && this.medicalForm.valid && this.testingForm.valid && this.specimensForm.valid) {
+    if (true) {
       this.api.sendDataForm(data).subscribe(res => {
       });
     }
