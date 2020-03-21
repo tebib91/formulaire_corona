@@ -244,6 +244,8 @@ export class ChartsComponent implements OnInit {
     Libya: 'ليبيا',
     England: 'أنقلترا',
     Turkey: 'تركيا',
+    Vietnam: 'فيتنام',
+    Germany: 'ألمانيا',
     unknown: 'غير معروف'
   };
   loading = true;
