@@ -17,7 +17,6 @@ export class GoogleMapComponent implements OnInit {
   constructor(private apiService: ApiserviceService) { }
   ngOnInit() {
     this.apiService.get(this.dataSource).subscribe((data: any) => {
-      console.log('dataaa map', data);
       const tempMarkers = [];
       for (let marker of data) {
         tempMarkers.push({lat: marker.lat, lng: marker.long});

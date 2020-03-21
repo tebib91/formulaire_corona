@@ -110,8 +110,6 @@ export class AutoQuestionsComponent implements OnInit {
       this.openSnackBar();
     }
     setTimeout(() => {
-      console.log(index + ':', this[index], 'To Display :', this.toDisplay);
-      console.log('hasError :', hasError);
       if ((this[index] < length - 1) && hasError === true) {
         this[index]++;
       } else {
@@ -134,7 +132,6 @@ export class AutoQuestionsComponent implements OnInit {
     } else if (this.toDisplay === 3) {
       index = 'testingIndex';
     }
-    console.log(index + ':', this[index], 'To Display :', this.toDisplay);
     if (this[index] > 0) {
       this[index]--;
     } else {
@@ -154,7 +151,6 @@ export class AutoQuestionsComponent implements OnInit {
     };
     if (this.symptomForm.valid && this.medicalForm.valid && this.testingForm.valid && this.specimensForm.valid) {
       this.api.sendDataForm(data).subscribe(res => {
-        console.log(res);
       });
     }
   }

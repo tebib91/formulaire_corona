@@ -21,14 +21,12 @@ export class AutocompleteComponent implements OnInit {
   ngOnInit() {
 
     this.zoom = 1000;
-    console.log('data', this.data);
 
     setTimeout(() => {
     if (this.data) {
       this.latitude = this.data.latitude;
       this.longitude = this.data.longitude;
       this.placesName = this.data.adress ? this.data.adress : this.data.workLocation;
-      console.log('this.latitude', this.latitude, 'this.longitude', this.longitude, 'this.placesName ', this.placesName);
 
     }
 
@@ -48,23 +46,19 @@ export class AutocompleteComponent implements OnInit {
   }
 
   onAutocompleteSelected(result: PlaceResult) {
-    console.log('onAutocompleteSelected: ', result);
     this.placesName = result.formatted_address;
     this.addressChosen = true;
   }
 
   onLocationSelected(location: Location) {
-    console.log('onLocationSelected: ', location);
     this.latitude = location.latitude;
     this.longitude = location.longitude;
     this.addressChosen = true;
   }
 
   onGermanAddressMapped($event: GermanAddress) {
-    console.log('onGermanAddressMapped', $event);
   }
   onKey($event) {
-    console.log($event);
 
   }
   ngAfterContentInit(): void {
