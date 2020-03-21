@@ -1,16 +1,33 @@
 <div>
-  <div>
+  <div *ngIf="toDisplay == 0">
+    <div class="container informations" >
+      <p class="prem-title">Préaumbule</p>
+      <p class="prem-paragraph">
+        « L’application est fournie à titre gratuit, en l’état, uniquement à des fins d’information pour contribuer à fluidifier la prise en charge des personnes par les services d’urgences pendant l’épidémie de Coronavirus COVID-19. L’exhaustivité, l’exactitude, le caractère à jour des informations et contenus mis à disposition dans cette application, ou leur adéquation à des finalités particulières, ne sont pas garantis.
+        <br>
+        <br>
+        L’utilisateur reconnaît que l’application y compris le test et les autres informations qu’elle contient, ne constituent en aucun cas un avis, une recommandation, un examen, un diagnostic, une prescription, ou tout autre acte de nature médicale notamment établi ou réalisé par un médecin ou un pharmacien. L’utilisation de l’application et de son contenu ne remplace en aucun cas le conseil nécessaire donné par votre médecin ou votre pharmacien ou tout autre professionnel de santé compétent dans chaque cas particulier. Tout examen ou décision de l’utilisateur doit être réalisé ou prise de manière autonome sur la base de l’information scientifique et clinique pertinente, de la notice officielle du produit concerné le cas échéant et en cas de doute, en consultant un médecin compétent.
+        <br>
+        <br>
+        Les informations mises à disposition dans le cadre de l’application servent uniquement d’informations de premier niveau. L’absence d’avertissement au sujet d’un risque ne signifie pas qu’il n’existe pas. »
+      </p>
+    </div>
+    <button class="btn-prem" mat-flat-button (click)="gotToTest()">Démarrer le test <mat-icon>arrow_forward</mat-icon></button>
+  </div>
+
+  <div class="questionary" *ngIf="toDisplay !== 0">
     <!--Question-->
     <div class="form-container">
       <!--SYMPTOMS-->
-      <div class="question"><p class="title">Queestionnaire {{toDisplay}}, Question {{index + 1}} :</p></div>
+      <div class="question"><p class="title">Questionnaire {{toDisplay}} :</p></div>
       <form [formGroup]="symptomForm" *ngIf="toDisplay == 1">
         <div class="question-response">
+          <p class="quest-previous d-flex align-items-center" (click)="previous()"><mat-icon>keyboard_arrow_left</mat-icon> {{' Question '+ (index + 1)  + '/' + length}}</p>
           <div *ngFor="let item of symptomValues; let i = index">
             <div class="" *ngIf="i == symptomsIndex">
               <div class="div-title"><p class="label slide-in-left">{{item.label}}</p></div>
               <div class="div-questions">
-                <div [ngSwitch]="item.type">
+                <div [ngSwitch]="item.type" class="slide-in-left">
                   <div *ngSwitchCase="'number'">
                     <mat-radio-group formControlName="{{item.value}}" (change)="next()" class="align-column">
                       <mat-radio-button [value]=0>Oui / نعم</mat-radio-button>
@@ -127,9 +144,10 @@
       <!--FIN SPECIMENS -->
     </div>
     <div class="buttons">
-      <button mat-stroked-button class="mr-2" (click)="previous()">Précédent</button>
-      <button mat-stroked-button (click)="next()" *ngIf="!done">Suivant</button>
-      <button mat-stroked-button (click)="save()" color="primary" *ngIf="done">Confirmer</button>
+<!--      <button mat-stroked-button class="mr-2" (click)="previous()">Précédent</button>-->
+      <button mat-stroked-button (click)="done ? save() : next()" [ngStyle]="{'color' : done ? '#0069cc' : ''}"
+              class="next-button">{{ done ? 'Confirmer' : 'Suivant'}}</button>
+<!--      <button mat-stroked-button (click)="save()" color="primary" *ngIf="done">Confirmer</button>-->
     </div>
 
   </div>
