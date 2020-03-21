@@ -244,6 +244,8 @@ export class ChartsComponent implements OnInit {
     Libya: 'ليبيا',
     England: 'أنقلترا',
     Turkey: 'تركيا',
+    Vietnam: 'فيتنام',
+    Germany: 'ألمانيا',
     unknown: 'غير معروف'
   };
   loading = true;
@@ -451,14 +453,12 @@ export class ChartsComponent implements OnInit {
     // getting data for the chart
     if (this.dataSource) {
       this.apiService.get(this.dataSource).subscribe((data: any) => {
-        console.log('data', data);
         this.data = data.chartData ? data.chartData : data;
         if (data.last_update) {
           this.emitLastUpdate(data.last_update);
         }
         switch (this.chartLabel) {
           case 'genderPie':
-            console.log('gender pie');
             if (this.language === 'ar') {
               this.lineChartLabels = ['ذكر', 'أنثى', 'معلومة غير متوفرة'];
             }
@@ -467,8 +467,6 @@ export class ChartsComponent implements OnInit {
               this.data.women,
               this.data.unknown ? this.data.unknown : 0
             ];
-            console.log('gender pie data', this.data);
-            console.log('gender pie data for chart', this.pieData);
             break;
           case 'sourcePie':
             this.lineChartLabels = ['Importé', 'Local'];
@@ -480,10 +478,8 @@ export class ChartsComponent implements OnInit {
           case 'countriesPie':
             let countrieslabels = [];
             if (this.language === 'ar') {
-              console.log('labels in countries', Object.keys(this.data));
               Object.keys(this.data).map(key => {
                 if (this.countries[key]) {
-                  console.log('this.nationalities[key]', this.countries[key]);
                   countrieslabels.push(this.countries[key]);
                 } else {
                   countrieslabels.push(key);
@@ -492,7 +488,6 @@ export class ChartsComponent implements OnInit {
             } else {
               countrieslabels = Object.keys(this.data);
             }
-            console.log('countrieslabels', countrieslabels);
             this.lineChartLabels = countrieslabels;
             this.pieData = Object.values(this.data);
             break;
@@ -501,7 +496,6 @@ export class ChartsComponent implements OnInit {
             const dataWomen = [];
             const dataMan = [];
             Object.keys(this.data).map(key => {
-              console.log('data key', this.data[key]);
               dataWomen.push(this.data[key].women ? this.data[key].women : 0);
               dataMan.push(this.data[key].men ? this.data[key].men : 0);
             });
@@ -509,7 +503,6 @@ export class ChartsComponent implements OnInit {
               { data: dataMan, label: 'Male' },
               { data: dataWomen, label: 'Female' }
             ];
-            console.log('bar data', barData);
             this.lineChartLabels = Object.keys(this.data);
             this.lineChartData = barData;
             break;
@@ -554,8 +547,6 @@ export class ChartsComponent implements OnInit {
                 label: 'Cas mortes'
               });
             }
-            console.log('dataa stacked', dataStacked);
-            console.log('labels', sortedLabels);
             this.lineChartData = dataStacked;
             break;
           case 'nationalityPie':
@@ -582,10 +573,6 @@ export class ChartsComponent implements OnInit {
                 const formattedKey = key.split(',')[0];
                 if (this.language === 'ar') {
                   if (this.govs[formattedKey]) {
-                    console.log(
-                      'this.govs[formattedKey',
-                      this.govs[formattedKey]
-                    );
                     templabels.push(this.govs[formattedKey]);
                   } else {
                     templabels.push(formattedKey);
@@ -596,7 +583,6 @@ export class ChartsComponent implements OnInit {
                 dataGovs.push(this.data[key]);
               } else if (this.govs[key]) {
                 if (this.language === 'ar') {
-                  console.log('this.govs[formattedKey', this.govs[key]);
                   templabels.push(this.govs[key]);
                 } else {
                   templabels.push(key);
@@ -604,12 +590,10 @@ export class ChartsComponent implements OnInit {
                 dataGovs.push(this.data[key]);
               }
             });
-            console.log('temp labels govs', templabels);
             this.pieData = dataGovs;
             this.lineChartLabels = templabels;
             break;
           default:
-            console.log('default shit');
             break;
         }
         this.loading = false;
@@ -632,7 +616,6 @@ export class ChartsComponent implements OnInit {
         this.pieData = [300, 500];
         break;
       default:
-        console.log('no options for this');
         break;
     }
     if (this.legend) {

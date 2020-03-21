@@ -30,8 +30,6 @@ export class BackOfficeComponent implements OnInit {
     console.warn(this.updateForm.value);
     // /api/?f=stats
     this.apiService.updateback(this.updateForm.value).subscribe(value => {
-      console.log('value update', value);
-
     });
 
   }

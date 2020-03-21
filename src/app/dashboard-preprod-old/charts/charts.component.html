@@ -1,0 +1,9 @@
+<div class="full-size" *ngIf="!loading">
+
+  <canvas baseChart [data]="pieData" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="options"
+    [colors]="colors" [plugins]="pieChartPlugins" [legend]="true" [chartType]="chartType">
+  </canvas>
+
+</div>
+
+
