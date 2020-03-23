@@ -6,8 +6,11 @@
 canvas {
   height: 100%;
 }
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+@media (min-width: 768px) and (max-width: 1024px)  {
   //CSS
+  .full-size {
+    margin-top: 0px !important;
+  }
 }
 
 /*

@@ -248,8 +248,8 @@
     <div class="row">
       <div class="col-md-3">
         <div class="card-chart cases-card">
-          <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
-            <span class="header-title-charts">{{
+          <div class="chart-header nationality" [ngClass]="{ rtl: language === 'ar' }">
+            <span class="header-title-charts ">{{
               "nationality.title" | translate
             }}</span>
             <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['nationalityPie'] ? lastUpdates['nationalityPie'] : '-'}}</p>
@@ -302,7 +302,7 @@
       </div>
       <div class="col-md-3">
         <div class="card-chart cases-card">
-          <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
+          <div class="chart-header d-inline-css" [ngClass]="{ rtl: language === 'ar' }">
             <span class="header-title-charts">{{
               "source.title" | translate
             }}</span>
@@ -372,7 +372,7 @@
       </div>
       <div class="col-md-4">
         <div class="card-chart cases-card">
-          <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
+          <div class="chart-header d-inline-css" [ngClass]="{ rtl: language === 'ar' }">
             <span class="header-title-charts">{{
               "govs.title" | translate
             }}</span>
