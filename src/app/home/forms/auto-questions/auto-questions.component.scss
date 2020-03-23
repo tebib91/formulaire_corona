@@ -16,7 +16,7 @@ th, td {
   flex-direction: column;
   margin: 15px 0;
 }
-.align{
+.align ~ .mat-radio-button {
   margin-left: 16px;
 }
 
@@ -25,15 +25,17 @@ th, td {
 }
 .title {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
 }
 .input-other {
   margin-left: 20px;
 }
 
 .label {
-  font-size: 16px;
+  font-size: 26px;
   font-weight: 500;
+  line-height: 28pt;
+  margin-bottom: 25px;
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
@@ -44,4 +46,75 @@ th, td {
 .slide-in-left {
   -webkit-animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+}
+
+.div-title {
+  background: #f8f8f8;
+  padding: 5px 40px 30px 50px;
+  border-radius: 0 0 10px 10px;
+}
+.div-questions {
+  padding: 50px;
+  font-size: 20px;
+}
+.buttons {
+  padding: 20px;
+  text-align: center;
+}
+.question {
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  background: #c33f3f;
+  border-radius: 10px 10px 0 0;
+  p {
+    color: white;
+    margin-bottom: 0;
+  }
+}
+.question-response {
+  border: 10px solid #f8f8f8;
+  border-radius: 0 0 10px 10px;
+}
+.next-button {
+  background-color: #f8f8f8;
+  border-color: #f8f8f8;
+  color: #333;
+  transition: none;
+  min-width: 150px;
+  height: 56px;
+  line-height: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.quest-previous {
+  background-color: #f8f8f8;
+  font-weight: 500;
+  color: #007bff;
+  font-size: 15px;
+  margin-bottom: 0;
+  padding: 20px 40px 0 44px;
+  cursor: pointer;
+}
+.quest-previous:hover {
+  color: #84c3ff;
+}
+.informations {
+  background-color: #f8f8f8;
+  margin-top: 80px;
+  padding: 45px;}
+
+.prem-title {
+  color: #0069cc;
+  font-size: 16px;
+  font-weight: 500;
+}
+.btn-prem {
+  background-color: #0069cc;
+  color: white;
+  float: right;
+  padding: 10px 40px;
+  font-size: 20px;
+  margin-top: 20px;
 }

@@ -82,9 +82,7 @@ export class FormsComponent implements OnInit {
       testing: this.testingForm.value,
       specimens: this.specimensForm.value
     };
-    console.log('data :', data);
     this.api.sendDataForm(data).subscribe(res => {
-      console.log(res);
     });
   }
   specifyGroup(): FormGroup {

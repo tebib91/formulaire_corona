@@ -173,15 +173,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.nationality = nationality;
     this.profileForm.get('location').valueChanges.subscribe(value => {
-      console.log('value  on init', value);
     });
 
 
     this.routeSub = this.route.params.subscribe(params => {
       this.case = +params['id'];
-      console.log(params['id']) //log the value of id
       if (this.case) {
-        console.log('here  id');
 
         this.getData(params['id']);
       }
@@ -215,7 +212,6 @@ export class HomeComponent implements OnInit {
       data
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('resultat', result);
 
       if (result && result.name) {
         (document.getElementById(id) as HTMLInputElement).value = result.name;
@@ -259,26 +255,22 @@ export class HomeComponent implements OnInit {
             break;
         }
       }
-      console.log('The dialog was closed', result);
     });
   }
 
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm.value);
     if (this.case) {
       this.profileForm.patchValue({
         case: this.case
       });
     }
     this.apiService.Send(this.profileForm.value).subscribe(value => {
-      console.log('response', value);
       const dialogRef = this.dialog.open(DialogsucessComponent, {
         panelClass: 'confirmed'
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('resultat', result);
         this.profileForm.reset();
       });
 
@@ -286,7 +278,6 @@ export class HomeComponent implements OnInit {
   }
   getData(value) {
     this.apiService.getData(value).subscribe(value => {
-      console.log('data from get', value);
       this.patchValue(value);
     });
   }

@@ -25,8 +25,10 @@ export class AutoQuestionsComponent implements OnInit {
   testingIndex = 0;
   specimensIndex = 0;
   show = false;
-  toDisplay = 1;
+  toDisplay = 0;
   done = false;
+  index = 0;
+  length = 0;
 
   constructor(private fb: FormBuilder, private api: ApiserviceService, private snackBar: MatSnackBar) {
   }
@@ -78,6 +80,7 @@ export class AutoQuestionsComponent implements OnInit {
       }
     });
     this.specimensForm = this.fb.group(specimen);
+    this.length = this.symptomValues.length;
   }
 
 
@@ -91,36 +94,35 @@ export class AutoQuestionsComponent implements OnInit {
     let hasError = false;
     if (this.toDisplay === 1) {
       index = 'symptomsIndex';
-      length = this.symptomValues.length;
+      this.length = this.symptomValues.length;
       hasError = this.symptomForm.controls[this.symptomValues[this[index]].value].valid;
     } else if (this.toDisplay === 2) {
       index = 'medicalIndex';
       hasError = this.medicalForm.controls[this.medicalExtension[this[index]].value].valid;
-      // console.log('object :', this.medicalForm.controls[this.medicalExtension[this[index]].value].valid);
-      // console.log('valid :', this.medicalForm.get[this.medicalExtension[this[index]].value].valid);
-      // console.log('validator :', this.medicalForm.controls[this.medicalExtension[this[index]].value]);
-      length = this.medicalExtension.length;
+      this.length = this.medicalExtension.length;
     } else if (this.toDisplay === 3) {
       index = 'testingIndex';
-      length = this.testingDiag.length;
-      hasError = this.testingForm.controls[this.testingForm[this[index]].value].valid;
+      hasError = this.testingForm.controls[this.testingDiag[this[index]].value].valid;
+      this.length = this.testingDiag.length;
     }
-
     if (!hasError) {
       this.openSnackBar();
     }
     setTimeout(() => {
       console.log(index + ':', this[index], 'To Display :', this.toDisplay);
       console.log('hasError :', hasError);
-      if ((this[index] < length - 1) && hasError === true) {
+      if ((this[index] < this.length - 1) && hasError === true) {
         this[index]++;
+        this.index = this[index];
       } else {
         if (this.toDisplay !== 3 && hasError === true) {
           this.toDisplay++;
+          this.index = 0;
         }
       }
-      if (this.toDisplay && this.testingIndex === length - 1) {
+      if (this.toDisplay && this.testingIndex === this.length - 1) {
         this.done = true;
+
       }
     }, 200);
   }
@@ -137,9 +139,11 @@ export class AutoQuestionsComponent implements OnInit {
     console.log(index + ':', this[index], 'To Display :', this.toDisplay);
     if (this[index] > 0) {
       this[index]--;
+      this.index = this[index];
     } else {
-      if (this.toDisplay !== 1) {
+      if (this.toDisplay !== 0) {
         this.toDisplay--;
+        this.index = 0;
       }
     }
   }
@@ -152,7 +156,7 @@ export class AutoQuestionsComponent implements OnInit {
       testing: this.testingForm.value,
       specimens: this.specimensForm.value
     };
-    if (this.symptomForm.valid && this.medicalForm.valid && this.testingForm.valid && this.specimensForm.valid) {
+    if (true) {
       this.api.sendDataForm(data).subscribe(res => {
         console.log(res);
       });
@@ -172,5 +176,9 @@ export class AutoQuestionsComponent implements OnInit {
       sentCDC: false,
       CDCResult: ['', Validators.required]
     });
+  }
+
+  gotToTest() {
+    this.toDisplay++;
   }
 }

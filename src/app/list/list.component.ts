@@ -13,7 +13,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.getAll().subscribe(data => {
-      console.log('data', data);
       this.data = data;
 
     })

@@ -50,7 +50,6 @@ export class DashboardComponent implements OnInit {
     private translate: TranslateService,
     private route: ActivatedRoute
   ) {
-    console.log('Called Constructor');
     this.route.queryParams.subscribe(params => {
       if (params.lang) {
         this.language = params.lang;
@@ -92,7 +91,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getServerData(event?) {
-    console.log(event);
     if (event) {
       this.pageSize = event.pageSize;
       this.pageIndex = event.pageIndex;
@@ -106,7 +104,6 @@ export class DashboardComponent implements OnInit {
         this.casesPaginator.push(item);
       }
     });
-    console.log('casesPaginator', this.casesPaginator);
   }
 
   goTo(route) {
@@ -114,7 +111,6 @@ export class DashboardComponent implements OnInit {
   }
 
   changeLaneguage(event) {
-    console.log('change', event.value);
     this.translate.use(event.value);
   }
 }
