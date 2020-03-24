@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MedicalExtension, SymptomForm, Testing, Specimens} from '../symptom-form';
+import {MedicalExtension, SymptomForm, Testing, Specimens, SymptomsList} from '../symptom-form';
 import {ApiserviceService} from '../../../apiservice.service';
 
 
@@ -14,7 +14,7 @@ export class FormComponent implements OnInit {
   medicalForm: FormGroup;
   testingForm: FormGroup;
   specimensForm: FormGroup;
-  symptomValues = SymptomForm;
+  symptomValues = SymptomsList;
   medicalExtension = MedicalExtension;
   testingDiag = Testing;
   preExisting: number;
@@ -49,14 +49,16 @@ export class FormComponent implements OnInit {
     // testing Form
     const testing = {};
     this.testingDiag.forEach(input => {
-      if (input.type === 'group') {
-        testing[input.value] = this.fb.group({
-          firstValue: ['', Validators.required],
-          secondValue: ['', Validators.required]
-        });
-      } else if (input.type === 'number') {
-        testing[input.value] = input.value === 'other' ? new FormControl('') :
-          new FormControl('', [Validators.required]);
+      if (input.value !== 'email') {
+        if (input.type === 'group') {
+          testing[input.value] = this.fb.group({
+            firstValue: ['', Validators.required],
+            secondValue: ['', Validators.required]
+          });
+        } else if (input.type === 'number') {
+          testing[input.value] = input.value === 'other' ? new FormControl('') :
+            new FormControl('', [Validators.required]);
+        }
       }
     });
     this.testingForm = this.fb.group(testing);

@@ -4,6 +4,7 @@
     <table>
       <tr>
         <th></th>
+        <th>E-mail</th>
         <th>Age</th>
         <th>Poids</th>
         <th>Taille</th>
@@ -14,6 +15,7 @@
       </tr>
       <tr class="tr-content" *ngFor="let item of declarationsList; let i = index" (click)="openDetailDialog(item)">
         <td>{{i + 1 }}</td>
+        <td>{{item.email ? item.email : '-' }}</td>
         <td>{{item.symptom.age ? item.symptom.age : '-'}}</td>
         <td>{{item.symptom.size ? item.symptom.size : '-'}}</td>
         <td>{{item.symptom.weight ? item.symptom.size : '-'}}</td>

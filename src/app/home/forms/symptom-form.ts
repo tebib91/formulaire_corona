@@ -127,12 +127,7 @@ export const MedicalExtension = [
     type: 'group'
   },
   {
-    label: 'Autre maladie chronique / إذا كانت الأنثى حامل حاليا',
-    value: 'pregnant',
-    type: 'number'
-  },
-  {
-    label: 'Si femelle, actuellement enceinte / إذا كانت الأنثى حامل حاليا',
+    label: 'Si c\'est une femme , actuellement enceinte / إذا كانت الأنثى حامل حاليا',
     value: 'pregnant',
     type: 'number'
   },
@@ -208,7 +203,12 @@ export const Testing = [
     value: 'other',
     type: 'group',
     valueType: 'string'
-  }
+  },
+  {
+    label: 'Email / البريد الإلكتروني',
+    value: 'email',
+    type: 'string'
+  },
 ];
 
 export const Specimens = [
@@ -232,4 +232,73 @@ export const Specimens = [
     value: 'other',
     type: 'string'
   },
+
+];
+
+export const SymptomsList = [
+  {
+    label: 'Fièvre / حمى (>38°C)',
+    value: 'fever',
+    type: 'number'
+  },
+  {
+    label: 'Fièvre subjective / حمى ذاتية',
+    value: 'subjectiveFever',
+    type: 'number'
+  },
+  {
+    label: 'Frissons / قشعريرة',
+    value: 'chills',
+    type: 'number'
+  },
+  {
+    label: 'Douleur musculaire / آلام على مستوى العضلات',
+    value: 'muscleAches',
+    type: 'number'
+  },
+  {
+    label: 'écoulement nasale / سيلان الأنف',
+    value: 'runnyNose',
+    type: 'number'
+  },
+  {
+    label: 'Maux de gorge / إلتهاب في الحلق',
+    value: 'soreThroat',
+    type: 'number'
+  },
+  {
+    label: 'Toux / سعال',
+    value: 'cough',
+    type: 'number'
+  },
+  {
+    label: 'Essoufflement / ضيق في التنفس',
+    value: 'shortnessBreath',
+    type: 'number'
+  },
+  {
+    label: 'Nausées ou vomissements / غثيان أو تقيء',
+    value: 'nauseaVomiting',
+    type: 'number'
+  },
+  {
+    label: 'Maux de tête / صداع ',
+    value: 'headache',
+    type: 'number'
+  },
+  {
+    label: 'Douleur abdominale / وجع على مستوى البطن',
+    value: 'abdominalPain',
+    type: 'number'
+  },
+  {
+    label: 'Diarrhée / إسهال',
+    value: 'diarrhea',
+    type: 'number'
+  },
+  {
+    label: 'Autres symptômes, précisez / أعراض أخرى ، حدد',
+    value: 'other',
+    type: 'string'
+  }
 ];

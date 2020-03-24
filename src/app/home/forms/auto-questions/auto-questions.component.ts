@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MedicalExtension, Specimens, SymptomForm, Testing} from '../symptom-form';
+import {MedicalExtension, SymptomForm, Testing} from '../symptom-form';
 import {ApiserviceService} from '../../../apiservice.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
@@ -14,11 +14,9 @@ export class AutoQuestionsComponent implements OnInit {
   symptomForm: FormGroup;
   medicalForm: FormGroup;
   testingForm: FormGroup;
-  specimensForm: FormGroup;
   symptomValues = SymptomForm;
   medicalExtension = MedicalExtension;
   testingDiag = Testing;
-  specimen = Specimens;
   symptomsIndex = 0;
   medicalIndex = 0;
   testingIndex = 0;
@@ -66,7 +64,7 @@ export class AutoQuestionsComponent implements OnInit {
             secondValue: ['', Validators.required]
           });
         }
-      } else if (input.type === 'number') {
+      } else if (input.type === 'number' || input.type === 'string') {
         testing[input.value] = input.value === 'other' ? new FormControl('') :
           new FormControl('', [Validators.required]);
       }
