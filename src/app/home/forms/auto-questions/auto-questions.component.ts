@@ -18,13 +18,10 @@ export class AutoQuestionsComponent implements OnInit {
   symptomValues = SymptomForm;
   medicalExtension = MedicalExtension;
   testingDiag = Testing;
-  preExisting: number;
   specimen = Specimens;
   symptomsIndex = 0;
   medicalIndex = 0;
   testingIndex = 0;
-  specimensIndex = 0;
-  show = false;
   toDisplay = 0;
   done = false;
   index = 0;
@@ -58,28 +55,23 @@ export class AutoQuestionsComponent implements OnInit {
     const testing = {};
     this.testingDiag.forEach(input => {
       if (input.type === 'group') {
-        testing[input.value] = this.fb.group({
-          firstValue: ['', Validators.required],
-          secondValue: ['', Validators.required]
-        });
+        if (input.value === 'other') {
+          testing[input.value] = this.fb.group({
+            firstValue: [''],
+            secondValue: ['']
+          });
+        } else {
+          testing[input.value] = this.fb.group({
+            firstValue: ['', Validators.required],
+            secondValue: ['', Validators.required]
+          });
+        }
       } else if (input.type === 'number') {
         testing[input.value] = input.value === 'other' ? new FormControl('') :
           new FormControl('', [Validators.required]);
       }
     });
     this.testingForm = this.fb.group(testing);
-
-    // Specimens Form
-    const specimen = {};
-    this.specimen.forEach(input => {
-      if (input.type === 'object') {
-        specimen[input.value] = this.specimensGroup();
-      } else {
-        specimen[input.value] = input.value === 'other' ? new FormControl('') :
-          new FormControl('', [Validators.required]);
-      }
-    });
-    this.specimensForm = this.fb.group(specimen);
     this.length = this.symptomValues.length;
   }
 
@@ -154,10 +146,14 @@ export class AutoQuestionsComponent implements OnInit {
       medical: this.medicalForm.value,
       testing: this.testingForm.value,
     };
-    if (true) {
+    const validate = this.symptomForm.valid && this.medicalForm.valid && this.testingForm.valid;
+    if (validate) {
       this.api.sendDataForm(data).subscribe(res => {
         console.log(res);
+        this.snackBar.open('Merci pour vos réponse, formulaire ajouté avec succès', '', {duration: 5000, panelClass : 'successSnack'});
       });
+    } else {
+      this.snackBar.open('veuillez remplir tous les champs', 'Close', {duration: 5000});
     }
   }
 
@@ -165,16 +161,7 @@ export class AutoQuestionsComponent implements OnInit {
     return this.fb.group({radio: ['', Validators.required], specify: ['']});
   }
 
-  specimensGroup(): FormGroup {
-    return this.fb.group({
-      specimenID: ['', Validators.required],
-      DateCollected: ['', Validators.required],
-      labTested: false,
-      labResult: ['', Validators.required],
-      sentCDC: false,
-      CDCResult: ['', Validators.required]
-    });
-  }
+
 
   gotToTest() {
     this.toDisplay++;
