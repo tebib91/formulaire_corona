@@ -19,6 +19,7 @@ export class ChartsComponent implements OnInit {
     Sfax: 'صفاقس',
     'Sidi Bouzid': 'سيدي بوزيد',
     Gabès: 'قابس',
+    Gabes: 'قابس',
     Kairouan: 'القيروان',
     Tozeur: 'توزر',
     Kef: 'الكاف',
@@ -246,7 +247,8 @@ export class ChartsComponent implements OnInit {
     Turkey: 'تركيا',
     Vietnam: 'فيتنام',
     Germany: 'ألمانيا',
-    unknown: 'غير معروف'
+    unknown: 'غير معروف',
+    America: 'أمريكا'
   };
   loading = true;
   @Input() chartType: string;
@@ -428,7 +430,11 @@ export class ChartsComponent implements OnInit {
         '#D8315B',
         '#006494',
         '#DC493A',
-        '#4392F1'
+        '#4392F1',
+        '#8C1E07',
+        '#6CD13D',
+        '#179216',
+        '#B477D9',
       ]
     }
   ];

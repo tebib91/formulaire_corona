@@ -90,8 +90,42 @@ tr td {
     max-width: 1610px !important;
   }
 }
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+@media (min-width: 768px) and (max-width: 1024px)  {
   //CSS
+  .d-inline-css {
+    display: inline;
+  }
+  .card {
+    padding: 7px;
+  }
+  .card-chart {
+    padding: 6px;
+  }
+  .header-title-charts {
+    font-size: 9px;
+  }
+  .header-title {
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+  .number-no-chart {
+    font-size: 1.3em ;
+    margin-bottom: 3px;
+  }
+  .small {
+    font-size: 65%;
+    margin-bottom: 0px;
+  }
+  tr > th{
+    font-size: 0.7em;
+  }
+  .legends {
+    text-align: center !important;
+  }
+  .legend-label {
+    font-size: 9px;
+    margin-bottom: 6px;
+  }
 }
 
 /*
