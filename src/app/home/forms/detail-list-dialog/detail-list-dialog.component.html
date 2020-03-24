@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="mt-5">
+    <p class="title">Détail et symptomes de l'individu :</p>
+    <div class="row mb-3 ml-3" *ngFor="let item of symptomsList">
+      <div class="col-8 attribute">
+        {{item.label}} :
+      </div>
+      <div class="col-4 value" [ngStyle]="{'color' : colors(data.symptom[item.value])}">
+        {{convertSymptom(data.symptom[item.value])}}
+        <span>{{item.value == 'age' ? 'ans' : item.value == 'size' ? 'Cm' : item.value == 'weight' ? 'Kg' : ''}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <p class="title">Conditions médicales préexistantes :</p>
+    <div class="row mb-3 ml-3" *ngFor="let item of medicalList">
+      <div class="col-8 attribute">
+        {{item.label}} :
+      </div>
+      <div class="col-4 value" [ngStyle]="{'color' : colors(data.medical[item.value])}">
+        <div [ngSwitch]="item.type">
+          <div *ngSwitchCase="'number'">
+            {{convertSymptom(data.medical[item.value])}}
+          </div>
+          <div *ngSwitchCase="'group'">
+             <p> {{data.medical[item.value] ? convertSymptom(data.medical[item.value][item.valueRadioBox]) : '-'}}</p>
+              <p *ngIf="data.medical[item.value][item.valueRadioBox] === 0">
+                <span class="attribute mr-2">Réponse:</span> {{data.medical[item.value] ? data.medical[item.value][item.valueInput] : '-'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <p class="title">tests de diagnostic respiratoire :</p>
+    <div class="row mb-3 ml-3" *ngFor="let item of testinList">
+      <div class="col-8 attribute">
+        {{item.label}} :
+      </div>
+
+      <div class="col-4 value" [ngStyle]="{'color' : colors(data.testing[item.value])}">
+        <div [ngSwitch]="item.type">
+          <div *ngSwitchCase="'number'">
+            {{convertTesting(data.testing[item.value])}}
+          </div>
+          <div *ngSwitchCase="'group'">
+            <p class="mb-0">{{data.testing[item.value] ? convertSanguin(data.testing[item.value]['firstValue']) : '-'}}
+              <span [ngStyle]="{'color' : colors(data.testing[item.value]['secondValue'])}">
+              {{data.testing[item.value] ? convertTesting(data.testing[item.value]['secondValue'])  : '-'}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

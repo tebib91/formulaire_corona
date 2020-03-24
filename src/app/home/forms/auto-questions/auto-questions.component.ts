@@ -153,7 +153,6 @@ export class AutoQuestionsComponent implements OnInit {
       symptom: this.symptomForm.value,
       medical: this.medicalForm.value,
       testing: this.testingForm.value,
-      specimens: this.specimensForm.value
     };
     if (true) {
       this.api.sendDataForm(data).subscribe(res => {

@@ -1,20 +1,35 @@
 <div class="container">
-  <div>
-    <h3>Liste des déclarations</h3>
+  <div class="list-content">
+    <h2>Liste des déclarations</h2>
     <table>
       <tr>
+        <th></th>
         <th>Age</th>
         <th>Poids</th>
         <th>Taille</th>
-        <th>Détail</th>
+        <th>Fièvre</th>
+        <th>Toux</th>
+        <th>Frissons</th>
+        <th>Détails</th>
       </tr>
-      <tr class="tr-content">
-        <td>15</td>
-        <td>16</td>
-        <td>20</td>
+      <tr class="tr-content" *ngFor="let item of declarationsList; let i = index" (click)="openDetailDialog(item)">
+        <td>{{i + 1 }}</td>
+        <td>{{item.symptom.age ? item.symptom.age : '-'}}</td>
+        <td>{{item.symptom.size ? item.symptom.size : '-'}}</td>
+        <td>{{item.symptom.weight ? item.symptom.size : '-'}}</td>
+        <td>{{convertValue(item.symptom.fever)}}</td>
+        <td>{{convertValue(item.symptom.cough)}}</td>
+        <td>{{convertValue(item.symptom.chills)}}</td>
         <td><mat-icon>info</mat-icon></td>
       </tr>
     </table>
+    <mat-paginator [length]="totalTests"
+                   [pageIndex]="pageIndex"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[10]"
+                   (page)="getServerData($event)"
+    >
+    </mat-paginator>
 
   </div>
 </div>

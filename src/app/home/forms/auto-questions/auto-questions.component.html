@@ -37,7 +37,9 @@
                   </div>
                   <div *ngSwitchCase="'string'">
                     <mat-form-field class="w-100">
-                      <input matInput [placeholder]="item.label" [type]="item.value == 'other' ? 'text' : 'number'" min="0" formControlName="{{item.value}}"
+                      <input matInput [placeholder]="item.label + item.value == 'age' ? 'ans' : item.value == 'size' ?
+                       'Cm' : item.value == 'weight' ? 'Kg' : ''" [type]="item.value == 'other' ? 'text' : 'number'" min="0"
+                             formControlName="{{item.value}}"
                              >
                     </mat-form-field>
                   </div>
@@ -145,7 +147,8 @@
     </div>
     <div class="buttons">
 <!--      <button mat-stroked-button class="mr-2" (click)="previous()">Précédent</button>-->
-      <button mat-stroked-button (click)="done ? save() : next()" [ngStyle]="{'background' : done ? '#0069cc' : '', 'color' : done ? 'white' : ''}"
+      <button mat-stroked-button (click)="done ? save() : next()"
+              [ngStyle]="{'background' : done ? '#0069cc' : '', 'color' : done ? 'white' : ''}"
               class="next-button">{{ done ? 'Confirmer' : 'Suivant'}}</button>
 <!--      <button mat-stroked-button (click)="save()" color="primary" *ngIf="done">Confirmer</button>-->
     </div>

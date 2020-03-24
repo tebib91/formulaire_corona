@@ -45,6 +45,12 @@ export class ApiserviceService {
         catchError(this.errorHandl)
       );
   }
+  getDeclarationList(page): Observable<any> {
+      return this.https.get<any>(`${this.baseurl}/?f=list_tests&page=${page}`, this.httpOptions)
+      .pipe(
+        catchError(this.errorHandl)
+      );
+  }
   // POST
   sendDataForm(data): Observable<any> {
     return this.https.post<any>(this.formUrl, JSON.stringify(data), this.httpOptions)

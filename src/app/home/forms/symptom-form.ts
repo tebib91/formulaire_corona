@@ -204,7 +204,7 @@ export const Testing = [
 
 
   {
-    label: 'autres tests, précisez:',
+    label: 'autres tests, précisez',
     value: 'other',
     type: 'group',
     valueType: 'string'

@@ -32,6 +32,13 @@ p {
   margin: 0;
 }
 
+
+.detailDeclarationDialog {
+  min-width: 70vw;
+  max-height: 98vh;
+  overflow: auto;
+}
+
 .spacer {
   flex: 1;
 }
