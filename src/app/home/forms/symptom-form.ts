@@ -1,5 +1,20 @@
 export const SymptomForm = [
   {
+    label: 'Age / عمر',
+    value: 'age',
+    type: 'string'
+  },
+  {
+    label: 'Taille / حجم',
+    value: 'size',
+    type: 'string'
+  },
+  {
+    label: 'Poids / الوزن',
+    value: 'weight',
+    type: 'string'
+  },
+  {
     label: 'Fièvre / حمى (>38°C)',
     value: 'fever',
     type: 'number'

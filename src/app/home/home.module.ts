@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 
 import {HomeRoutingModule} from './home-routing.module';
 import {HomeComponent} from './home.component';
-import {FormsComponent} from './forms/forms.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DemoMaterialModule} from '../material-module';
 
@@ -11,11 +10,10 @@ import {AgmCoreModule} from '@agm/core';
 import {AutocompleteComponent} from './autocomplete/autocomplete.component';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {AutoQuestionsComponent} from './forms/auto-questions/auto-questions.component';
 import {DialogsucessComponent} from './dialogsucess/dialogsucess.component';
 
 @NgModule({
-  declarations: [HomeComponent, FormsComponent, AutocompleteComponent, AutoQuestionsComponent, DialogsucessComponent],
+  declarations: [HomeComponent, AutocompleteComponent, DialogsucessComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

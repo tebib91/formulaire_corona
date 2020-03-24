@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {MedicalExtension, SymptomForm, Testing, Specimens} from './symptom-form';
-import {ApiserviceService} from '../../apiservice.service';
+import {MedicalExtension, SymptomForm, Testing, Specimens} from '../symptom-form';
+import {ApiserviceService} from '../../../apiservice.service';
 
 
 @Component({
@@ -9,7 +9,7 @@ import {ApiserviceService} from '../../apiservice.service';
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.scss']
 })
-export class FormsComponent implements OnInit {
+export class FormComponent implements OnInit {
   symptomForm: FormGroup;
   medicalForm: FormGroup;
   testingForm: FormGroup;

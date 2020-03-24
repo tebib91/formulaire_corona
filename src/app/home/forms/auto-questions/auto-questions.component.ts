@@ -90,7 +90,6 @@ export class AutoQuestionsComponent implements OnInit {
 
   next() {
     let index;
-    let length;
     let hasError = false;
     if (this.toDisplay === 1) {
       index = 'symptomsIndex';
