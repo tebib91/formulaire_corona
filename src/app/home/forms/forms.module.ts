@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsRoutingModule } from './forms-routing.module';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsRoutingModule} from './forms-routing.module';
 import {ListingComponent} from './listing/listing.component';
 import {FormComponent} from './diagnostic/forms.component';
 import {AutoQuestionsComponent} from './auto-questions/auto-questions.component';
@@ -11,10 +11,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
+import {DetailListDialogComponent} from './detail-list-dialog/detail-list-dialog.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
-  declarations: [ListingComponent, FormComponent, AutoQuestionsComponent],
+  declarations: [ListingComponent, FormComponent, AutoQuestionsComponent, DetailListDialogComponent],
   imports: [
     CommonModule,
     FormsRoutingModule,
@@ -25,7 +27,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatCheckboxModule,
     FormsModule,
-    MatIconModule
-  ]
+    MatIconModule,
+    MatPaginatorModule
+  ],
+  entryComponents: [DetailListDialogComponent]
 })
-export class FormModule { }
+export class DiagModule {
+}

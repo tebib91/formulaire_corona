@@ -20,9 +20,11 @@
     <div class="form-container">
       <!--SYMPTOMS-->
       <div class="question"><p class="title">Questionnaire {{toDisplay}}</p></div>
+      <p class="quest-previous d-flex align-items-center" (click)="previous()">
+        <mat-icon>keyboard_arrow_left</mat-icon> {{' Question '+ (index + 1)  + '/' + length}}</p>
       <form [formGroup]="symptomForm" *ngIf="toDisplay == 1">
         <div class="question-response">
-          <p class="quest-previous d-flex align-items-center" (click)="previous()"><mat-icon>keyboard_arrow_left</mat-icon> {{' Question '+ (index + 1)  + '/' + length}}</p>
+
           <div *ngFor="let item of symptomValues; let i = index">
             <div class="" *ngIf="i == symptomsIndex">
               <div class="div-title"><p class="label slide-in-left">{{item.label}}</p></div>
@@ -37,7 +39,9 @@
                   </div>
                   <div *ngSwitchCase="'string'">
                     <mat-form-field class="w-100">
-                      <input matInput [placeholder]="item.label" [type]="item.value == 'other' ? 'text' : 'number'" min="0" formControlName="{{item.value}}"
+                      <input matInput [placeholder]="item.label + item.value == 'age' ? 'ans' : item.value == 'size' ?
+                       'Cm' : item.value == 'weight' ? 'Kg' : ''" [type]="item.value == 'other' ? 'text' : 'number'" min="0"
+                             formControlName="{{item.value}}"
                              >
                     </mat-form-field>
                   </div>
@@ -91,7 +95,7 @@
       </form>
       <!--FIN MEDICAL -->
 
-      <!--SPECIMENS -->
+      <!--TESTING -->
       <form [formGroup]="testingForm" *ngIf="toDisplay == 3">
         <div class="question-response">
           <div *ngFor="let item of testingDiag; let i = index">
@@ -116,6 +120,11 @@
                 </div>
               <div class="div-questions slide-in-left">
                 <div [ngSwitch]="item.type">
+                  <div *ngSwitchCase="'string'">
+                    <mat-form-field class="w-100">
+                      <input matInput placeholder="Other" [formControlName]="item.value" >
+                    </mat-form-field>
+                  </div>
                   <div *ngSwitchCase="'number'">
                     <mat-radio-group [formControlName]="item.value" (change)="next()" class="align-column">
                       <mat-radio-button [value]=0>Pos</mat-radio-button>
@@ -141,11 +150,12 @@
           </div>
         </div>
       </form>
-      <!--FIN SPECIMENS -->
+      <!--FIN TESTING -->
     </div>
     <div class="buttons">
 <!--      <button mat-stroked-button class="mr-2" (click)="previous()">Précédent</button>-->
-      <button mat-stroked-button (click)="done ? save() : next()" [ngStyle]="{'background' : done ? '#0069cc' : '', 'color' : done ? 'white' : ''}"
+      <button mat-stroked-button (click)="done ? save() : next()"
+              [ngStyle]="{'background' : done ? '#0069cc' : '', 'color' : done ? 'white' : ''}"
               class="next-button">{{ done ? 'Confirmer' : 'Suivant'}}</button>
 <!--      <button mat-stroked-button (click)="save()" color="primary" *ngIf="done">Confirmer</button>-->
     </div>

@@ -32,6 +32,17 @@ p {
   margin: 0;
 }
 
+
+.detailDeclarationDialog {
+  min-width: 70vw;
+  max-height: 98vh;
+  overflow: auto;
+}
+
+.successSnack {
+  background-color: #3BA756;
+}
+
 .spacer {
   flex: 1;
 }
