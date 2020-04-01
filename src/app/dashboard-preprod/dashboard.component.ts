@@ -1,9 +1,9 @@
-import {ApiserviceService} from '../apiservice.service';
+import {ApiserviceService} from './../apiservice.service';
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {PageEvent} from '@angular/material/paginator';
-import {HelpComponent} from './help/help.component';
+import {HelpComponent} from '../dashboard-preprod/help/help.component';
 import {MatDialog} from '@angular/material/dialog';
 
 @Component({
@@ -13,6 +13,7 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class DashboardComponent implements OnInit {
 
+
   // endpoints
   genderPieEndpoint = '?f=api&endpoint=genderPie&preprod';
   stackedEndpoint = '?f=api&endpoint=stacked&preprod';
@@ -21,23 +22,21 @@ export class DashboardComponent implements OnInit {
   sourceEndpoint = '?f=api&endpoint=sources&preprod';
   govsEndpoint = '?f=api&endpoint=governates&preprod';
   exportersEndpoint = '?f=api&endpoint=exporters&preprod';
-  casesEndpoint = '?f=api&endpoint=cases&preprod';
+  casesEndpoint = '?f=api&endpoint=cases';
   numbersEndpoint = '?f=api&endpoint=numbers';
   statsEndpoint = '?f=api&endpoint=statistics';
-
   // numbers
   confirmed: number;
   hospitalized: number;
   discharged: number;
   restablished: number;
-  dead: number;
   last_update: number;
+  dead: number;
   // table charts
   cases: any[];
   casesPaginator: any[];
   averageAge: number;
   language: string;
-  lastUpdateCases: string;
   pageEvent: PageEvent;
   pageIndex = 0;
   length = 100;
@@ -100,8 +99,8 @@ export class DashboardComponent implements OnInit {
         this.hospitalized = data.hospitalized;
         this.discharged = data.Discharged;
         this.restablished = data.Recovered;
-        this.dead = data.Dead;
         this.last_update = data.last_update;
+        this.dead = data.Dead;
       });
     this.apiService.get(this.statsEndpoint).subscribe(
       (data: any) => {
@@ -119,11 +118,10 @@ export class DashboardComponent implements OnInit {
     // getting table data
     this.apiService.get(this.casesEndpoint).subscribe(
       (data: any) => {
-        this.cases = data.chartData.cases;
+        this.cases = data.cases;
         this.getServerData();
-        this.averageAge = data.chartData.average;
-        this.lastUpdateCases = data.last_update;
-        this.length = data.chartData.cases.length;
+        this.averageAge = data.average;
+        this.length = data.cases.length;
       });
   }
 
@@ -165,7 +163,6 @@ export class DashboardComponent implements OnInit {
   resultLastUpdate(event, label) {
     this.lastUpdates[label] = event;
   }
-
   mapDisplay() {
     this.cases.map(c => c.display = false);
   }

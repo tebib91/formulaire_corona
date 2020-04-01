@@ -3,7 +3,7 @@
   <div class="row mb-4">
     <div class="col-12">
       <small
-      >{{ "last_update.title" | translate }}:
+        >{{ "last_update.title" | translate }}:
         {{ last_update ? last_update : 5 - 3 - 2020 }}</small
       >
     </div>
@@ -17,7 +17,7 @@
           <div class="card-header-number">
             <span class="header-title">{{
               "confirmed.title" | translate
-              }}</span>
+            }}</span>
             <i class="material-icons" matTooltip="{{'confirmed.help' | translate}}">
               help_outline
             </i>
@@ -36,7 +36,7 @@
           <div class="card-header-number">
             <span class="header-title">{{
               "number_last_day.title" | translate
-              }}</span>
+            }}</span>
             <i class="material-icons" matTooltip="{{'number_last_day.help' | translate}}">
               help_outline
             </i>
@@ -50,12 +50,10 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 mr-0">
-        <div class="card no-chart mr-0">
+      <div class="col-md-3">
+        <div class="card no-chart 0">
           <div class="card-header-number">
-            <span class="header-title">{{
-              "restablished.title" | translate
-              }}</span>
+            <span class="header-title">{{ "restablished.title" | translate }}</span>
             <i class="material-icons" matTooltip="{{'restablished.help' | translate}}">
               help_outline
             </i>
@@ -69,10 +67,12 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="card no-chart 0">
+      <div class="col-md-3 mr-0">
+        <div class="card no-chart mr-0">
           <div class="card-header-number">
-            <span class="header-title">{{ "dead.title" | translate }}</span>
+            <span class="header-title">{{
+              "dead.title" | translate
+            }}</span>
             <i class="material-icons" matTooltip="{{'dead.help' | translate}}">
               help_outline
             </i>
@@ -86,7 +86,6 @@
           </div>
         </div>
       </div>
-
     </div>
     <div class="row" [ngClass]="{ rtl: language === 'ar' }">
       <div class="col-md-3">
@@ -94,7 +93,7 @@
           <div class="card-header-number">
             <span class="header-title">{{
               "quarantaine_number.title" | translate
-              }}</span>
+            }}</span>
             <i class="material-icons" matTooltip="{{'quarantaine_number.help' | translate}}">
               help_outline
             </i>
@@ -113,7 +112,7 @@
           <div class="card-header-number">
             <span class="header-title">{{
               "current_quarantaine_number.title" | translate
-              }}</span>
+            }}</span>
             <i class="material-icons" matTooltip="{{'current_quarantaine_number.help' | translate}}">
               help_outline
             </i>
@@ -134,7 +133,7 @@
           <div class="card-header-number">
             <span class="header-title">{{
               "tests_number.title" | translate
-              }}</span>
+            }}</span>
             <i class="material-icons" matTooltip="{{'tests_number.help' | translate}}">
               help_outline
             </i>
@@ -153,7 +152,7 @@
           <div class="card-header-number">
             <span class="header-title">{{
               "positive_tests_positif.title" | translate
-              }}</span>
+            }}</span>
             <i class="material-icons" matTooltip="{{'positive_tests_positif.help' | translate}}">
               help_outline
             </i>
@@ -169,12 +168,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="card-chart cases-card">
           <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
             <span class="header-title-charts">{{
               "number_of_cases_per_day.title" | translate
-              }}</span>
+            }}</span>
             <div class="legends">
               <div class="one-legend">
                 <span
@@ -183,7 +182,7 @@
                 ></span>
                 <span class="legend-label">{{
                   "confirmed.title" | translate
-                  }}</span>
+                }}</span>
               </div>
               <div class="one-legend">
                 <span
@@ -192,7 +191,7 @@
                 ></span>
                 <span class="legend-label">{{
                   "discharged.title" | translate
-                  }}</span>
+                }}</span>
               </div>
               <div class="one-legend">
                 <span
@@ -201,7 +200,7 @@
                 ></span>
                 <span class="legend-label">{{
                   "restablished.title" | translate
-                  }}</span>
+                }}</span>
               </div>
               <div class="one-legend">
                 <span
@@ -220,12 +219,82 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card-chart cases-card">
+          <div class="chart-header d-inline-css" [ngClass]="{ rtl: language === 'ar' }">
+            <span class="header-title-charts">{{
+              "govs.title" | translate
+            }}</span>
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['govsPie'] ? lastUpdates['govsPie'] : '-'}}</p>
+
+          </div>
+          <app-charts [language]="language" [dataSource]="govsEndpoint" [legend]="true" [chartLabel]="'govsPie'"
+                      (lastUpdate)="resultLastUpdate($event, 'govsPie')"   [chartType]="'pie'">
+          </app-charts>
+        </div>
+      </div>
+      <!-- <div class="col-md-3">
+        <div class="card-chart cases-card">
+          <div class="chart-header nationality" [ngClass]="{ rtl: language === 'ar' }">
+            <span class="header-title-charts ">{{
+              "nationality.title" | translate
+            }}</span>
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['nationalityPie'] ? lastUpdates['nationalityPie'] : '-'}}</p>
+
+          </div>
+          <app-charts [language]="language" [chartLabel]="'nationalityPie'" [dataSource]="nationalitiesEndpoint"
+                      [legend]="true" [chartType]="'pie'" (lastUpdate)="resultLastUpdate($event, 'nationalityPie')"></app-charts>
+        </div>
+      </div> -->
+      <!-- <div class="col-md-6">
+        <div class="card-chart cases-card">
+          <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
+            <span class="header-title-charts">{{
+              "reparition_age_sex.title" | translate
+            }}</span>
+            <div class="legends">
+              <div class="one-legend">
+                <span
+                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
+                  style="background-color: #6342D2;"
+                ></span>
+                <span class="legend-label">{{ "male.title" | translate }}</span>
+              </div>
+              <div class="one-legend">
+                <span
+                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
+                  style="background-color: #59D5FD;"
+                ></span>
+                <span class="legend-label">{{
+                  "female.title" | translate
+                }}</span>
+              </div>
+              <div class="one-legend">
+                <span
+                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
+                  style="background-color: #FB6B80;"
+                ></span>
+                <span class="legend-label">{{
+                  "unknown.title" | translate
+                }}</span>
+              </div>
+            </div>
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['ageGenderRepartition'] ? lastUpdates['ageGenderRepartition'] : '-'}}</p>
+
+          </div>
+          <app-charts [dataSource]="gendreAgeEndpoint" [chartLabel]="'ageGenderRepartition'" [chartType]="'bar'"
+                      (lastUpdate)="resultLastUpdate($event, 'ageGenderRepartition')">
+          </app-charts>
+        </div>
+      </div> -->
       <div class="col-md-4">
         <div class="card-chart cases-card">
           <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
             <span class="header-title-charts">{{
               "gender.title" | translate
-              }}</span>
+            }}</span>
             <!-- <div class="legends">
               <div class="one-legend">
                 <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
@@ -247,94 +316,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3">
-        <div class="card-chart cases-card">
-          <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
-            <span class="header-title-charts">{{
-              "nationality.title" | translate
-              }}</span>
-            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['nationalityPie'] ? lastUpdates['nationalityPie'] : '-'}}</p>
-
-          </div>
-          <app-charts [language]="language" [chartLabel]="'nationalityPie'" [dataSource]="nationalitiesEndpoint"
-                      [legend]="true" [chartType]="'pie'" (lastUpdate)="resultLastUpdate($event, 'nationalityPie')"></app-charts>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card-chart cases-card">
-          <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
-            <span class="header-title-charts">{{
-              "reparition_age_sex.title" | translate
-              }}</span>
-            <div class="legends">
-              <div class="one-legend">
-                <span
-                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
-                  style="background-color: #6342D2;"
-                ></span>
-                <span class="legend-label">{{ "male.title" | translate }}</span>
-              </div>
-              <div class="one-legend">
-                <span
-                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
-                  style="background-color: #59D5FD;"
-                ></span>
-                <span class="legend-label">{{
-                  "female.title" | translate
-                  }}</span>
-              </div>
-              <div class="one-legend">
-                <span
-                  class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5"
-                  style="background-color: #FB6B80;"
-                ></span>
-                <span class="legend-label">{{
-                  "unknown.title" | translate
-                  }}</span>
-              </div>
-            </div>
-            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['ageGenderRepartition'] ? lastUpdates['ageGenderRepartition'] : '-'}}</p>
-
-          </div>
-          <app-charts [dataSource]="gendreAgeEndpoint" [chartLabel]="'ageGenderRepartition'" [chartType]="'bar'"
-                      (lastUpdate)="resultLastUpdate($event, 'ageGenderRepartition')">
-          </app-charts>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card-chart cases-card">
-          <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
-            <span class="header-title-charts">{{
-              "source.title" | translate
-              }}</span>
-            <!-- <div class="legends">
-              <div class="one-legend">
-                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
-                <span class="legend-label">Importé</span>
-              </div>
-              <div class="one-legend">
-                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
-                <span class="legend-label">Local</span>
-              </div>
-            </div> -->
-            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['sourcePie'] ? lastUpdates['sourcePie'] : '-'}}</p>
-
-          </div>
-          <app-charts [language]="language" [legend]="true" [dataSource]="sourceEndpoint" [chartLabel]="'sourcePie'"
-                      (lastUpdate)="resultLastUpdate($event, 'sourcePie')" [chartType]="'pie'">
-          </app-charts>
-        </div>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-md-4">
         <div class="cases-card map">
           <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
             <span class="header-title-charts">{{
               "cluster.title" | translate
-              }}</span>
-            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{last_update}}</p>
-
+            }}</span>
           </div>
           <style>
             .embed-container {
@@ -377,32 +364,8 @@
         <div class="card-chart cases-card">
           <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
             <span class="header-title-charts">{{
-              "govs.title" | translate
-              }}</span>
-            <!-- <div class="legends">
-              <div class="one-legend">
-                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
-                <span class="legend-label">Masculin</span>
-              </div>
-              <div class="one-legend">
-                <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #59D5FD;"></span>
-                <span class="legend-label">Fémenin</span>
-              </div>
-            </div> -->
-            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['govsPie'] ? lastUpdates['govsPie'] : '-'}}</p>
-
-          </div>
-          <app-charts [language]="language" [dataSource]="govsEndpoint" [legend]="true" [chartLabel]="'govsPie'"
-                      (lastUpdate)="resultLastUpdate($event, 'govsPie')"   [chartType]="'pie'">
-          </app-charts>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card-chart cases-card">
-          <div class="chart-header" [ngClass]="{ rtl: language === 'ar' }">
-            <span class="header-title-charts">{{
               "countries_exports.title" | translate
-              }}</span>
+            }}</span>
             <!-- <div class="legends">
               <div class="one-legend">
                 <span class="d-inline-block wd-7 ht-7 rounded-circle mg-r-5" style="background-color: #6342D2;"></span>
@@ -420,6 +383,19 @@
                       (lastUpdate)="resultLastUpdate($event, 'countriesPie')"   [chartLabel]="'countriesPie'" [chartType]="'pie'"></app-charts>
         </div>
       </div>
+      <div class="col-md-4">
+        <div class="card-chart cases-card">
+          <div class="chart-header d-inline-css" [ngClass]="{ rtl: language === 'ar' }">
+            <span class="header-title-charts">{{
+              "source.title" | translate
+            }}</span>
+            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdates && lastUpdates['sourcePie'] ? lastUpdates['sourcePie'] : '-'}}</p>
+          </div>
+          <app-charts [language]="language" [legend]="true" [dataSource]="sourceEndpoint" [chartLabel]="'sourcePie'"
+                      (lastUpdate)="resultLastUpdate($event, 'sourcePie')" [chartType]="'pie'">
+          </app-charts>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-12">
@@ -430,9 +406,8 @@
           <div class="chart-header">
             <span class="header-title-charts">{{
               "case.title" | translate
-              }}</span
-            >            <p class="small">{{language == 'ar' ? 'اخر تحديث' : 'Mise à jour'}} : {{lastUpdateCases}}</p>
-
+            }}</span
+            ><br />
           </div>
           <div class="table-container">
             <table class="table ">
