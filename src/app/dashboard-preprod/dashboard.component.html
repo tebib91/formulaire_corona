@@ -397,70 +397,8 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div
-          class="card-chart cases-card table-chart"
-          [ngClass]="{ rtl: language === 'ar' }"
-        >
-          <div class="chart-header">
-            <span class="header-title-charts">{{
-              "case.title" | translate
-            }}</span
-            ><br />
-          </div>
-          <div class="table-container">
-            <table class="table ">
-              <thead>
-              <tr class="table-light">
-                <th>{{ "case.title" | translate }}</th>
-                <th>{{ "confirmed_at.title" | translate }}</th>
-                <th>{{  "age.title" | translate }}</th>
-                <th>{{ "gender.title" | translate }}</th>
-                <th>{{ "gouvernorat.title" | translate }}</th>
-                <th>{{ "asymptomic_at.title" | translate }}</th>
-                <th>{{ "help.title" | translate }}</th>
-              </tr>
-              </thead>
-              <ng-container *ngFor="let case of casesPaginator; let i = index">
-                <tr *ngIf="i < pageSize + (pageSize * pageIndex)">
-                  <td class="table-light">
-                    {{ case.case }}
-                  </td>
-                  <td class="table-light">
-                    {{ case.confirmed_date }}
-                  </td>
-                  <td class="table-light">
-                    {{ case.age !== 0 ? case.age : 'NA' }}
-                  </td>
-                  <td class="table-light">
-                    {{ case.gender + ".title" | translate }}
-                  </td>
-                  <td>{{language == 'ar' ? arGourenorate(case.governate) : case.governate}}</td>
-                  <td class="table-light">
-                    {{ case.symptomatic_at ? case.symptomatic_at : '-' }}
-                  </td>
-                  <td class="td-help">
-                    <mat-icon class="icon"
-                              [ngStyle]="{'color' : case.display ? '#bcbcbc' : ''}"
-                              (click)="mapDisplay() ;case.display ? case.display = !case.display : case.display = true">help
-                    </mat-icon>
-                    <div class="tool" *ngIf="case.display">
-                      {{language == 'ar' ? case.comment_ar : case.comment}}
-                    </div>
-                  </td>
-                </tr>
-              </ng-container>
-            </table>
-            <mat-paginator [length]="length"
-                           [pageIndex]="pageIndex"
-                           [pageSize]="pageSize"
-                           [pageSizeOptions]="[5, 10, 25, 100]" (page)="getServerData($event)">
-            </mat-paginator>
-          </div>
-          <!-- On rows -->
-        </div>
-      </div>
+    <div class="row footer">
+      <img src="assets/kpeiz_logo.png" alt="Logo kpeiz" class="logo-kpeiz"> Powered by &nbsp;<a href="https://kpeiz.digital" target="_blank">Kpeiz</a>
     </div>
   </div>
 </div>
