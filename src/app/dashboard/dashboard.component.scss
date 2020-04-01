@@ -81,6 +81,15 @@ tr td {
     cursor: pointer;
   }
 }
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  img {
+    height: 24px
+  }
+}
 @media (min-width: 1200px) {
   .container,
   .container-lg,
